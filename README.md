@@ -67,10 +67,10 @@ $
 
 ## Available Operating Systems
 
-| Name       | VM Name          |
-|------------|------------------|
-| ubuntu1404 | Ubuntu 14.04 LTS |
-| centos6    | CentOS 6.5       |
+| Name             | VM Name    |
+|------------------|------------|
+| Ubuntu 14.04 LTS | ubuntu1404 |
+| CentOS 6.5       | centos6    |
 
 
 
