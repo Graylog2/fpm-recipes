@@ -1,0 +1,2 @@
+# Set to "yes" to be able to start graylog2-server.
+GRAYLOG2_SERVER_RUN=no

@@ -1,0 +1,24 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    configure)
+	user="graylog2"
+	group="graylog2"
+	datadir="/var/lib/graylog2"
+	#logdir="/var/log/graylog2"
+
+	if ! getent group "$group" > /dev/null 2>&1 ; then
+	    addgroup --system "$group" --quiet
+	fi
+
+	if ! id "$user" > /dev/null 2>&1 ; then
+	    adduser --system --home "$datadir" --no-create-home \
+		--ingroup "$group" --disabled-password \
+		--shell /bin/false "$user"
+	fi
+
+	install -d -o "$user" -g "$group" -m 0755 "$datadir"
+	#install -d -o "$user" -g "$group" -m 0755 "$logdir"
+    ;;
+esac
