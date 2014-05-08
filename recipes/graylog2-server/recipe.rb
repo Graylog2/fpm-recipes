@@ -32,6 +32,7 @@ class Graylog2Server < FPM::Cookery::Recipe
   end
 
   def build
+    patch(workdir('patches/graylog2-server.conf.patch'))
   end
 
   def install
