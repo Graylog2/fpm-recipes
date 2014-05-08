@@ -22,7 +22,7 @@ NAME=graylog2-server
 JAR_FILE=/usr/share/graylog2-server/graylog2-server.jar
 JAVA=/usr/bin/java
 PID_FILE=/var/run/graylog2/$NAME.pid
-JAVA_ARGS="-jar -Dlog4j.configuration=file:///etc/graylog2/server/log4j.xml $JAR_FILE -p $PID_FILE -f /etc/graylog2/server.conf"
+JAVA_ARGS="-jar -Dlog4j.configuration=file:///etc/graylog2/server/log4j.xml $JAR_FILE -p $PID_FILE -f /etc/graylog2.conf"
 SCRIPTNAME=/etc/init.d/$NAME
 LOCKFILE=/var/lock/subsys/$NAME
 GRAYLOG2_SERVER_USER=graylog2
