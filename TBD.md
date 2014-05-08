@@ -32,3 +32,14 @@ Do we want the packages depend on MongoDB and Elasticsearch?
 * Offer meta-packages that depend on the graylog2 components and the 3rd party
   stuff. Like a graylog2-server-complete which depends on MongoDB and Elasticsearch.
   This will help users that do not use any kind of config management.
+
+## General Ideas
+
+### Use dialogs for meta packages
+
+If we go for meta packages, adding dialogs which asks some questions for
+the initial configuration might be nice.
+
+* Ask for ES cluster name, MongoDB address, etc.
+* deb -- http://www.fifi.org/doc/debconf-doc/tutorial.html
+* rpm -- ?
