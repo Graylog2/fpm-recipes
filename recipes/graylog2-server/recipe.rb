@@ -18,7 +18,7 @@ class Graylog2Server < FPM::Cookery::Recipe
 
   platforms [:ubuntu] do
     section 'net'
-    depends 'openjdk-7-jre-headless'#, 'mongodb', 'elasticsearch'
+    depends 'openjdk-7-jre-headless'
 
     config_files '/etc/init/graylog2-server.conf',
                  '/etc/default/graylog2-server'
@@ -28,7 +28,7 @@ class Graylog2Server < FPM::Cookery::Recipe
   end
 
   platforms [:centos] do
-    depends 'java-1.7.0-openjdk'#, 'mongodb', 'elasticsearch'
+    depends 'java-1.7.0-openjdk'
   end
 
   def build
