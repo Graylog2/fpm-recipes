@@ -1,2 +1,5 @@
 # Set to "yes" to be able to start graylog2-server.
 GRAYLOG2_SERVER_RUN=no
+
+# Might be used to adjust the Java heap size. (i.e. "-Xms1024m -Xmx2048m")
+GRAYLOG2_SERVER_JAVA_OPTS=""
