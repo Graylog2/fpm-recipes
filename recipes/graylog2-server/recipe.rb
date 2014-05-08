@@ -32,6 +32,9 @@ class Graylog2Server < FPM::Cookery::Recipe
 
     config_files '/etc/init.d/graylog2-server',
                  '/etc/sysconfig/graylog2-server'
+
+    post_install 'files/centos/post-install'
+    pre_uninstall 'files/centos/pre-uninstall'
   end
 
   def build
