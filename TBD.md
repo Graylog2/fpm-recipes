@@ -26,3 +26,9 @@ Do we want the packages depend on MongoDB and Elasticsearch?
   will cause pain for users when repositories are not setup correctly.
   Especially when hard version dependencies are involved like
   `elasticsearch (=0.90.10)`.
+
+### Ideas
+
+* Offer meta-packages that depend on the graylog2 components and the 3rd party
+  stuff. Like a graylog2-server-complete which depends on MongoDB and Elasticsearch.
+  This will help users that do not use any kind of config management.
