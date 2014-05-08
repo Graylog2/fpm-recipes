@@ -29,6 +29,9 @@ class Graylog2Server < FPM::Cookery::Recipe
 
   platforms [:centos] do
     depends 'java-1.7.0-openjdk'
+
+    config_files '/etc/init.d/graylog2-server',
+                 '/etc/sysconfig/graylog2-server'
   end
 
   def build
@@ -43,6 +46,9 @@ class Graylog2Server < FPM::Cookery::Recipe
     when :ubuntu
       etc('init').install osfile('upstart.conf'), 'graylog2-server.conf'
       etc('default').install osfile('default'), 'graylog2-server'
+    when :centos
+      etc('init.d').install osfile('init.d'), 'graylog2-server'
+      etc('sysconfig').install osfile('sysconfig'), 'graylog2-server'
     end
 
     share('graylog2-server').install 'graylog2-server.jar'
