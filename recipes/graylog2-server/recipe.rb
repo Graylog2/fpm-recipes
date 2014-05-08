@@ -51,6 +51,7 @@ class Graylog2Server < FPM::Cookery::Recipe
       etc('default').install osfile('default'), 'graylog2-server'
     when :centos
       etc('init.d').install osfile('init.d'), 'graylog2-server'
+      etc('init.d/graylog2-server').chmod(0755)
       etc('sysconfig').install osfile('sysconfig'), 'graylog2-server'
     end
 
