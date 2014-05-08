@@ -2,7 +2,7 @@
 GRAYLOG2_SERVER_RUN=no
 
 # Might be used to adjust the Java heap size. (i.e. "-Xms1024m -Xmx2048m")
-GRAYLOG2_SERVER_JAVA_OPTS=""
+GRAYLOG2_SERVER_JAVA_OPTS="-Xms1024m -Xmx1024m"
 
 # Pass some extra args to graylog2-server. (i.e. "-d" to enable debug mode)
 GRAYLOG2_SERVER_ARGS=""
