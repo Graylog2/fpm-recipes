@@ -6,7 +6,7 @@ case "$1" in
 	user="graylog2"
 	group="graylog2"
 	datadir="/var/lib/graylog2"
-	#logdir="/var/log/graylog2"
+	logdir="/var/log/graylog2"
 
 	if ! getent group "$group" > /dev/null 2>&1 ; then
 	    addgroup --system "$group" --quiet
@@ -19,6 +19,6 @@ case "$1" in
 	fi
 
 	install -d -o "$user" -g "$group" -m 0755 "$datadir"
-	#install -d -o "$user" -g "$group" -m 0755 "$logdir"
+	install -d -o "$user" -g "$group" -m 0755 "$logdir"
     ;;
 esac

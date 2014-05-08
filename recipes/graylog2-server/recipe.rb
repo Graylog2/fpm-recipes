@@ -13,7 +13,8 @@ class Graylog2Server < FPM::Cookery::Recipe
   vendor     'torch'
   license    'GPLv3'
 
-  config_files '/etc/graylog2.conf'
+  config_files '/etc/graylog2.conf',
+               '/etc/graylog2/server/log4j.xml'
 
   platforms [:ubuntu] do
     section 'net'
@@ -33,20 +34,27 @@ class Graylog2Server < FPM::Cookery::Recipe
   def build
   end
 
-  def file(name)
-    workdir(File.join('files', FPM::Cookery::Facts.platform.to_s, name))
-  end
-
   def install
     etc.install 'graylog2.conf.example', 'graylog2.conf'
+    etc('graylog2/server').install file('log4j.xml')
 
     case FPM::Cookery::Facts.platform
     when :ubuntu
-      etc('init').install file('upstart.conf'), 'graylog2-server.conf'
-      etc('default').install file('default'), 'graylog2-server'
+      etc('init').install osfile('upstart.conf'), 'graylog2-server.conf'
+      etc('default').install osfile('default'), 'graylog2-server'
     end
 
     share('graylog2-server').install 'graylog2-server.jar'
     share('graylog2-server/plugin').mkpath
+  end
+
+  private
+
+  def osfile(name)
+    workdir(File.join('files', FPM::Cookery::Facts.platform.to_s, name))
+  end
+
+  def file(name)
+    workdir(File.join('files', name))
   end
 end

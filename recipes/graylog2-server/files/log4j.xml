@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <!-- Appenders -->
+    <appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
+      <param name="append" value="false"/>
+      <param name="file" value="/var/log/graylog2/server.log"/>
+      <layout class="org.apache.log4j.PatternLayout">
+         <param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}] %m%n"/>
+      </layout>
+    </appender>
+
+    <!-- Application Loggers -->
+    <logger name="org.graylog2">
+        <level value="warn"/>
+    </logger>
+    <!-- this emits a harmless warning for ActiveDirectory every time which we can't work around :( -->
+    <logger name="org.apache.directory.api.ldap.model.message.BindRequestImpl">
+        <level value="error"/>
+    </logger>
+    <!-- Root Logger -->
+    <root>
+        <priority value="warn"/>
+        <appender-ref ref="fileAppender"/>
+    </root>
+
+</log4j:configuration>
