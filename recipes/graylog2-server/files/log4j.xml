@@ -4,10 +4,10 @@
 
     <!-- Appenders -->
     <appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
-      <param name="append" value="false"/>
+      <param name="append" value="true"/>
       <param name="file" value="/var/log/graylog2/server.log"/>
       <layout class="org.apache.log4j.PatternLayout">
-         <param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}] %m%n"/>
+        <param name="ConversionPattern" value="%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX} %-5p [%c{1}] %m%n"/>
       </layout>
     </appender>
 
