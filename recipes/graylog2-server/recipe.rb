@@ -56,7 +56,11 @@ class Graylog2Server < FPM::Cookery::Recipe
     end
 
     share('graylog2-server').install 'graylog2-server.jar'
-    share('graylog2-server/plugin').mkpath
+
+    # Create all plugin directories.
+    %w(filters outputs inputs initializers transports alarm_callbacks).each do |dir|
+      share("graylog2-server/plugin/#{dir}").mkpath
+    end
   end
 
   private
