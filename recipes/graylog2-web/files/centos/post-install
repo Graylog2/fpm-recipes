@@ -1,0 +1,22 @@
+user="graylog2-web"
+group="graylog2-web"
+datadir="/var/lib/graylog2-web"
+logdir="/var/log/graylog2-web"
+
+# Create graylog2-web group
+if ! getent group "$user" >/dev/null; then
+	groupadd -r "$user"
+fi
+
+# Create graylog2-web user
+if ! getent passwd "$user">/dev/null; then
+	useradd -r -g "$group" -d "$datadir" \
+		-s /sbin/nologin -c "Graylog2 web" "$user"
+fi
+
+# Create directories
+install -d -o "$user" -g "$group" -m 0755 "$datadir"
+install -d -o "$user" -g "$group" -m 0755 "$logdir"
+
+# Add init script to chkconfig
+chkconfig --add graylog2-web

@@ -32,11 +32,11 @@ class Graylog2Web < FPM::Cookery::Recipe
   platforms [:centos] do
     depends 'java-1.7.0-openjdk'
 
-#    config_files '/etc/init.d/graylog2-web',
-#                 '/etc/sysconfig/graylog2-web'
+    config_files '/etc/init.d/graylog2-web',
+                 '/etc/sysconfig/graylog2-web'
 
-#    post_install 'files/centos/post-install'
-#    pre_uninstall 'files/centos/pre-uninstall'
+    post_install 'files/centos/post-install'
+    pre_uninstall 'files/centos/pre-uninstall'
   end
 
   def build
@@ -47,10 +47,10 @@ class Graylog2Web < FPM::Cookery::Recipe
     when :ubuntu
       etc('init').install osfile('upstart.conf'), 'graylog2-web.conf'
       etc('default').install osfile('default'), 'graylog2-web'
-#    when :centos
-#      etc('init.d').install osfile('init.d'), 'graylog2-web'
-#      etc('init.d/graylog2-web').chmod(0755)
-#      etc('sysconfig').install osfile('sysconfig'), 'graylog2-web'
+    when :centos
+      etc('init.d').install osfile('init.d'), 'graylog2-web'
+      etc('init.d/graylog2-web').chmod(0755)
+      etc('sysconfig').install osfile('sysconfig'), 'graylog2-web'
     end
 
     etc('graylog2/web').install Dir['conf/*']
