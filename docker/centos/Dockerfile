@@ -3,7 +3,7 @@ FROM centos:centos6
 MAINTAINER TORCH GmbH <hello@torch.sh>
 
 # Install required packages to install the fpm-cookery gem.
-RUN yum install -y rubygems ruby-devel make gcc tar rpm-build
+RUN yum install -y rubygems ruby-devel make gcc tar rpm-build curl
 
 # Install the fpm-cookery gem from rubygems.org.
 RUN gem install fpm-cookery --no-ri --no-rdoc
