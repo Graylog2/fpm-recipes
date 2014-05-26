@@ -2,12 +2,12 @@ class Graylog2Web < FPM::Cookery::Recipe
   description 'Graylog2 web'
 
   name     'graylog2-web'
-  version  '0.20.2-rc.1'
+  version  '0.20.2'
   homepage 'http://graylog2.org/'
   arch     'all'
 
   source "https://github.com/Graylog2/graylog2-web-interface/releases/download/#{version}/graylog2-web-interface-#{version}.tgz"
-  sha256 '81d19cfcef6736119333cf6fb8e232c70d0a0274a6bf4cb87b5a4d748b801e13'
+  sha256 'a2e9a456f3a7c2de48de3b9f32254fb6861376f52721a1967c38b7debebff64c'
 
   maintainer 'TORCH GmbH <hello@torch.sh>'
   vendor     'torch'
