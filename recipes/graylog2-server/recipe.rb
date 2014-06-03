@@ -60,6 +60,7 @@ class Graylog2Server < FPM::Cookery::Recipe
       etc('default').install osfile('default'), 'graylog2-server'
     when :debian
       etc('init.d').install osfile('init.d'), 'graylog2-server'
+      etc('init.d/graylog2-server').chmod(0755)
       etc('default').install osfile('default'), 'graylog2-server'
       etc('logrotate.d').install osfile('logrotate'), 'graylog2-server'
     when :centos
