@@ -19,15 +19,22 @@ class Graylog2Web < FPM::Cookery::Recipe
                '/etc/graylog2/web/logback.xml',
                '/etc/graylog2/web/play.plugins'
 
-  platforms [:ubuntu] do
+  platforms [:ubuntu, :debian] do
     section 'net'
     depends 'openjdk-7-jre-headless'
 
-    config_files '/etc/init/graylog2-web.conf',
-                 '/etc/default/graylog2-web'
+    config_files '/etc/default/graylog2-web'
 
-    post_install 'files/ubuntu/post-install'
-    post_uninstall 'files/ubuntu/post-uninstall'
+    post_install "files/#{platform}/post-install"
+    post_uninstall "files/#{platform}/post-uninstall"
+  end
+
+  platforms [:ubuntu] do
+    config_files '/etc/init/graylog2-web.conf'
+  end
+
+  platforms [:debian] do
+    config_files '/etc/init.d/graylog2-web'
   end
 
   platforms [:centos] do
@@ -48,6 +55,11 @@ class Graylog2Web < FPM::Cookery::Recipe
     when :ubuntu
       etc('init').install osfile('upstart.conf'), 'graylog2-web.conf'
       etc('default').install osfile('default'), 'graylog2-web'
+    when :debian
+      etc('init.d').install osfile('init.d'), 'graylog2-web'
+      etc('init.d/graylog2-web').chmod(0755)
+      etc('default').install osfile('default'), 'graylog2-web'
+      etc('logrotate.d').install osfile('logrotate'), 'graylog2-web'
     when :centos
       etc('init.d').install osfile('init.d'), 'graylog2-web'
       etc('init.d/graylog2-web').chmod(0755)

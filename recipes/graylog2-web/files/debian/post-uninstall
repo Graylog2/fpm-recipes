@@ -1,0 +1,24 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    remove)
+        # Nothing to do here
+    ;;
+
+    purge)
+        rm -rf /var/lib/graylog2-web /var/log/graylog2-web
+
+        deluser graylog2-web || true
+        delgroup graylog2-web || true
+    ;;
+
+    upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+        # Nothing to do here
+    ;;
+
+    *)
+        echo "$0 called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
