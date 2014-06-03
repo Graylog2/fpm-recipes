@@ -32,7 +32,8 @@ class Graylog2Server < FPM::Cookery::Recipe
   end
 
   platforms [:debian] do
-    config_files '/etc/init.d/graylog2-server'
+    config_files '/etc/init.d/graylog2-server',
+                 '/etc/logrotate.d/graylog2-server'
   end
 
   platforms [:centos] do
