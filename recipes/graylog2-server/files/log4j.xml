@@ -6,6 +6,8 @@
     <appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
         <param name="append" value="true"/>
         <param name="file" value="/var/log/graylog2/server.log"/>
+        <param name="MaxFileSize" value="10MB"/>
+        <param name="MaxBackupIndex" value="10"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX} %-5p [%c{1}] %m%n"/>
         </layout>
