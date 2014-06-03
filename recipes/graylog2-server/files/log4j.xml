@@ -5,7 +5,7 @@
     <!-- Appenders -->
     <appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
         <param name="append" value="true"/>
-        <param name="file" value="/var/log/graylog2/server.log"/>
+        <param name="file" value="/var/log/graylog2-server/server.log"/>
         <param name="MaxFileSize" value="10MB"/>
         <param name="MaxBackupIndex" value="10"/>
         <layout class="org.apache.log4j.PatternLayout">

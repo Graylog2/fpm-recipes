@@ -5,8 +5,8 @@ case "$1" in
     configure)
 	user="graylog2"
 	group="graylog2"
-	datadir="/var/lib/graylog2"
-	logdir="/var/log/graylog2"
+	datadir="/var/lib/graylog2-server"
+	logdir="/var/log/graylog2-server"
 	server_node_id="/etc/graylog2/server/node-id"
 
 	if ! getent group "$group" > /dev/null 2>&1 ; then

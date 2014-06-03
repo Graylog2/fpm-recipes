@@ -1,7 +1,7 @@
 user="graylog2"
 group="graylog2"
-datadir="/var/lib/graylog2"
-logdir="/var/log/graylog2"
+datadir="/var/lib/graylog2-server"
+logdir="/var/log/graylog2-server"
 
 # Create graylog2 group
 if ! getent group "$user" >/dev/null; then
