@@ -1,6 +1,10 @@
 # Path to the java executable.
 JAVA=/usr/bin/java
 
+# HTTP server settings.
+GRAYLOG2_WEB_HTTP_ADDRESS="0.0.0.0"
+GRAYLOG2_WEB_HTTP_PORT="9000"
+
 # Might be used to adjust the Java heap size. (i.e. "-Xms1024m -Xmx2048m")
 GRAYLOG2_WEB_JAVA_OPTS=""
 

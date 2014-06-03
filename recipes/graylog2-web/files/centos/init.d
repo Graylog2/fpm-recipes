@@ -12,6 +12,10 @@
 # Author: Lee Briggs <lee@leebriggs.co.uk>
 # Contributor: Bernd Ahlers <bernd@torch.sh>
 
+# Some default settings.
+GRAYLOG2_WEB_HTTP_ADDRESS="0.0.0.0"
+GRAYLOG2_WEB_HTTP_PORT="9000"
+
 # Source function library.
 . /etc/rc.d/init.d/functions
 
@@ -38,6 +42,8 @@ start() {
         nohup $CMD -Dconfig.file=${CONF_FILE} \
         -Dlogger.file=/etc/graylog2/web/logback.xml \
         -Dpidfile.path=$PID_FILE \
+        -Dhttp.address=$GRAYLOG2_WEB_HTTP_ADDRESS \
+        -Dhttp.port=$GRAYLOG2_WEB_HTTP_PORT \
         $GRAYLOG2_WEB_JAVA_OPTS $GRAYLOG2_WEB_ARGS > /var/log/graylog2-web/console.log 2>&1 &
     RETVAL=$?
     echo
