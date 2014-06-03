@@ -8,6 +8,7 @@ case "$1" in
 
     purge)
         rm -rf /var/lib/graylog2-server /var/log/graylog2-server
+        rm -f /etc/graylog2/server/node-id
 
         deluser graylog2 || true
         delgroup graylog2 || true
