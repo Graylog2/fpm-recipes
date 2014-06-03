@@ -20,3 +20,8 @@ install -d -o "$user" -g "$group" -m 0755 "$logdir"
 
 # Add init script to chkconfig
 chkconfig --add graylog2-server
+
+# Create an initial server node-id.
+if [ ! -s /etc/graylog2/server/node-id ]; then
+	uuidgen > /etc/graylog2/server/node-id
+fi
