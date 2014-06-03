@@ -17,15 +17,22 @@ class Graylog2Server < FPM::Cookery::Recipe
   config_files '/etc/graylog2.conf',
                '/etc/graylog2/server/log4j.xml'
 
-  platforms [:ubuntu] do
+  platforms [:ubuntu, :debian] do
     section 'net'
     depends 'openjdk-7-jre-headless', 'uuid-runtime'
 
-    config_files '/etc/init/graylog2-server.conf',
-                 '/etc/default/graylog2-server'
+    config_files '/etc/default/graylog2-server'
 
-    post_install 'files/ubuntu/post-install'
-    post_uninstall 'files/ubuntu/post-uninstall'
+    post_install "files/#{platform}/post-install"
+    post_uninstall "files/#{platform}/post-uninstall"
+  end
+
+  platforms [:ubuntu] do
+    config_files '/etc/init/graylog2-server.conf'
+  end
+
+  platforms [:debian] do
+    config_files '/etc/init.d/graylog2-server'
   end
 
   platforms [:centos] do
@@ -50,6 +57,10 @@ class Graylog2Server < FPM::Cookery::Recipe
     when :ubuntu
       etc('init').install osfile('upstart.conf'), 'graylog2-server.conf'
       etc('default').install osfile('default'), 'graylog2-server'
+    when :debian
+      etc('init.d').install osfile('init.d'), 'graylog2-server'
+      etc('default').install osfile('default'), 'graylog2-server'
+      etc('logrotate.d').install osfile('logrotate'), 'graylog2-server'
     when :centos
       etc('init.d').install osfile('init.d'), 'graylog2-server'
       etc('init.d/graylog2-server').chmod(0755)

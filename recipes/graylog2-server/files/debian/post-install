@@ -1,0 +1,30 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    configure)
+	user="graylog2"
+	group="graylog2"
+	datadir="/var/lib/graylog2-server"
+	logdir="/var/log/graylog2-server"
+	server_node_id="/etc/graylog2/server/node-id"
+
+	if ! getent group "$group" > /dev/null 2>&1 ; then
+	    addgroup --system "$group" --quiet
+	fi
+
+	if ! id "$user" > /dev/null 2>&1 ; then
+	    adduser --system --home "$datadir" --no-create-home \
+		--ingroup "$group" --disabled-password \
+		--shell /bin/false "$user"
+	fi
+
+	install -d -o "$user" -g "$group" -m 0755 "$datadir"
+	install -d -o "$user" -g "$group" -m 0755 "$logdir"
+
+	# Create an initial server node-id.
+	if [ ! -s "$server_node_id" ]; then
+		uuidgen > "$server_node_id"
+	fi
+    ;;
+esac
