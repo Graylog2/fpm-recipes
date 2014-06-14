@@ -26,5 +26,7 @@ case "$1" in
 	if [ ! -s "$server_node_id" ]; then
 		uuidgen > "$server_node_id"
 	fi
+
+	update-rc.d graylog2-server defaults 95 10 >/dev/null
     ;;
 esac

@@ -20,5 +20,7 @@ case "$1" in
 
 	install -d -o "$user" -g "$group" -m 0755 "$datadir"
 	install -d -o "$user" -g "$group" -m 0755 "$logdir"
+
+	update-rc.d graylog2-web defaults 95 10 >/dev/null
     ;;
 esac

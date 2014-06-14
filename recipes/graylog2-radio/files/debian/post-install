@@ -26,5 +26,7 @@ case "$1" in
 	if [ ! -s "$radio_node_id" ]; then
 		uuidgen > "$radio_node_id"
 	fi
+
+	update-rc.d graylog2-radio defaults 95 10 >/dev/null
     ;;
 esac

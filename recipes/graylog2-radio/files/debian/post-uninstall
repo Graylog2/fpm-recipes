@@ -3,7 +3,7 @@ set -e
 
 case "$1" in
     remove)
-        # Nothing to do here
+        update-rc.d graylog2-radio remove >/dev/null || true
     ;;
 
     purge)
