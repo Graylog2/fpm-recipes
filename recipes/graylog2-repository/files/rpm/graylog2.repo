@@ -1,0 +1,5 @@
+[graylog2]
+name=graylog2
+baseurl=http://packages.graylog2.org/repo/el/$releasever/main/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-graylog2
