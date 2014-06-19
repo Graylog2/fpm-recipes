@@ -26,7 +26,7 @@ JAVA_ARGS="-jar -Dlog4j.configuration=file:///etc/graylog2/radio/log4j.xml $JAR_
 SCRIPTNAME=/etc/init.d/$NAME
 LOCKFILE=/var/lock/subsys/$NAME
 GRAYLOG2_RADIO_USER=graylog2-radio
-GRAYLOG2_RADIO_JAVA_OPTS="-Xms1024m -Xmx1024m"
+GRAYLOG2_RADIO_JAVA_OPTS=""
 # Pull in sysconfig settings
 [ -f /etc/sysconfig/${NAME} ] && . /etc/sysconfig/${NAME}
 

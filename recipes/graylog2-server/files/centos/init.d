@@ -26,7 +26,7 @@ JAVA_ARGS="-jar -Dlog4j.configuration=file:///etc/graylog2/server/log4j.xml $JAR
 SCRIPTNAME=/etc/init.d/$NAME
 LOCKFILE=/var/lock/subsys/$NAME
 GRAYLOG2_SERVER_USER=graylog2
-GRAYLOG2_SERVER_JAVA_OPTS="-Xms1024m -Xmx1024m"
+GRAYLOG2_SERVER_JAVA_OPTS=""
 # Pull in sysconfig settings
 [ -f /etc/sysconfig/${NAME} ] && . /etc/sysconfig/${NAME}
 
