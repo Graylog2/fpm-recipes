@@ -110,6 +110,7 @@ $
 |------------------|------------|
 | Ubuntu 14.04 LTS | ubuntu1404 |
 | CentOS 6.5       | centos6    |
+| Debian 7         | debian7    |
 
 
 
