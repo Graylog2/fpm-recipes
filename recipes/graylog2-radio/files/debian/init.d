@@ -18,7 +18,8 @@ DESC="Graylog2 Radio"
 NAME=graylog2-radio
 JAR_FILE=/usr/share/graylog2-radio/graylog2-radio.jar
 DAEMON=/usr/bin/java
-PIDFILE=/var/run/graylog2/$NAME.pid
+PIDDIR=/var/run/graylog2-radio
+PIDFILE=$PIDDIR/$NAME.pid
 DAEMON_LOG_OPTION="-Dlog4j.configuration=file:///etc/graylog2/radio/log4j.xml"
 SCRIPTNAME=/etc/init.d/$NAME
 GRAYLOG2_USER=graylog2-radio
@@ -56,9 +57,9 @@ do_start()
 
 		exit 0
 	fi
-	if [ ! -e /var/run/graylog2 ]; then
-		mkdir /var/run/graylog2
-		chown ${GRAYLOG2_USER}:${GRAYLOG2_USER} /var/run/graylog2
+	if [ ! -e $PIDDIR ]; then
+		mkdir $PIDDIR
+		chown ${GRAYLOG2_USER}:${GRAYLOG2_USER} $PIDDIR
 	fi
 	if running ; then
 		[ "$VERBOSE" != no ] && log_progress_msg "apparently already running"
