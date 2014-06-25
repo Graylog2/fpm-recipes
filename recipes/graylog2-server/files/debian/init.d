@@ -61,10 +61,13 @@ do_start()
 		chown ${GRAYLOG2_USER}:${GRAYLOG2_USER} /var/run/graylog2
 	fi
 	if running ; then
-		log_progress_msg "apparently already running"
+		[ "$VERBOSE" != no ] && log_progress_msg "apparently already running"
 		return 1
 	else
-		su -s /bin/bash -c "nohup $DAEMON $DAEMON_ARGS >> /var/log/graylog2-server/console.log 2>&1 &" ${GRAYLOG2_USER} || return 2
+		start-stop-daemon --start --quiet --oknodo --pidfile $PIDFILE \
+			--user $GRAYLOG2_USER --chuid $GRAYLOG2_USER \
+			--background --startas /bin/bash -- \
+			-c "exec $DAEMON $DAEMON_ARGS >> /var/log/graylog2-server/console.log 2>&1"
 		sleep 2
 		if running ; then
 			return 0
@@ -76,9 +79,8 @@ do_start()
 
 do_stop()
 {
-	if [ -s $PIDFILE ]; then
-		kill `cat ${PIDFILE}` >/dev/null 2>&1
-	fi
+	start-stop-daemon --stop --quiet --oknodo --user $GRAYLOG2_USER \
+		--retry=TERM/60/KILL/5 --pidfile $PIDFILE
 	rm -f $PIDFILE
 	return "0"
 }
