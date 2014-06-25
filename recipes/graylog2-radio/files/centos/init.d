@@ -22,7 +22,7 @@ NAME=graylog2-radio
 JAR_FILE=/usr/share/graylog2-radio/graylog2-radio.jar
 JAVA=/usr/bin/java
 PID_FILE=/var/run/graylog2/$NAME.pid
-JAVA_ARGS="-jar -Dlog4j.configuration=file:///etc/graylog2/radio/log4j.xml $JAR_FILE -p $PID_FILE -f /etc/graylog2.conf"
+JAVA_ARGS="-jar -Dlog4j.configuration=file:///etc/graylog2/radio/log4j.xml $JAR_FILE -p $PID_FILE -f /etc/graylog2-radio.conf"
 SCRIPTNAME=/etc/init.d/$NAME
 LOCKFILE=/var/lock/subsys/$NAME
 GRAYLOG2_RADIO_USER=graylog2-radio

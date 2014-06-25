@@ -30,7 +30,7 @@ RUN=yes
 
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
-DAEMON_ARGS="$GRAYLOG2_RADIO_JAVA_OPTS $DAEMON_LOG_OPTION -jar $JAR_FILE -p $PIDFILE -f /etc/graylog2.conf $GRAYLOG2_RADIO_ARGS"
+DAEMON_ARGS="$GRAYLOG2_RADIO_JAVA_OPTS $DAEMON_LOG_OPTION -jar $JAR_FILE -p $PIDFILE -f /etc/graylog2-radio.conf $GRAYLOG2_RADIO_ARGS"
 
 . /lib/init/vars.sh
 
