@@ -8,7 +8,7 @@ class Graylog2Web < FPM::Cookery::Recipe
   arch     'all'
 
   source "https://github.com/Graylog2/graylog2-web-interface/releases/download/#{version}/graylog2-web-interface-#{version}.tgz"
-  sha256 'b58ac064e418f75307688d708bd8457906832aa7b310277958e14cb4d24ff4b5'
+  sha256 '89b6342cef51ca259016d5c9d68cf97d0e7d45e430110e20cda342d133a7cd3f'
 
   maintainer 'TORCH GmbH <hello@torch.sh>'
   vendor     'torch'
