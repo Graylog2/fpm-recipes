@@ -2,13 +2,13 @@ class Graylog2Radio < FPM::Cookery::Recipe
   description 'Graylog2 radio'
 
   name     'graylog2-radio'
-  version  '0.20.4'
+  version  '0.20.5'
   revision 1
   homepage 'http://graylog2.org/'
   arch     'all'
 
   source "https://github.com/Graylog2/graylog2-server/releases/download/#{version}/graylog2-radio-#{version}.tgz"
-  sha256 'cd3403c174c5352f1f7d10959c01c76b3960bf856aafdb2ed5ca12b64b5c8beb'
+  sha256 '9faf4860cb174692179dbbb06a7035ac274778ab77a0af95c3f94d1e881d30ce'
 
   maintainer 'TORCH GmbH <hello@torch.sh>'
   vendor     'torch'
