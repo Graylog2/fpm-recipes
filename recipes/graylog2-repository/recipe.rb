@@ -39,4 +39,14 @@ class Graylog2Release < FPM::Cookery::Recipe
     etc('pki/rpm-gpg').install workdir('files/rpm/RPM-GPG-KEY-graylog2')
     etc('yum.repos.d').install 'graylog2.repo'
   end
+
+  def after_build_package(package)
+    Dir.chdir(pkgdir) do
+      target = "graylog2-repository-#{os}#{osrel}_latest.deb"
+
+      FPM::Cookery::Log.info("Copy #{package.to_s} to #{target}")
+
+      cp(package.to_s, target)
+    end
+  end
 end
