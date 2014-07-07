@@ -1,6 +1,6 @@
 require_relative '../tools'
 
-class Graylog2Release < FPM::Cookery::Recipe
+class Graylog2Repository < FPM::Cookery::Recipe
   include Tools
 
   DEFAULT_REPO = '0.20'
@@ -42,7 +42,8 @@ class Graylog2Release < FPM::Cookery::Recipe
 
   def after_build_package(package)
     Dir.chdir(pkgdir) do
-      target = "graylog2-repository-#{os}#{osrel}_latest.deb"
+      ext = File.extname(package.to_s)
+      target = "graylog2-repository-#{os}#{osrel}_latest#{ext}"
 
       FPM::Cookery::Log.info("Copy #{package.to_s} to #{target}")
 
