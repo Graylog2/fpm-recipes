@@ -2,13 +2,13 @@ class Graylog2Server < FPM::Cookery::Recipe
   description 'Graylog2 server'
 
   name     'graylog2-server'
-  version  '0.20.5'
+  version  '0.20.6'
   revision 1
   homepage 'http://graylog2.org/'
   arch     'all'
 
   source "https://github.com/Graylog2/graylog2-server/releases/download/#{version}/graylog2-server-#{version}.tgz"
-  sha256 '445952963c059d632703b7e34afb85093771c8c0f82e56934fac429472e50e17'
+  sha256 '0a863856a96d709cb76bc64e23950a6b706e30a05e0248315c8b1a1fb17f8c80'
 
   maintainer 'TORCH GmbH <hello@torch.sh>'
   vendor     'torch'
