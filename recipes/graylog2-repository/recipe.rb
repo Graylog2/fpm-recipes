@@ -3,11 +3,11 @@ require_relative '../tools'
 class Graylog2Repository < FPM::Cookery::Recipe
   include Tools
 
-  DEFAULT_REPO = '0.20'
+  VERSION = '0.20'
 
-  description 'Package to install Graylog2 GPG key and repository'
+  description "Package to install Graylog2 #{VERSION} GPG key and repository"
 
-  name    "graylog2-repository-#{os}#{osrel}"
+  name    "graylog2-#{VERSION}-repository-#{os}#{osrel}"
   version '1.0.0'
   revision 2
   source  '', :with => :noop
@@ -20,7 +20,7 @@ class Graylog2Repository < FPM::Cookery::Recipe
     dist = fact('lsbdistcodename').downcase
 
     File.open('graylog2.list', 'w') do |file|
-      file.puts "deb http://packages.graylog2.org/repo/debian/ #{dist} #{DEFAULT_REPO}"
+      file.puts "deb http://packages.graylog2.org/repo/debian/ #{dist} #{VERSION}"
     end
 
     etc('apt/trusted.gpg.d').install workdir('files/deb/graylog2-keyring.gpg')
@@ -31,7 +31,7 @@ class Graylog2Repository < FPM::Cookery::Recipe
     File.open('graylog2.repo', 'w') do |file|
       file.puts "[graylog2]"
       file.puts "name=graylog2"
-      file.puts "baseurl=http://packages.graylog2.org/repo/el/$releasever/#{DEFAULT_REPO}/$basearch/"
+      file.puts "baseurl=http://packages.graylog2.org/repo/el/$releasever/#{VERSION}/$basearch/"
       file.puts "gpgcheck=1"
       file.puts "gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-graylog2"
     end
@@ -43,7 +43,7 @@ class Graylog2Repository < FPM::Cookery::Recipe
   def after_build_package(package)
     Dir.chdir(pkgdir) do
       ext = File.extname(package.to_s)
-      target = "graylog2-repository-#{os}#{osrel}_latest#{ext}"
+      target = "graylog2-#{VERSION}-repository-#{os}#{osrel}_latest#{ext}"
 
       FPM::Cookery::Log.info("Copy #{package.to_s} to #{target}")
 
