@@ -1,4 +1,8 @@
+require_relative '../tools'
+
 class Graylog2Radio < FPM::Cookery::Recipe
+  include Tools
+
   description 'Graylog2 radio'
 
   name     'graylog2-radio'
@@ -70,15 +74,5 @@ class Graylog2Radio < FPM::Cookery::Recipe
     end
 
     share('graylog2-radio').install 'graylog2-radio.jar'
-  end
-
-  private
-
-  def osfile(name)
-    workdir(File.join('files', FPM::Cookery::Facts.platform.to_s, name))
-  end
-
-  def file(name)
-    workdir(File.join('files', name))
   end
 end

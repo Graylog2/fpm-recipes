@@ -38,15 +38,12 @@ module Tools
     self.class.osrel
   end
 
-  def install
-    case os
-    when 'debian', 'ubuntu'
-      install_deb
-    when 'centos'
-      install_rpm
-    else
-      raise "Unknown OS: #{os}"
-    end
+  def osfile(name)
+    workdir(File.join('files', FPM::Cookery::Facts.platform.to_s, name))
+  end
+
+  def file(name)
+    workdir(File.join('files', name))
   end
 end
 

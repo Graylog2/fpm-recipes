@@ -1,4 +1,8 @@
+require_relative '../tools'
+
 class Graylog2Server < FPM::Cookery::Recipe
+  include Tools
+
   description 'Graylog2 server'
 
   name     'graylog2-server'
@@ -75,15 +79,5 @@ class Graylog2Server < FPM::Cookery::Recipe
     %w(filters outputs inputs initializers transports alarm_callbacks).each do |dir|
       share("graylog2-server/plugin/#{dir}").mkpath
     end
-  end
-
-  private
-
-  def osfile(name)
-    workdir(File.join('files', FPM::Cookery::Facts.platform.to_s, name))
-  end
-
-  def file(name)
-    workdir(File.join('files', name))
   end
 end

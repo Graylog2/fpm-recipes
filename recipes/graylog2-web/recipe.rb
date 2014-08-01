@@ -1,4 +1,8 @@
+require_relative '../tools'
+
 class Graylog2Web < FPM::Cookery::Recipe
+  include Tools
+
   description 'Graylog2 web'
 
   name     'graylog2-web'
@@ -73,15 +77,5 @@ class Graylog2Web < FPM::Cookery::Recipe
     share('graylog2-web/bin').install 'bin/graylog2-web-interface'
 
     safesystem "ln -sf /etc/graylog2/web #{share("graylog2-web/conf")}"
-  end
-
-  private
-
-  def osfile(name)
-    workdir(File.join('files', FPM::Cookery::Facts.platform.to_s, name))
-  end
-
-  def file(name)
-    workdir(File.join('files', name))
   end
 end

@@ -16,6 +16,17 @@ class Graylog2Repository < FPM::Cookery::Recipe
   def build
   end
 
+  def install
+    case os
+    when 'debian', 'ubuntu'
+      install_deb
+    when 'centos'
+      install_rpm
+    else
+      raise "Unknown OS: #{os}"
+    end
+  end
+
   def install_deb
     dist = fact('lsbdistcodename').downcase
 
