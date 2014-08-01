@@ -6,17 +6,17 @@ class Graylog2Server < FPM::Cookery::Recipe
   description 'Graylog2 server'
 
   name     'graylog2-server'
-  version  '0.20.6'
-  revision 1
-  homepage 'http://graylog2.org/'
+  version  data.version
+  revision data.revision
+  homepage data.homepage
   arch     'all'
 
-  source "https://github.com/Graylog2/graylog2-server/releases/download/#{version}/graylog2-server-#{version}.tgz"
-  sha256 '0a863856a96d709cb76bc64e23950a6b706e30a05e0248315c8b1a1fb17f8c80'
+  source data.source
+  sha256 data.sha256
 
-  maintainer 'TORCH GmbH <hello@torch.sh>'
-  vendor     'torch'
-  license    'GPLv3'
+  maintainer data.maintainer
+  vendor     data.vendor
+  license    data.license
 
   config_files '/etc/graylog2.conf',
                '/etc/graylog2/server/log4j.xml'
@@ -74,10 +74,6 @@ class Graylog2Server < FPM::Cookery::Recipe
     end
 
     share('graylog2-server').install 'graylog2-server.jar'
-
-    # Create all plugin directories.
-    %w(filters outputs inputs initializers transports alarm_callbacks).each do |dir|
-      share("graylog2-server/plugin/#{dir}").mkpath
-    end
+    share('graylog2-server/plugin').mkpath
   end
 end

@@ -18,3 +18,12 @@
  
  # REST API listen URI. Must be reachable by other graylog2-server nodes if you run a cluster.
  rest_listen_uri = http://127.0.0.1:12900/
+@@ -217,7 +217,7 @@
+ #message_cache_off_heap = true
+ 
+ # Directory for the off-heap message cache data. (absolute or relative)
+-#message_cache_spool_dir = spool
++message_cache_spool_dir = /var/lib/graylog2-server/message-cache-spool
+ 
+ # The commit interval for the message cache. Only affects message cache implementations that need to commit data.
+ #message_cache_commit_interval = 1000

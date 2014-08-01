@@ -1,3 +1,5 @@
+require 'yaml'
+
 module Tools
   def self.included(base)
     base.extend(ClassMethods)
@@ -45,11 +47,81 @@ module Tools
   def file(name)
     workdir(File.join('files', name))
   end
+
 end
 
-# WOW, monkeypatch! Calls after_build_package(output) on recipe if it exists.
+# WOW, monkeypatch!
+#
+# * Adds data method to recipe
+# * Calls after_build_package(output) on recipe if it exists.
 module FPM
   module Cookery
+    class Recipe
+      class RecipeData
+        def initialize(recipe)
+          @yaml = YAML.load_file(File.expand_path('../data.yml', __FILE__))
+          @recipe = recipe
+        end
+
+        def version
+          data('version')
+        end
+
+        def revision
+          data('revision')
+        end
+
+        def source
+          data('source')
+        end
+
+        def sha256
+          data('sha256')
+        end
+
+        def homepage
+          data('homepage')
+        end
+
+        def maintainer
+          data('maintainer')
+        end
+
+        def vendor
+          data('vendor')
+        end
+
+        def license
+          data('license')
+        end
+
+        private
+
+        def data(key)
+          data = @yaml['default'].merge(@yaml.fetch(@recipe.name, {}))
+          pattern = /#\{(\S+?)\}/
+
+          data[key].gsub(pattern) do |match|
+            if match =~ pattern
+              if @recipe.respond_to?($1)
+                @recipe.public_send($1)
+              else
+                raise "No replacement for #{$1} found, abort."
+              end
+            end
+          end
+        end
+      end
+
+      def self.data
+        RecipeData.new(self)
+      end
+
+      def data
+        self.class.data
+      end
+    end
+
     class Packager
       def build_package(recipe, config)
         recipe.pkgdir.mkdir
