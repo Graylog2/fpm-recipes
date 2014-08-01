@@ -67,6 +67,10 @@ module FPM
           data('version')
         end
 
+        def version_major
+          data('version_major')
+        end
+
         def revision
           data('revision')
         end
