@@ -9,16 +9,13 @@ default:
   license: "GPLv3"
 
 graylog2-server:
-  #source: "https://github.com/Graylog2/graylog2-server/releases/download/#{version}/graylog2-server-#{version}.tgz"
-  source: "http://packages.graylog2.org/nightly-builds/graylog2-server-0.21.0-SNAPSHOT-20140801104416.tar.gz"
-  sha256: "4774eb3dcd75be05b484bbd84f753e8517ad9e572c7757e78f9349a13cd85eef"
+  source: "https://github.com/Graylog2/graylog2-server/releases/download/#{version}-beta1/graylog2-server-#{version}-beta1.tgz"
+  sha256: "0db7d2d284e4f3410cd2fb1ef408205b48ab290bffba2e4079b20d814782603a"
 
 graylog2-radio:
-  #source: "https://github.com/Graylog2/graylog2-server/releases/download/#{version}/graylog2-radio-#{version}.tgz"
-  source: "http://packages.graylog2.org/nightly-builds/graylog2-radio-0.21.0-SNAPSHOT-20140801104416.tar.gz"
-  sha256: "4ac866b82a4f0a622906760cefef5f3c8fb1819a0b30f477428f4ce7f1e8914c"
+  source: "https://github.com/Graylog2/graylog2-server/releases/download/#{version}-beta1/graylog2-radio-#{version}-beta1.tgz"
+  sha256: "6022156a81fc8eb406357de71456bb572a98f6bf4e96b3e4c093bf99d40b0e77"
 
 graylog2-web:
-  #source: "https://github.com/Graylog2/graylog2-web-interface/releases/download/#{version}/graylog2-web-interface-#{version}.tgz"
-  source: "http://packages.graylog2.org/nightly-builds/graylog2-web-interface-0.21.0-SNAPSHOT-20140731094849.tgz"
-  sha256: "0d33f06abc2c0c732e99c364f025988e490efee4198123a555e3ca571f9ddb9a"
+  source: "https://github.com/Graylog2/graylog2-web-interface/releases/download/#{version}-beta1/graylog2-web-interface-#{version}-beta1.tgz"
+  sha256: "f66bfad722f4e5f22a1397465671b77d1f5f902bf0eb56cab159644fd2f95293"
