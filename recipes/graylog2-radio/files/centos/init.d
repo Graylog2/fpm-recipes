@@ -16,12 +16,14 @@
 # Source function library.
 . /etc/rc.d/init.d/functions
 
+RETVAL=0
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DESC="Graylog2 Radio"
 NAME=graylog2-radio
 JAR_FILE=/usr/share/graylog2-radio/graylog2-radio.jar
 JAVA=/usr/bin/java
-PID_FILE=/var/run/graylog2-radio/$NAME.pid
+PID_DIR=/var/run/graylog2-radio
+PID_FILE=$PID_DIR/$NAME.pid
 JAVA_ARGS="-jar -Dlog4j.configuration=file:///etc/graylog2/radio/log4j.xml $JAR_FILE -p $PID_FILE -f /etc/graylog2-radio.conf"
 SCRIPTNAME=/etc/init.d/$NAME
 LOCKFILE=/var/lock/subsys/$NAME
@@ -36,12 +38,13 @@ GRAYLOG2_RADIO_JAVA_OPTS=""
 
 start() {
     echo -n $"Starting ${NAME}: "
+    install -d -m 755 -o $GRAYLOG2_RADIO_USER -g $GRAYLOG2_RADIO_USER -d $PID_DIR
     daemon --check $JAVA --pidfile=${PID_FILE} --user=${GRAYLOG2_RADIO_USER} \
-        $JAVA $GRAYLOG2_RADIO_JAVA_OPTS $JAVA_ARGS $GRAYLOG2_RADIO_ARGS &
+        "$JAVA $GRAYLOG2_RADIO_JAVA_OPTS $JAVA_ARGS $GRAYLOG2_RADIO_ARGS &"
     RETVAL=$?
-    echo
     sleep 2
     [ $RETVAL = 0 ] && touch ${LOCKFILE}
+    echo
     return $RETVAL
 }
 
@@ -49,8 +52,8 @@ stop() {
     echo -n $"Stopping ${NAME}: "
     killproc -p ${PID_FILE} -d 10 $JAVA
     RETVAL=$?
-    echo
     [ $RETVAL = 0 ] && rm -f ${PID_FILE} && rm -f ${LOCKFILE}
+    echo
     return $RETVAL
 }
 

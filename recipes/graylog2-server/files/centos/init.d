@@ -16,6 +16,7 @@
 # Source function library.
 . /etc/rc.d/init.d/functions
 
+RETVAL=0
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DESC="Graylog2 Server"
 NAME=graylog2-server
@@ -39,11 +40,11 @@ start() {
     echo -n $"Starting ${NAME}: "
     install -d -m 755 -o $GRAYLOG2_SERVER_USER -g $GRAYLOG2_SERVER_USER -d $PID_DIR
     daemon --check $JAVA --pidfile=${PID_FILE} --user=${GRAYLOG2_SERVER_USER} \
-        $JAVA $GRAYLOG2_SERVER_JAVA_OPTS $JAVA_ARGS $GRAYLOG2_SERVER_ARGS &
+        "$JAVA $GRAYLOG2_SERVER_JAVA_OPTS $JAVA_ARGS $GRAYLOG2_SERVER_ARGS &"
     RETVAL=$?
-    echo
     sleep 2
     [ $RETVAL = 0 ] && touch ${LOCKFILE}
+    echo
     return $RETVAL
 }
 
@@ -51,8 +52,8 @@ stop() {
     echo -n $"Stopping ${NAME}: "
     killproc -p ${PID_FILE} -d 10 $JAVA
     RETVAL=$?
-    echo
     [ $RETVAL = 0 ] && rm -f ${PID_FILE} && rm -f ${LOCKFILE}
+    echo
     return $RETVAL
 }
 
