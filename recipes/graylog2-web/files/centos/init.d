@@ -15,13 +15,12 @@
 # Some default settings.
 GRAYLOG2_WEB_HTTP_ADDRESS="0.0.0.0"
 GRAYLOG2_WEB_HTTP_PORT="9000"
+GRAYLOG2_WEB_USER="graylog2-web"
 
 # Source function library.
 . /etc/rc.d/init.d/functions
 
-# Pull in sysconfig settings
-[ -f /etc/sysconfig/graylog2-web ] && . /etc/sysconfig/graylog2-web
-
+RETVAL=0
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DESC="Graylog2 Web"
 NAME=graylog2-web
@@ -30,25 +29,27 @@ PID_FILE=/var/lib/graylog2-web/application.pid
 CONF_FILE=/etc/graylog2/web/graylog2-web-interface.conf
 SCRIPTNAME=/etc/init.d/$NAME
 LOCKFILE=/var/lock/subsys/$NAME
-GRAYLOG2_WEB_USER=graylog2-web
 RUN=yes
+
+# Pull in sysconfig settings
+[ -f /etc/sysconfig/graylog2-web ] && . /etc/sysconfig/graylog2-web
 
 # Exit if the package is not installed
 [ -e "$CMD" ] || exit 0
 
 start() {
     echo -n $"Starting ${NAME}: "
-    daemon --user=$GRAYLOG2_WEB_USER \
-        nohup $CMD -Dconfig.file=${CONF_FILE} \
+    daemon --user=$GRAYLOG2_WEB_USER --pidfile=${PID_FILE} \
+        "nohup $CMD -Dconfig.file=${CONF_FILE} \
         -Dlogger.file=/etc/graylog2/web/logback.xml \
         -Dpidfile.path=$PID_FILE \
         -Dhttp.address=$GRAYLOG2_WEB_HTTP_ADDRESS \
         -Dhttp.port=$GRAYLOG2_WEB_HTTP_PORT \
-        $GRAYLOG2_WEB_JAVA_OPTS $GRAYLOG2_WEB_ARGS > /var/log/graylog2-web/console.log 2>&1 &
+        $GRAYLOG2_WEB_JAVA_OPTS $GRAYLOG2_WEB_ARGS > /var/log/graylog2-web/console.log 2>&1 &"
     RETVAL=$?
-    echo
     sleep 2
     [ $RETVAL = 0 ] && touch ${LOCKFILE}
+    echo
     return $RETVAL
 }
 
@@ -56,8 +57,8 @@ stop() {
     echo -n $"Stopping ${NAME}: "
     killproc -p ${PID_FILE} -d 10 $CMD
     RETVAL=$?
-    echo
     [ $RETVAL = 0 ] && rm -f ${PID_FILE} && rm -f ${LOCKFILE}
+    echo
     return $RETVAL
 }
 
