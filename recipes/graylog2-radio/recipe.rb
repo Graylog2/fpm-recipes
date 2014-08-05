@@ -3,7 +3,7 @@ class Graylog2Radio < FPM::Cookery::Recipe
 
   name     'graylog2-radio'
   version  '0.20.6'
-  revision 2
+  revision 3
   homepage 'http://graylog2.org/'
   arch     'all'
 
