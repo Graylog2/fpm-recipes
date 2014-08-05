@@ -1,4 +1,10 @@
 #! /bin/sh
+#
+# graylog2-web Starts/stop the "graylog2-web" application
+#
+# chkconfig:   - 99 1
+# description: Runs the graylog2-web application
+
 ### BEGIN INIT INFO
 # Provides:          graylog2-web
 # Required-Start:    $network $named $remote_fs $syslog
