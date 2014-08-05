@@ -1,4 +1,10 @@
 #! /bin/sh
+#
+# graylog2-server Starts/stop the "graylog2-server" daemon
+#
+# chkconfig:   - 95 5
+# description: Runs the graylog2-server daemon
+
 ### BEGIN INIT INFO
 # Provides:          graylog2-server
 # Required-Start:    $network $named $remote_fs $syslog
