@@ -112,6 +112,24 @@ $
 | CentOS 6.5       | centos6    |
 | Debian 7         | debian7    |
 
+## Credits
+
+Lots of scripts and config files are based on the following great repositories
+maintained by the community. Thank you!
+
+### DEB
+
+* https://github.com/hggh/graylog2-server
+* https://github.com/hggh/graylog2-web
+* https://github.com/hggh/graylog2-radio
+* https://github.com/hggh/graylog2-stream-dashboard
+
+### RPM
+
+* https://github.com/jaxxstorm/graylog2-server-rpm
+* https://github.com/jaxxstorm/graylog2-web-rpm
+* https://github.com/jaxxstorm/graylog2-radio-rpm
+* https://build.opensuse.org/project/monitor/home:bmanojlovic:graylog
 
 
 [fpm-cookery]: https://github.com/bernd/fpm-cookery
