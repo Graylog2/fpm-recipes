@@ -7,6 +7,9 @@ official Graylog2 packages.
 The package builds are executed in isolated [Docker][docker] containers by
 using the [Vagrant Docker Provider][vagrant-docker].
 
+Please open an [issue](https://github.com/Graylog2/fpm-recipes/issues) if you
+run into any problems with the packages.
+
 ## Setup
 
 * Install [Vagrant][vagrant]
