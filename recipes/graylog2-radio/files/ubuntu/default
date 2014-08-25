@@ -3,3 +3,7 @@ GRAYLOG2_RADIO_JAVA_OPTS=""
 
 # Pass some extra args to graylog2-radio. (i.e. "-d" to enable debug mode)
 GRAYLOG2_RADIO_ARGS=""
+
+# Program that will be used to wrap the graylog2-server command. Useful to
+# support programs like authbind.
+GRAYLOG2_COMMAND_WRAPPER=""
