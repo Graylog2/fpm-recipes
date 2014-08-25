@@ -3,7 +3,7 @@ class Graylog2Web < FPM::Cookery::Recipe
 
   name     'graylog2-web'
   version  '0.20.6'
-  revision 3
+  revision 4
   homepage 'http://graylog2.org/'
   arch     'all'
 
