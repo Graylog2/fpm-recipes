@@ -32,6 +32,7 @@ Do we want the packages depend on MongoDB and Elasticsearch?
 * Offer meta-packages that depend on the graylog2 components and the 3rd party
   stuff. Like a graylog2-server-complete which depends on MongoDB and Elasticsearch.
   This will help users that do not use any kind of config management.
+* Offer Puppet / Chef modules with separate profiles and handle dependencies between MongoDB, Elasticsearch and   Graylog2 there
 
 ## General Ideas
 
