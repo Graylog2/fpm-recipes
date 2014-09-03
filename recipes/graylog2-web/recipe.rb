@@ -25,7 +25,7 @@ class Graylog2Web < FPM::Cookery::Recipe
 
   platforms [:ubuntu, :debian] do
     section 'net'
-    depends 'openjdk-7-jre-headless'
+    depends 'java7-runtime-headless'
 
     config_files '/etc/default/graylog2-web'
 

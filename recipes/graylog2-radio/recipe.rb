@@ -23,7 +23,7 @@ class Graylog2Radio < FPM::Cookery::Recipe
 
   platforms [:ubuntu, :debian] do
     section 'net'
-    depends 'openjdk-7-jre-headless', 'uuid-runtime'
+    depends 'java7-runtime-headless', 'uuid-runtime'
 
     config_files '/etc/default/graylog2-radio'
 
