@@ -7,11 +7,15 @@ class Graylog2Repository < FPM::Cookery::Recipe
 
   description "Package to install Graylog2 #{VERSION} GPG key and repository"
 
-  name    "graylog2-#{VERSION}-repository-#{os}#{osrel}"
-  version '1.0.0'
-  revision 2
-  source  '', :with => :noop
-  arch    'all'
+  name       "graylog2-#{VERSION}-repository-#{os}#{osrel}"
+  version    '1.0.0'
+  revision   2
+  source     '', :with => :noop
+  arch       'all'
+  homepage   data.homepage
+  maintainer data.maintainer
+  vendor     data.vendor
+  license    data.license
 
   def build
   end
