@@ -2,7 +2,7 @@
 default:
   version_major: "0.21"
   version: "0.21.0"
-  revision: "4.rc1"
+  revision: "5.rc1"
   homepage: "http://graylog2.org/"
   maintainer: "TORCH GmbH <hello@torch.sh>"
   vendor: "torch"

@@ -41,7 +41,7 @@ class Graylog2Server < FPM::Cookery::Recipe
   end
 
   platforms [:centos] do
-    depends 'java-1.7.0-openjdk', 'util-linux-ng'
+    depends 'java >= 1:1.7.0', 'util-linux-ng'
 
     config_files '/etc/init.d/graylog2-server',
                  '/etc/sysconfig/graylog2-server'
