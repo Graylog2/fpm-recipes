@@ -1,0 +1,8 @@
+Graylog2-Stream-Dashboard for Debian
+====================================
+
+Files are installed into:
+	/usr/share/graylog2-stream-dashboard
+
+Open file:///usr/share/graylog2-stream-dashboard/index.html in your
+browser or use a Alias directive in your favorite webserver.
