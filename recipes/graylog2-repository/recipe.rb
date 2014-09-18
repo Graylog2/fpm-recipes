@@ -24,7 +24,7 @@ class Graylog2Repository < FPM::Cookery::Recipe
     case os
     when 'debian', 'ubuntu'
       install_deb
-    when 'centos'
+    when 'centos', 'el'
       install_rpm
     else
       raise "Unknown OS: #{os}"

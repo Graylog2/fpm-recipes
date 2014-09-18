@@ -13,14 +13,21 @@ module Tools
     end
 
     def os
-      fact('operatingsystem').downcase
+      os = fact('operatingsystem').downcase
+
+      case os
+      when 'centos'
+        'el'
+      else
+        os
+      end
     end
 
     def osrel
        osrel = fact('operatingsystemrelease').downcase
 
        case os
-       when 'debian', 'centos'
+       when 'debian', 'centos', 'el'
          osrel.split('.').first
        else
          osrel
