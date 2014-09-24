@@ -73,7 +73,7 @@ class Graylog2Web < FPM::Cookery::Recipe
     etc('graylog2/web').install Dir['conf/*']
     etc('graylog2/web').install file('logback.xml')
 
-    share('graylog2-web').install %w(README.md lib share)
+    share('graylog2-web').install %w(README.md lib)
     share('graylog2-web/bin').install 'bin/graylog2-web-interface'
 
     safesystem "ln -sf /etc/graylog2/web #{share("graylog2-web/conf")}"
