@@ -9,7 +9,7 @@ Vagrant.configure('2') do |config|
   config.vm.define 'ubuntu1404' do |machine|
     machine.vm.provider 'docker' do |docker|
       docker.build_dir = ROOT.join('docker/ubuntu')
-      docker.build_args = ['--rm=true']
+      docker.build_args = ['--rm=true', '--tag=fpm_cookery/ubuntu:14.04']
 
       # Avoid leaving unused containers behind.
       docker.create_args = ['--rm=true']
@@ -19,7 +19,7 @@ Vagrant.configure('2') do |config|
   config.vm.define 'debian7' do |machine|
     machine.vm.provider 'docker' do |docker|
       docker.build_dir = ROOT.join('docker/debian')
-      docker.build_args = ['--rm=true']
+      docker.build_args = ['--rm=true', '--tag=fpm_cookery/debian:7']
 
       # Avoid leaving unused containers behind.
       docker.create_args = ['--rm=true']
@@ -29,7 +29,7 @@ Vagrant.configure('2') do |config|
   config.vm.define 'centos6' do |machine|
     machine.vm.provider 'docker' do |docker|
       docker.build_dir = ROOT.join('docker/centos')
-      docker.build_args = ['--rm=true']
+      docker.build_args = ['--rm=true', '--tag=fpm_cookery/centos:6']
 
       # Avoid leaving unused containers behind.
       docker.create_args = ['--rm=true']
