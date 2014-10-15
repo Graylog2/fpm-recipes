@@ -52,6 +52,7 @@ class Graylog2Server < FPM::Cookery::Recipe
 
   def build
     patch(workdir('patches/graylog2-server.conf.patch'))
+    patch(workdir('patches/graylog2-es-timestamp-fixup.patch'))
   end
 
   def install
@@ -75,5 +76,6 @@ class Graylog2Server < FPM::Cookery::Recipe
 
     share('graylog2-server').install 'graylog2-server.jar'
     share('graylog2-server/plugin').mkpath
+    share('graylog2-server/bin').install 'bin/graylog2-es-timestamp-fixup'
   end
 end
