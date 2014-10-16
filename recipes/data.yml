@@ -10,15 +10,15 @@ default:
 
 graylog2-server:
   source: "http://packages.graylog2.org/releases/graylog2-server/graylog2-server-#{version}.tgz"
-  sha256: "5a52a25a4a5a76e8700eab98af69e4456dd976ecb56334f557365df0ad5dc92b"
+  sha256: "bd62cc679ea477e1563946aac76dc48ca65716facb9b93efb871ab934622cb0f"
 
 graylog2-radio:
   source: "http://packages.graylog2.org/releases/graylog2-radio/graylog2-radio-#{version}.tgz"
-  sha256: "4f23b9e94b830c97d6b277fb4117931b0a44d36dce1a2d00ee2aee8d971e2500"
+  sha256: "1aac7bf8333552b5927ef42ab79c32cfc9ca8a89ec9789d4a3efe4c840110d63"
 
 graylog2-web:
   source: "http://packages.graylog2.org/releases/graylog2-web-interface/graylog2-web-interface-#{version}.tgz"
-  sha256: "dbcd53f0ac0aa98a4b90999a69f4aafdc5f9c5d5d0aa0bfb52ebed88badd22d7"
+  sha256: "7c4cc8f9c4ae5cd549f1e39b0f2aa1ff9e765dd76f08846acc33faf7c9952309"
 
 graylog2-stream-dashboard:
   version_major: "0.90"
