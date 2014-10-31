@@ -16,6 +16,16 @@ Vagrant.configure('2') do |config|
     end
   end
 
+  config.vm.define 'ubuntu1204' do |machine|
+    machine.vm.provider 'docker' do |docker|
+      docker.build_dir = ROOT.join('docker/ubuntu1204')
+      docker.build_args = ['--rm=true', '--tag=fpm_cookery/ubuntu:12.04']
+
+      # Avoid leaving unused containers behind.
+      docker.create_args = ['--rm=true']
+    end
+  end
+
   config.vm.define 'debian7' do |machine|
     machine.vm.provider 'docker' do |docker|
       docker.build_dir = ROOT.join('docker/debian7')
