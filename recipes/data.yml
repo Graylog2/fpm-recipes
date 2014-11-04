@@ -18,7 +18,7 @@ graylog2-radio:
 
 graylog2-web:
   source: "http://packages.graylog2.org/releases/graylog2-web-interface/graylog2-web-interface-#{version}-beta.1.tgz"
-  sha256: "073c00a487f1455832dae7d9f1ca52968ae02451a9c5afc9ad7835ad832edf2b"
+  sha256: "0f6e111dd3ef96f1d2ac9811dc921fa5ff14d8c666a982205d50b739cc70d18d"
 
 graylog2-stream-dashboard:
   version_major: "0.90"
