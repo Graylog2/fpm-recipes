@@ -26,3 +26,9 @@ graylog2-stream-dashboard:
   revision: "1"
   source: "https://github.com/Graylog2/graylog2-stream-dashboard/releases/download/0.90/graylog2-stream-dashboard-#{version}.tgz"
   sha256: "83905ae6efbf81002dd5b80e9eec72f52b3236fdb53c00c7d2d793f4de2aae6a"
+
+check-graylog2-stream:
+  version: "1.0"
+  revision: "1"
+  source: "https://github.com/Graylog2/check-graylog2-stream/releases/download/#{version}/check-graylog2-stream.linux_x86.tar.gz"
+  sha256: "c0bed6f2ea673e33531485ffc16ea4250a29f583e4e69bf7c69934f7dff7e927"
