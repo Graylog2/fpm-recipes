@@ -12,13 +12,15 @@ case "$1" in
 	    addgroup --system "$group" --quiet
 	fi
 
+	install -d -o "root" -g "root" -m 0755 "$datadir"
+
 	if ! id "$user" > /dev/null 2>&1 ; then
 	    adduser --system --home "$datadir" --no-create-home \
 		--ingroup "$group" --disabled-password \
 		--shell /bin/false "$user"
 	fi
 
-	install -d -o "$user" -g "$group" -m 0755 "$datadir"
+	chown -R "$user":"$group" "$datadir"
 	install -d -o "$user" -g "$group" -m 0755 "$logdir"
 
 	update-rc.d graylog2-web defaults 95 10 >/dev/null
