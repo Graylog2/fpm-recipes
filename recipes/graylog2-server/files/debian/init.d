@@ -50,6 +50,22 @@ running()
 	return 1
 }
 
+await_running()
+{
+	local count=0
+
+	# Wait max 30s until process has started.
+	while ! running ; do
+		count=$(($count + 1))
+
+		if [ $count -ge 30 ]; then
+			break
+		fi
+
+		sleep 1
+	done
+}
+
 do_start()
 {
 	if [ "$RUN" != "yes" ] ; then
@@ -70,7 +86,7 @@ do_start()
 			--user $GRAYLOG2_USER --chuid $GRAYLOG2_USER \
 			--background --startas /bin/bash -- \
 			-c "exec $DAEMON $DAEMON_ARGS >> /var/log/graylog2-server/console.log 2>&1"
-		sleep 2
+		await_running
 		if running ; then
 			return 0
 		else
