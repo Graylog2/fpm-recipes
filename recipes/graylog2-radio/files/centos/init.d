@@ -46,7 +46,7 @@ start() {
     echo -n $"Starting ${NAME}: "
     install -d -m 755 -o $GRAYLOG2_RADIO_USER -g $GRAYLOG2_RADIO_USER -d $PID_DIR
     daemon --check $JAVA --pidfile=${PID_FILE} --user=${GRAYLOG2_RADIO_USER} \
-        "$JAVA $GRAYLOG2_RADIO_JAVA_OPTS $JAVA_ARGS $GRAYLOG2_RADIO_ARGS &"
+        "$GRAYLOG2_COMMAND_WRAPPER $JAVA $GRAYLOG2_RADIO_JAVA_OPTS $JAVA_ARGS $GRAYLOG2_RADIO_ARGS &"
     RETVAL=$?
     sleep 2
     [ $RETVAL = 0 ] && touch ${LOCKFILE}
