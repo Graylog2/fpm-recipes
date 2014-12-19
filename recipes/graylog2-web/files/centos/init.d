@@ -46,7 +46,7 @@ RUN=yes
 start() {
     echo -n $"Starting ${NAME}: "
     daemon --user=$GRAYLOG2_WEB_USER --pidfile=${PID_FILE} \
-        "nohup $CMD -Dconfig.file=${CONF_FILE} \
+        "nohup $GRAYLOG2_COMMAND_WRAPPER $CMD -Dconfig.file=${CONF_FILE} \
         -Dlogger.file=/etc/graylog2/web/logback.xml \
         -Dpidfile.path=$PID_FILE \
         -Dhttp.address=$GRAYLOG2_WEB_HTTP_ADDRESS \
