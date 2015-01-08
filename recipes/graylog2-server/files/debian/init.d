@@ -16,7 +16,7 @@
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DESC="Graylog2 Server"
 NAME=graylog2-server
-JAR_FILE=/usr/share/graylog2-server/graylog2-server.jar
+JAR_FILE=/usr/share/graylog2-server/graylog2.jar
 DAEMON=/usr/bin/java
 PIDDIR=/var/run/graylog2
 PIDFILE=$PIDDIR/$NAME.pid
@@ -31,7 +31,7 @@ RUN=yes
 
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
-DAEMON_ARGS="$GRAYLOG2_SERVER_JAVA_OPTS $DAEMON_LOG_OPTION -jar $JAR_FILE -p $PIDFILE -f /etc/graylog2.conf $GRAYLOG2_SERVER_ARGS"
+DAEMON_ARGS="$GRAYLOG2_SERVER_JAVA_OPTS $DAEMON_LOG_OPTION -jar $JAR_FILE server -p $PIDFILE -f /etc/graylog2.conf $GRAYLOG2_SERVER_ARGS"
 DAEMON="$GRAYLOG2_COMMAND_WRAPPER $DAEMON"
 
 . /lib/init/vars.sh

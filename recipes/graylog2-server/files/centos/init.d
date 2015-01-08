@@ -26,11 +26,11 @@ RETVAL=0
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DESC="Graylog2 Server"
 NAME=graylog2-server
-JAR_FILE=/usr/share/graylog2-server/graylog2-server.jar
+JAR_FILE=/usr/share/graylog2-server/graylog2.jar
 JAVA=/usr/bin/java
 PID_DIR=/var/run/graylog2-server
 PID_FILE=$PID_DIR/$NAME.pid
-JAVA_ARGS="-jar -Dlog4j.configuration=file:///etc/graylog2/server/log4j.xml $JAR_FILE -p $PID_FILE -f /etc/graylog2.conf"
+JAVA_ARGS="-jar -Dlog4j.configuration=file:///etc/graylog2/server/log4j.xml $JAR_FILE server -p $PID_FILE -f /etc/graylog2.conf"
 SCRIPTNAME=/etc/init.d/$NAME
 LOCKFILE=/var/lock/subsys/$NAME
 GRAYLOG2_SERVER_USER=graylog2

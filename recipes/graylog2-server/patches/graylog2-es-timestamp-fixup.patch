@@ -3,7 +3,7 @@
 @@ -1,5 +1,5 @@
  #!/bin/bash
  
--GRAYLOG2_JAR="$(dirname $0)/../graylog2-server.jar"
-+GRAYLOG2_JAR="/usr/share/graylog2-server/graylog2-server.jar"
+-GRAYLOG2_JAR="$(dirname $0)/../graylog2.jar"
++GRAYLOG2_JAR="/usr/share/graylog2-server/graylog2.jar"
  
  exec java -cp $GRAYLOG2_JAR org.graylog2.ESTimestampFixup "$@"

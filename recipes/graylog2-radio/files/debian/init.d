@@ -16,7 +16,7 @@
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DESC="Graylog2 Radio"
 NAME=graylog2-radio
-JAR_FILE=/usr/share/graylog2-radio/graylog2-radio.jar
+JAR_FILE=/usr/share/graylog2-radio/graylog2.jar
 DAEMON=/usr/bin/java
 PIDDIR=/var/run/graylog2-radio
 PIDFILE=$PIDDIR/$NAME.pid
@@ -31,7 +31,7 @@ RUN=yes
 
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
-DAEMON_ARGS="$GRAYLOG2_RADIO_JAVA_OPTS $DAEMON_LOG_OPTION -jar $JAR_FILE -p $PIDFILE -f /etc/graylog2-radio.conf $GRAYLOG2_RADIO_ARGS"
+DAEMON_ARGS="$GRAYLOG2_RADIO_JAVA_OPTS $DAEMON_LOG_OPTION -jar $JAR_FILE radio -p $PIDFILE -f /etc/graylog2-radio.conf $GRAYLOG2_RADIO_ARGS"
 DAEMON="$GRAYLOG2_COMMAND_WRAPPER $DAEMON"
 
 . /lib/init/vars.sh

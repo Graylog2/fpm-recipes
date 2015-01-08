@@ -73,6 +73,6 @@ class Graylog2Radio < FPM::Cookery::Recipe
       etc('sysconfig').install osfile('sysconfig'), 'graylog2-radio'
     end
 
-    share('graylog2-radio').install 'graylog2-radio.jar'
+    share('graylog2-radio').install 'graylog2.jar'
   end
 end

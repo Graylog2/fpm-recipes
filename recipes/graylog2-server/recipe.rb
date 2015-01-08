@@ -74,7 +74,7 @@ class Graylog2Server < FPM::Cookery::Recipe
       etc('sysconfig').install osfile('sysconfig'), 'graylog2-server'
     end
 
-    share('graylog2-server').install 'graylog2-server.jar'
+    share('graylog2-server').install 'graylog2.jar'
     share('graylog2-server/plugin').mkpath
     share('graylog2-server/bin').install 'bin/graylog2-es-timestamp-fixup'
   end
