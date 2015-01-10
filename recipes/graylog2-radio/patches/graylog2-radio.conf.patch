@@ -1,6 +1,6 @@
---- graylog2-radio.conf.example.orig	2014-05-23 15:40:19.000000000 +0000
-+++ graylog2-radio.conf.example	2014-06-12 10:09:12.965311343 +0000
-@@ -1,6 +1,6 @@
+--- graylog2-radio.conf.example.orig	2015-01-10 12:38:22.056621051 +0100
++++ graylog2-radio.conf.example	2015-01-10 12:39:15.468520377 +0100
+@@ -1,12 +1,12 @@
  # The auto-generated node ID will be stored in this file and read after restarts. It is a good idea
  # to use an absolute file path here if you are starting graylog2-radio from init scripts or similar.
 -node_id_file = /etc/graylog2-radio-node-id
@@ -8,3 +8,10 @@
  
  # Use AMQP ("amqp") or Kafka ("kafka") as message transport?
  transport_type = amqp
+ 
+ # Set plugin directory here (relative or absolute)
+-plugin_dir = plugin
++plugin_dir = /usr/share/graylog2-radio/plugin
+ 
+ # REST URI of a Graylog2 server node this radio will register at.
+ graylog2_server_uri = http://your-graylog2-server.example.org:12900/
