@@ -77,5 +77,9 @@ class Graylog2Server < FPM::Cookery::Recipe
     share('graylog2-server').install 'graylog2.jar'
     share('graylog2-server/plugin').mkpath
     share('graylog2-server/bin').install 'bin/graylog2-es-timestamp-fixup'
+    share('graylog2-server').install 'lib'
+
+    # Remove unused sigar libs.
+    sigar_cleanup(share('graylog2-server/lib/sigar'))
   end
 end

@@ -74,5 +74,9 @@ class Graylog2Radio < FPM::Cookery::Recipe
     end
 
     share('graylog2-radio').install 'graylog2.jar'
+    share('graylog2-radio').install 'lib'
+
+    # Remove unused sigar libs.
+    sigar_cleanup(share('graylog2-radio/lib/sigar'))
   end
 end

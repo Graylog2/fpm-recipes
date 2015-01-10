@@ -31,7 +31,7 @@ RUN=yes
 
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
-DAEMON_ARGS="$GRAYLOG2_SERVER_JAVA_OPTS $DAEMON_LOG_OPTION -jar $JAR_FILE server -p $PIDFILE -f /etc/graylog2.conf $GRAYLOG2_SERVER_ARGS"
+DAEMON_ARGS="$GRAYLOG2_SERVER_JAVA_OPTS $DAEMON_LOG_OPTION -Djava.library.path=/usr/share/graylog2-server/lib/sigar -jar $JAR_FILE server -p $PIDFILE -f /etc/graylog2.conf $GRAYLOG2_SERVER_ARGS"
 DAEMON="$GRAYLOG2_COMMAND_WRAPPER $DAEMON"
 
 . /lib/init/vars.sh
