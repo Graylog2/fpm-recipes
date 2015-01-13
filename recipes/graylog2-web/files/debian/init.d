@@ -32,7 +32,7 @@ GRAYLOG2_WEB_HTTP_PORT="9000"
 
 . /lib/lsb/init-functions
 
-DAEMON_ARGS="-Dconfig.file=/etc/graylog2/web/graylog2-web-interface.conf"
+DAEMON_ARGS="-Dconfig.file=/etc/graylog2/web/web.conf"
 DAEMON_ARGS="$DAEMON_ARGS -Dlogger.file=/etc/graylog2/web/logback.xml"
 DAEMON_ARGS="$DAEMON_ARGS -Dpidfile.path=$PIDFILE"
 DAEMON_ARGS="$DAEMON_ARGS -Dhttp.address=$GRAYLOG2_WEB_HTTP_ADDRESS"

@@ -19,7 +19,7 @@ class Graylog2Web < FPM::Cookery::Recipe
   license    data.license
 
   config_files '/etc/graylog2/web/application.conf',
-               '/etc/graylog2/web/graylog2-web-interface.conf',
+               '/etc/graylog2/web/web.conf',
                '/etc/graylog2/web/logback.xml',
                '/etc/graylog2/web/play.plugins'
 
@@ -72,6 +72,9 @@ class Graylog2Web < FPM::Cookery::Recipe
 
     etc('graylog2/web').install Dir['conf/*']
     etc('graylog2/web').install file('logback.xml')
+
+    # Rename web interface config to be consistent with server and radio.
+    mv etc('graylog2/web/graylog2-web-interface.conf'), etc('graylog2/web/web.conf')
 
     share('graylog2-web').install %w(README.md lib)
     share('graylog2-web/bin').install 'bin/graylog2-web-interface'
