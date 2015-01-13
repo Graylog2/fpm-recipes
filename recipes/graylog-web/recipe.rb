@@ -18,6 +18,8 @@ class GraylogWeb < FPM::Cookery::Recipe
   vendor     data.vendor
   license    data.license
 
+  replaces 'graylog2-web'
+
   config_files '/etc/graylog/web/application.conf',
                '/etc/graylog/web/web.conf',
                '/etc/graylog/web/logback.xml',

@@ -18,6 +18,8 @@ class GraylogRadio < FPM::Cookery::Recipe
   vendor     data.vendor
   license    data.license
 
+  replaces 'graylog2-radio'
+
   config_files '/etc/graylog/radio/radio.conf',
                '/etc/graylog/radio/log4j.xml'
 
