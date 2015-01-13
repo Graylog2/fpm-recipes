@@ -8,7 +8,7 @@ class GraylogRepository < FPM::Cookery::Recipe
   description "Package to install Graylog #{VERSION} GPG key and repository"
 
   name       "graylog-#{VERSION}-repository-#{os}#{osrel}"
-  version    '1.1.0'
+  version    '1.2.0'
   revision   1
   source     '', :with => :noop
   arch       'all'
@@ -16,6 +16,8 @@ class GraylogRepository < FPM::Cookery::Recipe
   maintainer data.maintainer
   vendor     data.vendor
   license    data.license
+
+  replaces %w(0.92 0.91 0.90).map {|v| "graylog2-#{v}-repository-#{os}#{osrel}" }
 
   def build
   end
