@@ -1,0 +1,26 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    configure)
+	user="graylog-web"
+	group="graylog-web"
+	datadir="/var/lib/graylog-web"
+	logdir="/var/log/graylog-web"
+
+	if ! getent group "$group" > /dev/null 2>&1 ; then
+	    addgroup --system "$group" --quiet
+	fi
+
+	install -d -o "root" -g "root" -m 0755 "$datadir"
+
+	if ! id "$user" > /dev/null 2>&1 ; then
+	    adduser --system --home "$datadir" --no-create-home \
+		--ingroup "$group" --disabled-password \
+		--shell /bin/false "$user"
+	fi
+
+	chown -R "$user":"$group" "$datadir"
+	install -d -o "$user" -g "$group" -m 0755 "$logdir"
+    ;;
+esac

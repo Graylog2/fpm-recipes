@@ -1,4 +1,0 @@
-if [ $1 -eq 0 ]; then
-  service graylog2-web stop >/dev/null 2>&1 || true
-  chkconfig --del graylog2-web
-fi

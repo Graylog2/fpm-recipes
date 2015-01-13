@@ -1,0 +1,9 @@
+# Might be used to adjust the Java heap size. (i.e. "-Xms1024m -Xmx2048m")
+GRAYLOG_RADIO_JAVA_OPTS=""
+
+# Pass some extra args to graylog-radio. (i.e. "-d" to enable debug mode)
+GRAYLOG_RADIO_ARGS=""
+
+# Program that will be used to wrap the graylog-server command. Useful to
+# support programs like authbind.
+GRAYLOG_COMMAND_WRAPPER=""

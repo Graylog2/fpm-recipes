@@ -1,0 +1,4 @@
+if [ $1 -eq 0 ]; then
+  service graylog-radio stop >/dev/null 2>&1 || true
+  chkconfig --del graylog-radio
+fi

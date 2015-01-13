@@ -1,0 +1,25 @@
+<configuration>
+  <conversionRule conversionWord="coloredLevel" converterClass="play.api.Logger$ColoredLevel" />
+
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>/var/log/graylog-web/application.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!-- Daily rollover -->
+      <fileNamePattern>/var/log/graylog-web/application.%d{yyyy-MM-dd}.log</fileNamePattern>
+
+      <!-- Keep 30 days worth of history -->
+      <maxHistory>30</maxHistory>
+    </rollingPolicy>
+
+     <encoder>
+       <pattern>%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX} - [%level] - from %logger in %thread %n%message%n%xException%n</pattern>
+     </encoder>
+  </appender>
+
+  <logger name="play" level="INFO" />
+  <logger name="application" level="INFO" />
+
+  <root level="ERROR">
+    <appender-ref ref="FILE" />
+  </root>
+</configuration>

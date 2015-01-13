@@ -8,15 +8,15 @@ default:
   vendor: "torch"
   license: "GPLv3"
 
-graylog2-server:
+graylog-server:
   source: "http://packages.graylog2.org/releases/graylog2-server/graylog2-server-#{version}-beta.1.tgz"
   sha256: "62a3046b14b5c4a3e2a4727891a93567dfc9d4399157541fdd4f59305633f139"
 
-graylog2-radio:
+graylog-radio:
   source: "http://packages.graylog2.org/releases/graylog2-server/graylog2-server-#{version}-beta.1.tgz"
   sha256: "62a3046b14b5c4a3e2a4727891a93567dfc9d4399157541fdd4f59305633f139"
 
-graylog2-web:
+graylog-web:
   source: "http://packages.graylog2.org/releases/graylog2-web-interface/graylog2-web-interface-#{version}-beta.1.tgz"
   sha256: "53b5e757b03392bb4abdc68657ac19b7aeb241bf20b55e7034ed1be1d301e9ea"
 
