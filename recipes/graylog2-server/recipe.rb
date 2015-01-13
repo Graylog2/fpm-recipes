@@ -18,7 +18,7 @@ class Graylog2Server < FPM::Cookery::Recipe
   vendor     data.vendor
   license    data.license
 
-  config_files '/etc/graylog2.conf',
+  config_files '/etc/graylog2/server/server.conf',
                '/etc/graylog2/server/log4j.xml'
 
   platforms [:ubuntu, :debian] do
@@ -56,7 +56,7 @@ class Graylog2Server < FPM::Cookery::Recipe
   end
 
   def install
-    etc.install 'graylog2.conf.example', 'graylog2.conf'
+    etc('graylog2/server').install 'graylog2.conf.example', 'server.conf'
     etc('graylog2/server').install file('log4j.xml')
 
     case FPM::Cookery::Facts.platform

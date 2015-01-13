@@ -18,7 +18,7 @@ class Graylog2Radio < FPM::Cookery::Recipe
   vendor     data.vendor
   license    data.license
 
-  config_files '/etc/graylog2-radio.conf',
+  config_files '/etc/graylog2/radio/radio.conf',
                '/etc/graylog2/radio/log4j.xml'
 
   platforms [:ubuntu, :debian] do
@@ -55,7 +55,7 @@ class Graylog2Radio < FPM::Cookery::Recipe
   end
 
   def install
-    etc.install 'graylog2-radio.conf.example', 'graylog2-radio.conf'
+    etc('graylog2/radio').install 'graylog2-radio.conf.example', 'radio.conf'
     etc('graylog2/radio').install file('log4j.xml')
 
     case FPM::Cookery::Facts.platform
