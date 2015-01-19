@@ -1,5 +1,5 @@
---- graylog2.conf.example.orig	2015-01-08 17:48:46.892412067 +0100
-+++ graylog2.conf.example	2015-01-10 11:05:43.256705111 +0100
+--- graylog.conf.example.orig	2015-01-08 17:48:46.892412067 +0100
++++ graylog.conf.example	2015-01-10 11:05:43.256705111 +0100
 @@ -4,7 +4,7 @@
  
  # The auto-generated node ID will be stored in this file and read after restarts. It is a good idea

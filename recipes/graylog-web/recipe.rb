@@ -76,10 +76,10 @@ class GraylogWeb < FPM::Cookery::Recipe
     etc('graylog/web').install file('logback.xml')
 
     # Rename web interface config to be consistent with server and radio.
-    mv etc('graylog/web/graylog2-web-interface.conf'), etc('graylog/web/web.conf')
+    mv etc('graylog/web/graylog-web-interface.conf'), etc('graylog/web/web.conf')
 
     share('graylog-web').install %w(README.md lib)
-    share('graylog-web/bin').install 'bin/graylog2-web-interface', 'graylog-web-interface'
+    share('graylog-web/bin').install 'bin/graylog-web-interface'
 
     safesystem "ln -sf /etc/graylog/web #{share("graylog-web/conf")}"
   end

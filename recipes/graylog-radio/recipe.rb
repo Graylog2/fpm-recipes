@@ -57,7 +57,7 @@ class GraylogRadio < FPM::Cookery::Recipe
   end
 
   def install
-    etc('graylog/radio').install 'graylog2-radio.conf.example', 'radio.conf'
+    etc('graylog/radio').install 'graylog-radio.conf.example', 'radio.conf'
     etc('graylog/radio').install file('log4j.xml')
 
     case FPM::Cookery::Facts.platform
@@ -76,7 +76,7 @@ class GraylogRadio < FPM::Cookery::Recipe
     end
 
     share('graylog-radio/plugin').mkpath
-    share('graylog-radio').install 'graylog2.jar', 'graylog.jar'
+    share('graylog-radio').install 'graylog.jar'
     share('graylog-radio').install 'lib'
 
     # Remove unused sigar libs.

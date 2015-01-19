@@ -1,5 +1,5 @@
---- graylog2-radio.conf.example.orig	2015-01-10 12:38:22.056621051 +0100
-+++ graylog2-radio.conf.example	2015-01-10 12:39:15.468520377 +0100
+--- graylog-radio.conf.example.orig	2015-01-10 12:38:22.056621051 +0100
++++ graylog-radio.conf.example	2015-01-10 12:39:15.468520377 +0100
 @@ -1,12 +1,12 @@
  # The auto-generated node ID will be stored in this file and read after restarts. It is a good idea
  # to use an absolute file path here if you are starting graylog2-radio from init scripts or similar.

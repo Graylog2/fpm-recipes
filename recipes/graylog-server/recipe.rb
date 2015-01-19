@@ -58,7 +58,7 @@ class GraylogServer < FPM::Cookery::Recipe
   end
 
   def install
-    etc('graylog/server').install 'graylog2.conf.example', 'server.conf'
+    etc('graylog/server').install 'graylog.conf.example', 'server.conf'
     etc('graylog/server').install file('log4j.xml')
 
     case FPM::Cookery::Facts.platform
@@ -76,9 +76,9 @@ class GraylogServer < FPM::Cookery::Recipe
       etc('sysconfig').install osfile('sysconfig'), 'graylog-server'
     end
 
-    share('graylog-server').install 'graylog2.jar', 'graylog.jar'
+    share('graylog-server').install 'graylog.jar'
     share('graylog-server/plugin').mkpath
-    share('graylog-server/bin').install 'bin/graylog2-es-timestamp-fixup', 'graylog-es-timestamp-fixup'
+    share('graylog-server/bin').install 'bin/graylog-es-timestamp-fixup'
     share('graylog-server').install 'lib'
 
     # Remove unused sigar libs.
