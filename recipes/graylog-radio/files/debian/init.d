@@ -17,7 +17,6 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DESC="Graylog Radio"
 NAME=graylog-radio
 JAR_FILE=/usr/share/graylog-radio/graylog.jar
-DAEMON=/usr/bin/java
 PIDDIR=/var/run/graylog-radio
 PIDFILE=$PIDDIR/$NAME.pid
 DAEMON_LOG_OPTION="-Dlog4j.configuration=file:///etc/graylog/radio/log4j.xml"
@@ -27,12 +26,14 @@ RUN=yes
 
 # Exit if the package is not installed
 [ -e "$JAR_FILE" ] || exit 0
-[ -x "$DAEMON" ] || exit 0
 
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
+DAEMON=${JAVA:=/usr/bin/java}
 DAEMON_ARGS="$GRAYLOG_RADIO_JAVA_OPTS $DAEMON_LOG_OPTION -Djava.library.path=/usr/share/graylog-radio/lib/sigar -jar $JAR_FILE radio -p $PIDFILE -f /etc/graylog/radio/radio.conf $GRAYLOG_RADIO_ARGS"
 DAEMON="$GRAYLOG_COMMAND_WRAPPER $DAEMON"
+
+[ -x "$DAEMON" ] || exit 0
 
 . /lib/init/vars.sh
 
