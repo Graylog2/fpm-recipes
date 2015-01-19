@@ -2,7 +2,7 @@
 JAVA=/usr/bin/java
 
 # Default Java options for heap and garbage collection.
-GRAYLOG_SERVER_JAVA_OPTS="-Xms1g -Xmx1g -XX:PermSize=128m -XX:MaxPermSize=256m -server -XX:+ResizeTLAB -XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled -XX:+CMSClassUnloadingEnabled -XX:+UseParNewGC -XX:-OmitStackTraceInFastThrow"
+GRAYLOG_SERVER_JAVA_OPTS="-Xms1g -Xmx1g -XX:NewRatio=1 -XX:PermSize=128m -XX:MaxPermSize=256m -server -XX:+ResizeTLAB -XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled -XX:+CMSClassUnloadingEnabled -XX:+UseParNewGC -XX:-OmitStackTraceInFastThrow"
 
 # Pass some extra args to graylog-server. (i.e. "-d" to enable debug mode)
 GRAYLOG_SERVER_ARGS=""
