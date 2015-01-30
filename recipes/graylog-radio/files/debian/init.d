@@ -31,9 +31,10 @@ RUN=yes
 
 DAEMON=${JAVA:=/usr/bin/java}
 DAEMON_ARGS="$GRAYLOG_RADIO_JAVA_OPTS $DAEMON_LOG_OPTION -Djava.library.path=/usr/share/graylog-radio/lib/sigar -jar $JAR_FILE radio -p $PIDFILE -f /etc/graylog/radio/radio.conf $GRAYLOG_RADIO_ARGS"
-DAEMON="$GRAYLOG_COMMAND_WRAPPER $DAEMON"
 
 [ -x "$DAEMON" ] || exit 0
+
+DAEMON="$GRAYLOG_COMMAND_WRAPPER $DAEMON"
 
 . /lib/init/vars.sh
 

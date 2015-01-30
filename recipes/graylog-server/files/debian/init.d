@@ -31,9 +31,10 @@ RUN=yes
 
 DAEMON=${JAVA:=/usr/bin/java}
 DAEMON_ARGS="$GRAYLOG_SERVER_JAVA_OPTS $DAEMON_LOG_OPTION -Djava.library.path=/usr/share/graylog-server/lib/sigar -jar $JAR_FILE server -p $PIDFILE -f /etc/graylog/server/server.conf $GRAYLOG_SERVER_ARGS"
-DAEMON="$GRAYLOG_COMMAND_WRAPPER $DAEMON"
 
 [ -x "$DAEMON" ] || exit 0
+
+DAEMON="$GRAYLOG_COMMAND_WRAPPER $DAEMON"
 
 . /lib/init/vars.sh
 
