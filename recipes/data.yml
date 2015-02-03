@@ -2,23 +2,23 @@
 default:
   version_major: "1.0"
   version: "1.0.0"
-  revision: "8.rc.1"
+  revision: "9.rc.2"
   homepage: "http://graylog2.org/"
-  maintainer: "TORCH GmbH <hello@torch.sh>"
-  vendor: "torch"
+  maintainer: "Graylog, Inc. <hello@graylog.org>"
+  vendor: "graylog"
   license: "GPLv3"
 
 graylog-server:
-  source: "http://packages.graylog2.org/releases/graylog2-server/graylog-#{version}-rc.1.tgz"
-  sha256: "912c5602fbc065a49bbebaa6250063f1c8567ee6dc011e1fcf67549107031a9b"
+  source: "http://packages.graylog2.org/releases/graylog2-server/graylog-#{version}-rc.2.tgz"
+  sha256: "38976a3a77416b16a8359e8c7dba2307492591339fc250ef3a473a30e341014c"
 
 graylog-radio:
-  source: "http://packages.graylog2.org/releases/graylog2-server/graylog-#{version}-rc.1.tgz"
-  sha256: "912c5602fbc065a49bbebaa6250063f1c8567ee6dc011e1fcf67549107031a9b"
+  source: "http://packages.graylog2.org/releases/graylog2-server/graylog-#{version}-rc.2.tgz"
+  sha256: "38976a3a77416b16a8359e8c7dba2307492591339fc250ef3a473a30e341014c"
 
 graylog-web:
-  source: "http://packages.graylog2.org/releases/graylog2-web-interface/graylog-web-interface-#{version}-rc.1.tgz"
-  sha256: "650ab6be8b014414a19e870a11ce4ec74024fe07a211112b7450c96677285697"
+  source: "http://packages.graylog2.org/releases/graylog2-web-interface/graylog-web-interface-#{version}-rc.2.tgz"
+  sha256: "755748735481165df1eed1a2a8898721de3ed2e14d0435b6ef7f9db0d0b16858"
 
 graylog2-stream-dashboard:
   version_major: "0.90"
