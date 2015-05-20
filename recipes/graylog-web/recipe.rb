@@ -27,7 +27,6 @@ class GraylogWeb < FPM::Cookery::Recipe
 
   platforms [:ubuntu, :debian] do
     section 'net'
-    depends 'java7-runtime-headless | openjdk-7-jre-headless'
 
     config_files '/etc/default/graylog-web'
 
@@ -44,8 +43,6 @@ class GraylogWeb < FPM::Cookery::Recipe
   end
 
   platforms [:centos] do
-    depends 'java >= 1:1.7.0'
-
     config_files '/etc/init.d/graylog-web',
                  '/etc/sysconfig/graylog-web'
 
