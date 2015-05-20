@@ -136,6 +136,8 @@ module FPM
             if match =~ pattern
               if @recipe.respond_to?($1)
                 @recipe.public_send($1)
+              elsif data.has_key?($1)
+                data.fetch($1)
               else
                 raise "No replacement for #{$1} found, abort."
               end
