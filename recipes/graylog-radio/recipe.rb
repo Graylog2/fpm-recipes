@@ -27,6 +27,11 @@ class GraylogRadio < FPM::Cookery::Recipe
     section 'net'
     depends 'uuid-runtime'
 
+    fpm_attributes[:deb_recommends_given?] = true
+    fpm_attributes[:deb_recommends] = [
+      'java7-runtime-headless | openjdk-7-jre-headless'
+    ]
+
     config_files '/etc/default/graylog-radio'
 
     post_install "files/#{platform}/post-install"
