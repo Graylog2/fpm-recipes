@@ -1,0 +1,16 @@
+[Unit]
+Description=Graylog web interface
+Documentation=http://docs.graylog.org/
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+User=graylog-web
+Group=graylog-web
+
+ExecStart=/usr/lib/systemd/scripts/graylog-web-env.sh
+
+[Install]
+WantedBy=multi-user.target

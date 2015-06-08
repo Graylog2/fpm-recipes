@@ -48,13 +48,25 @@ class GraylogRadio < FPM::Cookery::Recipe
   end
 
   platforms [:centos] do
-    depends 'util-linux-ng'
+    case fact('operatingsystemmajrelease')
+    when '6'
+      depends 'util-linux-ng'
 
-    config_files '/etc/init.d/graylog-radio',
-                 '/etc/sysconfig/graylog-radio'
+      config_files '/etc/init.d/graylog-radio',
+                   '/etc/sysconfig/graylog-radio'
 
-    post_install 'files/centos/post-install'
-    pre_uninstall 'files/centos/pre-uninstall'
+      post_install 'files/centos/post-install'
+      pre_uninstall 'files/centos/pre-uninstall'
+    when '7'
+      depends 'util-linux'
+
+      config_files '/usr/lib/systemd/system/graylog-radio.service',
+                   '/usr/lib/systemd/scripts/graylog-radio-env.sh',
+                   '/etc/sysconfig/graylog-radio'
+
+      post_install 'files/centos/post-install-7'
+      pre_uninstall 'files/centos/pre-uninstall-7'
+    end
   end
 
   def build
@@ -75,8 +87,15 @@ class GraylogRadio < FPM::Cookery::Recipe
       etc('default').install osfile('default'), 'graylog-radio'
       etc('logrotate.d').install osfile('logrotate'), 'graylog-radio'
     when :centos
-      etc('init.d').install osfile('init.d'), 'graylog-radio'
-      etc('init.d/graylog-radio').chmod(0755)
+      case fact('operatingsystemmajrelease')
+      when '6'
+        etc('init.d').install osfile('init.d'), 'graylog-radio'
+        etc('init.d/graylog-radio').chmod(0755)
+      when '7'
+        lib('systemd/system').install osfile('systemd.service'), 'graylog-radio.service'
+        lib('systemd/scripts').install osfile('graylog-radio-env.sh'), 'graylog-radio-env.sh'
+        lib('systemd/scripts/graylog-radio-env.sh').chmod(0755)
+      end
       etc('sysconfig').install osfile('sysconfig'), 'graylog-radio'
     end
 

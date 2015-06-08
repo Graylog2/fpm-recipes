@@ -1,0 +1,16 @@
+[Unit]
+Description=Graylog server
+Documentation=http://docs.graylog.org/
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+User=graylog-radio
+Group=graylog-radio
+
+ExecStart=/usr/lib/systemd/scripts/graylog-radio-env.sh
+
+[Install]
+WantedBy=multi-user.target
