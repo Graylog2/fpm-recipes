@@ -82,6 +82,8 @@ class GraylogServer < FPM::Cookery::Recipe
     when :ubuntu
       etc('init').install osfile('upstart.conf'), 'graylog-server.conf'
       etc('default').install osfile('default'), 'graylog-server'
+      etc('init.d').mkpath
+      safesystem "ln -sf /lib/init/upstart-job #{etc('init.d/graylog-server')}"
     when :debian
       etc('init.d').install osfile('init.d'), 'graylog-server'
       etc('init.d/graylog-server').chmod(0755)

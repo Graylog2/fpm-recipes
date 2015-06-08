@@ -81,6 +81,8 @@ class GraylogRadio < FPM::Cookery::Recipe
     when :ubuntu
       etc('init').install osfile('upstart.conf'), 'graylog-radio.conf'
       etc('default').install osfile('default'), 'graylog-radio'
+      etc('init.d').mkpath
+      safesystem "ln -sf /lib/init/upstart-job #{etc('init.d/graylog-radio')}"
     when :debian
       etc('init.d').install osfile('init.d'), 'graylog-radio'
       etc('init.d/graylog-radio').chmod(0755)

@@ -73,6 +73,8 @@ class GraylogWeb < FPM::Cookery::Recipe
     when :ubuntu
       etc('init').install osfile('upstart.conf'), 'graylog-web.conf'
       etc('default').install osfile('default'), 'graylog-web'
+      etc('init.d').mkpath
+      safesystem "ln -sf /lib/init/upstart-job #{etc('init.d/graylog-web')}"
     when :debian
       etc('init.d').install osfile('init.d'), 'graylog-web'
       etc('init.d/graylog-web').chmod(0755)
