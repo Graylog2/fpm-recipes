@@ -1,6 +1,6 @@
 FROM centos:centos6
 
-MAINTAINER TORCH GmbH <hello@torch.sh>
+MAINTAINER Graylog, Inc. <hello@graylog.com>
 
 # Install required packages to install the fpm-cookery gem.
 RUN yum clean all

@@ -16,7 +16,7 @@
 ### END INIT INFO
 
 # Author: Lee Briggs <lee@leebriggs.co.uk>
-# Contributor: Bernd Ahlers <bernd@torch.sh>
+# Contributor: Bernd Ahlers <bernd@graylog.com>
 
 # Some default settings.
 GRAYLOG_WEB_HTTP_ADDRESS="0.0.0.0"

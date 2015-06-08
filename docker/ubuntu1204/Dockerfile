@@ -1,6 +1,6 @@
 FROM ubuntu:12.04
 
-MAINTAINER TORCH GmbH <hello@torch.sh>
+MAINTAINER Graylog, Inc. <hello@graylog.com>
 
 RUN apt-get clean
 RUN apt-get update

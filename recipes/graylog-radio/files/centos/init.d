@@ -17,7 +17,7 @@
 
 # Author: Lee Briggs <lee@leebriggs.co.uk>
 # Contributor: Sandro Roth <sandro.roth@gmail.com>
-# Contributor: Bernd Ahlers <bernd@torch.sh>
+# Contributor: Bernd Ahlers <bernd@graylog.com>
 
 # Source function library.
 . /etc/rc.d/init.d/functions

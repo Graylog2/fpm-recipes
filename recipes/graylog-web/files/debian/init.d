@@ -11,7 +11,7 @@
 ### END INIT INFO
 
 # Author: Jonas Genannt <jonas.genannt@capi2name.de>
-# Contributor: Bernd Ahlers <bernd@torch.sh>
+# Contributor: Bernd Ahlers <bernd@graylog.com>
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DESC="Graylog Web Interface"
