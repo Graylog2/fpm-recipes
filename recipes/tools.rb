@@ -170,7 +170,7 @@ module FPM
           input.epoch = version.epoch if version.epoch
 
           add_scripts(recipe, input)
-          remove_excluded_files(recipe)
+          remove_excluded_files(recipe) if respond_to?(:remove_excluded_files)
 
           output_class = FPM::Package.types[@target]
 
