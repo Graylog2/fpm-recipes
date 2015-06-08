@@ -1,0 +1,4 @@
+if [ $1 -eq 0 ]; then
+  systemctl stop graylog-radio.service >/dev/null 2>&1 || true
+  systemctl disable graylog-radio.service
+fi

@@ -66,7 +66,6 @@ class GraylogServer < FPM::Cookery::Recipe
 
       post_install 'files/centos/post-install-7'
       pre_uninstall 'files/centos/pre-uninstall-7'
-
     end
   end
 
