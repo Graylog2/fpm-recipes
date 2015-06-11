@@ -20,7 +20,7 @@ export JAVA_OPTS="$GRAYLOG_WEB_JAVA_OPTS"
 $GRAYLOG_COMMAND_WRAPPER /usr/share/graylog-web/bin/graylog-web-interface \
     -Dlogger.file=/etc/graylog/web/logback.xml \
     -Dconfig.file=/etc/graylog/web/web.conf \
-    -Dpidfile.path=/var/lib/graylog-web/application.pid \
+    -Dpidfile.path=/dev/null \
     -Dhttp.address=$GRAYLOG_WEB_HTTP_ADDRESS \
     -Dhttp.port=$GRAYLOG_WEB_HTTP_PORT \
     $GRAYLOG_WEB_ARGS
