@@ -12,5 +12,12 @@ Group=graylog-web
 
 ExecStart=/usr/share/graylog-web/bin/graylog-web
 
+# When a JVM receives a SIGTERM signal it exits with 143.
+SuccessExitStatus=143
+
+# Make sure stderr/stdout is captured in the systemd journal.
+StandardOutput=journal
+StandardError=journal
+
 [Install]
 WantedBy=multi-user.target
