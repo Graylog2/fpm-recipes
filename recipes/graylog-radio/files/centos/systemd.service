@@ -1,5 +1,5 @@
 [Unit]
-Description=Graylog server
+Description=Graylog radio
 Documentation=http://docs.graylog.org/
 After=network.target
 
@@ -10,7 +10,7 @@ RestartSec=10
 User=graylog-radio
 Group=graylog-radio
 
-ExecStart=/usr/share/graylog-server/bin/graylog-radio
+ExecStart=/usr/share/graylog-radio/bin/graylog-radio
 
 # When a JVM receives a SIGTERM signal it exits with 143.
 SuccessExitStatus=143

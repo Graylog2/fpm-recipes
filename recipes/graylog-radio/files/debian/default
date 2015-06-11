@@ -7,6 +7,6 @@ GRAYLOG_RADIO_JAVA_OPTS="-Xms1g -Xmx1g -XX:NewRatio=1 -XX:PermSize=128m -XX:MaxP
 # Pass some extra args to graylog-radio. (i.e. "-d" to enable debug mode)
 GRAYLOG_RADIO_ARGS=""
 
-# Program that will be used to wrap the graylog-server command. Useful to
+# Program that will be used to wrap the graylog-radio command. Useful to
 # support programs like authbind.
 GRAYLOG_COMMAND_WRAPPER=""
