@@ -4,12 +4,12 @@ set -e
 
 # For Debian/Ubuntu based systems.
 if [ -f "/etc/default/graylog-server" ]; then
-    source "/etc/default/graylog-server"
+    . "/etc/default/graylog-server"
 fi
 
 # For RedHat/Fedora based systems.
 if [ -f "/etc/sysconfig/graylog-server" ]; then
-    source "/etc/sysconfig/graylog-server"
+    . "/etc/sysconfig/graylog-server"
 fi
 
 $GRAYLOG_COMMAND_WRAPPER ${JAVA:=/usr/bin/java} $GRAYLOG_SERVER_JAVA_OPTS \

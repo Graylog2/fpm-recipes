@@ -33,18 +33,28 @@ class GraylogRadio < FPM::Cookery::Recipe
     ]
 
     config_files '/etc/default/graylog-radio'
-
-    post_install "files/#{platform}/post-install"
-    post_uninstall "files/#{platform}/post-uninstall"
   end
 
   platforms [:ubuntu] do
     config_files '/etc/init/graylog-radio.conf'
+
+    post_install "files/ubuntu/post-install"
+    post_uninstall "files/ubuntu/post-uninstall"
   end
 
   platforms [:debian] do
-    config_files '/etc/init.d/graylog-radio',
-                 '/etc/logrotate.d/graylog-radio'
+    config_files '/etc/logrotate.d/graylog-radio'
+
+    case fact('operatingsystemmajrelease')
+    when '7'
+      config_files '/etc/init.d/graylog-radio'
+
+      post_install "files/debian/post-install"
+      post_uninstall "files/debian/post-uninstall"
+    when '8'
+      post_install "files/debian/post-install-8"
+      post_uninstall "files/debian/post-uninstall-8"
+    end
   end
 
   platforms [:centos] do
@@ -82,8 +92,16 @@ class GraylogRadio < FPM::Cookery::Recipe
       etc('init.d').mkpath
       safesystem "ln -sf /lib/init/upstart-job #{etc('init.d/graylog-radio')}"
     when :debian
-      etc('init.d').install osfile('init.d'), 'graylog-radio'
-      etc('init.d/graylog-radio').chmod(0755)
+      case fact('operatingsystemmajrelease')
+      when '7'
+        etc('init.d').install osfile('init.d'), 'graylog-radio'
+        etc('init.d/graylog-radio').chmod(0755)
+      when '8'
+        root('lib/systemd/system').install file('systemd.service'), 'graylog-radio.service'
+        share('graylog-radio/bin').install file('graylog-radio.sh'), 'graylog-radio'
+        share('graylog-radio/bin/graylog-radio').chmod(0755)
+      end
+
       etc('default').install osfile('default'), 'graylog-radio'
       etc('logrotate.d').install osfile('logrotate'), 'graylog-radio'
     when :centos
@@ -92,10 +110,11 @@ class GraylogRadio < FPM::Cookery::Recipe
         etc('init.d').install osfile('init.d'), 'graylog-radio'
         etc('init.d/graylog-radio').chmod(0755)
       when '7'
-        lib('systemd/system').install osfile('systemd.service'), 'graylog-radio.service'
+        lib('systemd/system').install file('systemd.service'), 'graylog-radio.service'
         share('graylog-radio/bin').install file('graylog-radio.sh'), 'graylog-radio'
         share('graylog-radio/bin/graylog-radio').chmod(0755)
       end
+
       etc('sysconfig').install osfile('sysconfig'), 'graylog-radio'
     end
 

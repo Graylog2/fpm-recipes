@@ -7,12 +7,12 @@ GRAYLOG_WEB_HTTP_PORT="9000"
 
 # For Debian/Ubuntu based systems.
 if [ -f "/etc/default/graylog-web" ]; then
-    source "/etc/default/graylog-web"
+    . "/etc/default/graylog-web"
 fi
 
 # For RedHat/Fedora based systems.
 if [ -f "/etc/sysconfig/graylog-web" ]; then
-    source "/etc/sysconfig/graylog-web"
+    . "/etc/sysconfig/graylog-web"
 fi
 
 export JAVA_OPTS="$GRAYLOG_WEB_JAVA_OPTS"

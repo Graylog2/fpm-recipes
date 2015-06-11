@@ -1,0 +1,35 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    configure)
+	user="graylog"
+	group="graylog"
+	datadir="/var/lib/graylog-server"
+	logdir="/var/log/graylog-server"
+	server_node_id="/etc/graylog/server/node-id"
+
+	if ! getent group "$group" > /dev/null 2>&1 ; then
+	    addgroup --system "$group" --quiet
+	fi
+
+	install -d -o "root" -g "root" -m 0755 "$datadir"
+
+	if ! id "$user" > /dev/null 2>&1 ; then
+	    adduser --system --home "$datadir" --no-create-home \
+		--ingroup "$group" --disabled-password \
+		--shell /bin/false "$user"
+	fi
+
+	chown -R "$user":"$group" "$datadir"
+	install -d -o "$user" -g "$group" -m 0755 "$logdir"
+
+	# Create an initial server node-id.
+	if [ ! -s "$server_node_id" ]; then
+		uuidgen > "$server_node_id"
+	fi
+
+	# Enable service
+	systemctl enable graylog-server.service
+    ;;
+esac

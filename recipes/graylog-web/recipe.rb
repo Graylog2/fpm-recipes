@@ -34,17 +34,28 @@ class GraylogWeb < FPM::Cookery::Recipe
     ]
 
     config_files '/etc/default/graylog-web'
-
-    post_install "files/#{platform}/post-install"
-    post_uninstall "files/#{platform}/post-uninstall"
   end
 
   platforms [:ubuntu] do
     config_files '/etc/init/graylog-web.conf'
+
+    post_install "files/ubuntu/post-install"
+    post_uninstall "files/ubuntu/post-uninstall"
   end
 
   platforms [:debian] do
-    config_files '/etc/init.d/graylog-web'
+    config_files '/etc/logrotate.d/graylog-web'
+
+    case fact('operatingsystemmajrelease')
+    when '7'
+      config_files '/etc/init.d/graylog-web'
+
+      post_install "files/debian/post-install"
+      post_uninstall "files/debian/post-uninstall"
+    when '8'
+      post_install "files/debian/post-install-8"
+      post_uninstall "files/debian/post-uninstall-8"
+    end
   end
 
   platforms [:centos] do
@@ -74,20 +85,29 @@ class GraylogWeb < FPM::Cookery::Recipe
       etc('init.d').mkpath
       safesystem "ln -sf /lib/init/upstart-job #{etc('init.d/graylog-web')}"
     when :debian
-      etc('init.d').install osfile('init.d'), 'graylog-web'
-      etc('init.d/graylog-web').chmod(0755)
-      etc('default').install osfile('default'), 'graylog-web'
+      case fact('operatingsystemmajrelease')
+      when '7'
+        etc('init.d').install osfile('init.d'), 'graylog-web'
+        etc('init.d/graylog-web').chmod(0755)
+      when '8'
+        root('lib/systemd/system').install file('systemd.service'), 'graylog-web.service'
+        share('graylog-web/bin').install file('graylog-web.sh'), 'graylog-web'
+        share('graylog-web/bin/graylog-web').chmod(0755)
+      end
+
       etc('logrotate.d').install osfile('logrotate'), 'graylog-web'
+      etc('default').install osfile('default'), 'graylog-web'
     when :centos
       case fact('operatingsystemmajrelease')
       when '6'
         etc('init.d').install osfile('init.d'), 'graylog-web'
         etc('init.d/graylog-web').chmod(0755)
       when '7'
-        lib('systemd/system').install osfile('systemd.service'), 'graylog-web.service'
+        lib('systemd/system').install file('systemd.service'), 'graylog-web.service'
         share('graylog-web/bin').install file('graylog-web.sh'), 'graylog-web'
         share('graylog-web/bin/graylog-web').chmod(0755)
       end
+
       etc('sysconfig').install osfile('sysconfig'), 'graylog-web'
     end
 

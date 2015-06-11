@@ -33,18 +33,28 @@ class GraylogServer < FPM::Cookery::Recipe
     ]
 
     config_files '/etc/default/graylog-server'
-
-    post_install "files/#{platform}/post-install"
-    post_uninstall "files/#{platform}/post-uninstall"
   end
 
   platforms [:ubuntu] do
     config_files '/etc/init/graylog-server.conf'
+
+    post_install "files/ubuntu/post-install"
+    post_uninstall "files/ubuntu/post-uninstall"
   end
 
   platforms [:debian] do
-    config_files '/etc/init.d/graylog-server',
-                 '/etc/logrotate.d/graylog-server'
+    config_files '/etc/logrotate.d/graylog-server'
+
+    case fact('operatingsystemmajrelease')
+    when '7'
+      config_files '/etc/init.d/graylog-server'
+
+      post_install "files/debian/post-install"
+      post_uninstall "files/debian/post-uninstall"
+    when '8'
+      post_install "files/debian/post-install-8"
+      post_uninstall "files/debian/post-uninstall-8"
+    end
   end
 
   platforms [:centos] do
@@ -83,8 +93,16 @@ class GraylogServer < FPM::Cookery::Recipe
       etc('init.d').mkpath
       safesystem "ln -sf /lib/init/upstart-job #{etc('init.d/graylog-server')}"
     when :debian
-      etc('init.d').install osfile('init.d'), 'graylog-server'
-      etc('init.d/graylog-server').chmod(0755)
+      case fact('operatingsystemmajrelease')
+      when '7'
+        etc('init.d').install osfile('init.d'), 'graylog-server'
+        etc('init.d/graylog-server').chmod(0755)
+      when '8'
+        root('lib/systemd/system').install file('systemd.service'), 'graylog-server.service'
+        share('graylog-server/bin').install file('graylog-server.sh'), 'graylog-server'
+        share('graylog-server/bin/graylog-server').chmod(0755)
+      end
+
       etc('default').install osfile('default'), 'graylog-server'
       etc('logrotate.d').install osfile('logrotate'), 'graylog-server'
     when :centos
@@ -93,10 +111,11 @@ class GraylogServer < FPM::Cookery::Recipe
         etc('init.d').install osfile('init.d'), 'graylog-server'
         etc('init.d/graylog-server').chmod(0755)
       when '7'
-        lib('systemd/system').install osfile('systemd.service'), 'graylog-server.service'
+        lib('systemd/system').install file('systemd.service'), 'graylog-server.service'
         share('graylog-server/bin').install file('graylog-server.sh'), 'graylog-server'
         share('graylog-server/bin/graylog-server').chmod(0755)
       end
+
       etc('sysconfig').install osfile('sysconfig'), 'graylog-server'
     end
 
