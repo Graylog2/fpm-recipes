@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # For Debian/Ubuntu based systems.
 if [ -f "/etc/default/graylog-server" ]; then
     source "/etc/default/graylog-server"

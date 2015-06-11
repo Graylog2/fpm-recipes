@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 GRAYLOG_WEB_HTTP_ADDRESS="0.0.0.0"
 GRAYLOG_WEB_HTTP_PORT="9000"
 
