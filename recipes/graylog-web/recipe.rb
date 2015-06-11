@@ -56,9 +56,7 @@ class GraylogWeb < FPM::Cookery::Recipe
       post_install 'files/centos/post-install'
       pre_uninstall 'files/centos/pre-uninstall'
     when '7'
-      config_files '/usr/lib/systemd/system/graylog-web.service',
-                   '/usr/lib/systemd/scripts/graylog-web-env.sh',
-                   '/etc/sysconfig/graylog-web'
+      config_files '/etc/sysconfig/graylog-web'
 
       post_install 'files/centos/post-install-7'
       pre_uninstall 'files/centos/pre-uninstall-7'
@@ -87,8 +85,8 @@ class GraylogWeb < FPM::Cookery::Recipe
         etc('init.d/graylog-web').chmod(0755)
       when '7'
         lib('systemd/system').install osfile('systemd.service'), 'graylog-web.service'
-        lib('systemd/scripts').install osfile('graylog-web-env.sh'), 'graylog-web-env.sh'
-        lib('systemd/scripts/graylog-web-env.sh').chmod(0755)
+        share('graylog-web/bin').install file('graylog-web.sh'), 'graylog-web'
+        share('graylog-web/bin/graylog-web').chmod(0755)
       end
       etc('sysconfig').install osfile('sysconfig'), 'graylog-web'
     end

@@ -60,9 +60,7 @@ class GraylogServer < FPM::Cookery::Recipe
     when '7'
       depends 'util-linux'
 
-      config_files '/usr/lib/systemd/system/graylog-server.service',
-                   '/usr/lib/systemd/scripts/graylog-server-env.sh',
-                   '/etc/sysconfig/graylog-server'
+      config_files '/etc/sysconfig/graylog-server'
 
       post_install 'files/centos/post-install-7'
       pre_uninstall 'files/centos/pre-uninstall-7'
@@ -96,8 +94,8 @@ class GraylogServer < FPM::Cookery::Recipe
         etc('init.d/graylog-server').chmod(0755)
       when '7'
         lib('systemd/system').install osfile('systemd.service'), 'graylog-server.service'
-        lib('systemd/scripts').install osfile('graylog-server-env.sh'), 'graylog-server-env.sh'
-        lib('systemd/scripts/graylog-server-env.sh').chmod(0755)
+        share('graylog-server/bin').install file('graylog-server.sh'), 'graylog-server'
+        share('graylog-server/bin/graylog-server').chmod(0755)
       end
       etc('sysconfig').install osfile('sysconfig'), 'graylog-server'
     end

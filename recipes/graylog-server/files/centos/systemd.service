@@ -10,7 +10,7 @@ RestartSec=10
 User=graylog
 Group=graylog
 
-ExecStart=/usr/lib/systemd/scripts/graylog-server-env.sh
+ExecStart=/usr/share/graylog-server/bin/graylog-server
 
 [Install]
 WantedBy=multi-user.target
