@@ -32,12 +32,11 @@ GRAYLOG_WEB_HTTP_PORT="9000"
 
 . /lib/lsb/init-functions
 
-DAEMON_ARGS="-Dconfig.file=/etc/graylog/web/web.conf"
-DAEMON_ARGS="$DAEMON_ARGS -Dlogger.file=/etc/graylog/web/logback.xml"
-DAEMON_ARGS="$DAEMON_ARGS -Dpidfile.path=$PIDFILE"
-DAEMON_ARGS="$DAEMON_ARGS -Dhttp.address=$GRAYLOG_WEB_HTTP_ADDRESS"
-DAEMON_ARGS="$DAEMON_ARGS -Dhttp.port=$GRAYLOG_WEB_HTTP_PORT"
-DAEMON_ARGS="$DAEMON_ARGS $GRAYLOG_WEB_ARGS"
+JAVA_OPTS="-Dconfig.file=/etc/graylog/web/web.conf"
+JAVA_OPTS="$JAVA_OPTS -Dlogger.file=/etc/graylog/web/logback.xml"
+JAVA_OPTS="$JAVA_OPTS -Dpidfile.path=$PIDFILE"
+JAVA_OPTS="$JAVA_OPTS -Dhttp.address=$GRAYLOG_WEB_HTTP_ADDRESS"
+JAVA_OPTS="$JAVA_OPTS -Dhttp.port=$GRAYLOG_WEB_HTTP_PORT"
 
 DAEMON="$GRAYLOG_COMMAND_WRAPPER $DAEMON"
 
@@ -54,6 +53,21 @@ running()
 	return 1
 }
 
+await_running()
+{
+	local count=0
+
+	# Wait max 30s until process has started.
+	while ! running ; do
+		count=$(($count + 1))
+
+		if [ $count -ge 30 ]; then
+			break
+		fi
+
+		sleep 1
+	done
+}
 
 do_start()
 {
@@ -70,16 +84,25 @@ do_start()
 	else
 		touch /var/log/graylog-web/console.log
 		chown graylog-web:graylog-web /var/log/graylog-web/console.log
-		export JAVA_OPTS="$GRAYLOG_WEB_JAVA_OPTS"
-		su -s /bin/bash -c "nohup $DAEMON $DAEMON_ARGS >> /var/log/graylog-web/console.log 2>&1 &" graylog-web
+
+		export JAVA_OPTS="$JAVA_OPTS $GRAYLOG_WEB_JAVA_OPTS"
+		start-stop-daemon --start --quiet --oknodo --pidfile $PIDFILE \
+			--user graylog-web --chuid graylog-web \
+			--background --startas /bin/bash -- \
+			-c "exec $DAEMON $GRAYLOG_WEB_ARGS >> /var/log/graylog-web/console.log 2>&1"
+		await_running
+		if running ; then
+			return 0
+		else
+			return 2
+		fi
 	fi
 }
 
 do_stop()
 {
-	if [ -s $PIDFILE ]; then
-		kill `cat ${PIDFILE}` >/dev/null 2>&1
-	fi
+	start-stop-daemon --stop --quiet --oknodo --user graylog-web \
+		--retry=TERM/60/KILL/5 --pidfile $PIDFILE
 	rm -f $PIDFILE
 	return "0"
 }

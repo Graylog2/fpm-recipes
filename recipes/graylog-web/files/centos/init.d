@@ -37,6 +37,12 @@ SCRIPTNAME=/etc/init.d/$NAME
 LOCKFILE=/var/lock/subsys/$NAME
 RUN=yes
 
+JAVA_OPTS="-Dconfig.file=${CONF_FILE}"
+JAVA_OPTS="$JAVA_OPTS -Dlogger.file=/etc/graylog/web/logback.xml"
+JAVA_OPTS="$JAVA_OPTS -Dpidfile.path=$PID_FILE"
+JAVA_OPTS="$JAVA_OPTS -Dhttp.address=$GRAYLOG_WEB_HTTP_ADDRESS"
+JAVA_OPTS="$JAVA_OPTS -Dhttp.port=$GRAYLOG_WEB_HTTP_PORT"
+
 # Pull in sysconfig settings
 [ -f /etc/sysconfig/graylog-web ] && . /etc/sysconfig/graylog-web
 
@@ -45,13 +51,9 @@ RUN=yes
 
 start() {
     echo -n $"Starting ${NAME}: "
+    export JAVA_OPTS="$JAVA_OPTS $GRAYLOG_WEB_JAVA_OPTS"
     daemon --user=$GRAYLOG_WEB_USER --pidfile=${PID_FILE} \
-        "nohup $GRAYLOG_COMMAND_WRAPPER $CMD -Dconfig.file=${CONF_FILE} \
-        -Dlogger.file=/etc/graylog/web/logback.xml \
-        -Dpidfile.path=$PID_FILE \
-        -Dhttp.address=$GRAYLOG_WEB_HTTP_ADDRESS \
-        -Dhttp.port=$GRAYLOG_WEB_HTTP_PORT \
-        $GRAYLOG_WEB_JAVA_OPTS $GRAYLOG_WEB_ARGS > /var/log/graylog-web/console.log 2>&1 &"
+        "nohup $GRAYLOG_COMMAND_WRAPPER $CMD $GRAYLOG_WEB_ARGS > /var/log/graylog-web/console.log 2>&1 &"
     RETVAL=$?
     sleep 2
     [ $RETVAL = 0 ] && touch ${LOCKFILE}

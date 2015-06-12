@@ -15,12 +15,12 @@ if [ -f "/etc/sysconfig/graylog-web" ]; then
     . "/etc/sysconfig/graylog-web"
 fi
 
-export JAVA_OPTS="$GRAYLOG_WEB_JAVA_OPTS"
+JAVA_OPTS="-Dconfig.file=/etc/graylog/web/web.conf"
+JAVA_OPTS="$JAVA_OPTS -Dlogger.file=/etc/graylog/web/logback.xml"
+JAVA_OPTS="$JAVA_OPTS -Dpidfile.path=/dev/null"
+JAVA_OPTS="$JAVA_OPTS -Dhttp.address=$GRAYLOG_WEB_HTTP_ADDRESS"
+JAVA_OPTS="$JAVA_OPTS -Dhttp.port=$GRAYLOG_WEB_HTTP_PORT"
 
-$GRAYLOG_COMMAND_WRAPPER /usr/share/graylog-web/bin/graylog-web-interface \
-    -Dlogger.file=/etc/graylog/web/logback.xml \
-    -Dconfig.file=/etc/graylog/web/web.conf \
-    -Dpidfile.path=/dev/null \
-    -Dhttp.address=$GRAYLOG_WEB_HTTP_ADDRESS \
-    -Dhttp.port=$GRAYLOG_WEB_HTTP_PORT \
-    $GRAYLOG_WEB_ARGS
+export JAVA_OPTS="$JAVA_OPTS $GRAYLOG_WEB_JAVA_OPTS"
+
+$GRAYLOG_COMMAND_WRAPPER /usr/share/graylog-web/bin/graylog-web-interface $GRAYLOG_WEB_ARGS
