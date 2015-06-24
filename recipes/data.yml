@@ -20,6 +20,12 @@ graylog-web:
   source: "https://packages.graylog2.org/releases/graylog2-web-interface/graylog-web-interface-#{version}.tgz"
   sha256: "028eedde600ef7d82378451ba71efbc5b339c162006a6cf6749171f5654fb4ff"
 
+graylog-collector:
+  version: "0.2.4"
+  revision: "1"
+  source: "https://packages.graylog2.org/releases/graylog-collector/graylog-collector-#{version}.tgz"
+  sha256: "7b802370a47c17c8113ae99bfd5dd6352664b09f2266aecef69c2b659b17ed7d"
+
 graylog2-stream-dashboard:
   version_major: "0.90"
   version: "0.90.0"
