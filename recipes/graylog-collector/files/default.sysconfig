@@ -1,0 +1,9 @@
+# Graylog Collector Runtime Options
+
+# The path to the Java executable.
+COLLECTOR_JAVA_CMD="/usr/bin/java"
+
+# The JVM options for executing the collector. Please check
+# /usr/share/graylog-collector/graylog-collector-script-config.sh for the
+# default options!
+#COLLECTOR_JAVA_OPTS=""

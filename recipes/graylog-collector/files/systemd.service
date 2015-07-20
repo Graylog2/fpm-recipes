@@ -1,0 +1,23 @@
+[Unit]
+Description=Graylog collector
+Documentation=http://docs.graylog.org/
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=10
+User=graylog-collector
+Group=graylog-collector
+
+ExecStart=/usr/share/graylog-collector/bin/graylog-collector run -f /etc/graylog/collector/collector.conf
+
+# When a JVM receives a SIGTERM signal it exits with 143.
+SuccessExitStatus=143
+
+# Make sure stderr/stdout is captured in the systemd journal.
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

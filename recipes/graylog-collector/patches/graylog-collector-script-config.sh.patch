@@ -1,0 +1,10 @@
+--- bin/graylog-collector-script-config.sh.orig	2015-06-24 14:57:10.845946921 +0200
++++ bin/graylog-collector-script-config.sh	2015-06-24 14:57:43.481624198 +0200
+@@ -1,6 +1,6 @@
+ #!/bin/bash
+ 
+-COLLECTOR_JAVA_DEFAULT_OPTS="-Xms12m -Xmx64m -Djava.library.path=/usr/share/graylog-collector/lib/sigar"
++COLLECTOR_JAVA_DEFAULT_OPTS="-Xms12m -Xmx64m -Djava.library.path=/usr/share/graylog-collector/lib/sigar -Dlog4j.configurationFile=/etc/graylog/collector/log4j2.xml"
+ COLLECTOR_DEFAULT_JAR="/usr/share/graylog-collector/graylog-collector.jar"
+ 
+ # For Debian/Ubuntu based systems.

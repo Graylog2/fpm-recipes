@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+        </Console>
+    </Appenders>
+    <Appenders>
+        <RollingFile name="rolling-file" fileName="/var/log/graylog-collector/collector.log" filePattern="/var/log/graylog-collector/collector.log.%i.gz">
+            <PatternLayout pattern="%date{yyyy-MM-dd'T'HH:mm:ss.SSSZ} %-5level [%thread] %logger{3} - %m%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="50MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="5" fileIndex="min"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="org.hibernate.validator" level="warn"/>
+        <Logger name="org.jboss.logging" level="warn"/>
+        <Logger name="io.netty" level="warn"/>
+
+        <Root level="info">
+            <AppenderRef ref="rolling-file"/>
+        </Root>
+    </Loggers>
+</Configuration>
