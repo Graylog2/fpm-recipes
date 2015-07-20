@@ -22,7 +22,7 @@ graylog-web:
 
 graylog-collector:
   version: "0.3.0"
-  revision: "1"
+  revision: "2"
   source: "https://packages.graylog2.org/releases/graylog-collector/graylog-collector-#{version}.tgz"
   sha256: "3c668323e4c67f70aa5e09f38134708516ab0d73f64c250b3a37933ef6230a17"
 
