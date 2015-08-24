@@ -9,7 +9,7 @@ class GraylogRepository < FPM::Cookery::Recipe
 
   name       "graylog-#{VERSION}-repository-#{os}#{osrel}"
   version    '1.2.0'
-  revision   3
+  revision   4
   source     '', :with => :noop
   arch       'all'
   homepage   data.homepage
@@ -19,7 +19,7 @@ class GraylogRepository < FPM::Cookery::Recipe
 
   replaces %w(0.92 0.91 0.90).map {|v|
     "graylog2-#{v}-repository-#{os}#{osrel}"
-  }.concat(%w(1.0).map {|v|
+  }.concat(%w(1.0 1.1).map {|v|
     "graylog-#{v}-repository-#{os}#{osrel}"
   })
 
