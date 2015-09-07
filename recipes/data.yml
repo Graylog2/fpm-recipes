@@ -25,7 +25,7 @@ graylog-collector:
   version: "0.4.1"
   revision: "1"
   source: "https://packages.graylog2.org/releases/graylog-collector/graylog-collector-#{version}.tgz"
-  sha256: "8c0000630333956f8bb09a635328f189a260f3ada7438b7c47d03a1c5b666950"
+  sha256: "b40d65aa1bb4ea8344960e4fd46a9430feaa3448fc03356c4c89ba16258fa1eb"
 
 graylog2-stream-dashboard:
   version_major: "0.90"
