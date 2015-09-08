@@ -2,8 +2,8 @@
 default:
   version_major: "1.2"
   version: "1.2.0"
-  suffix: "-rc.3"
-  revision: "3.rc.3"
+  suffix: "-rc.4"
+  revision: "4.rc.4"
   homepage: "https://www.graylog.org/"
   maintainer: "Graylog, Inc. <hello@graylog.org>"
   vendor: "graylog"
@@ -11,15 +11,15 @@ default:
 
 graylog-server:
   source: "https://packages.graylog2.org/releases/graylog2-server/graylog-#{version}#{suffix}.tgz"
-  sha256: "13ff867d66e46d37ae2c4cedd0eb92e4b8ab853af9de947a8a147afde922bb65"
+  sha256: "7b6d80090aa757f5828cb3066d29867261f103ce5658bfbaa4ea202c25dbb0c2"
 
 graylog-radio:
   source: "https://packages.graylog2.org/releases/graylog2-server/graylog-#{version}#{suffix}.tgz"
-  sha256: "13ff867d66e46d37ae2c4cedd0eb92e4b8ab853af9de947a8a147afde922bb65"
+  sha256: "7b6d80090aa757f5828cb3066d29867261f103ce5658bfbaa4ea202c25dbb0c2"
 
 graylog-web:
   source: "https://packages.graylog2.org/releases/graylog2-web-interface/graylog-web-interface-#{version}#{suffix}.tgz"
-  sha256: "1762ce3afd34af0520669a383ca256ae5a002dec98873d54fe00ba2ecb12d8bf"
+  sha256: "1c5c38061ab6dd509e83b9bb7c76c05fadab9461324ab310953f549f14e6f17d"
 
 graylog-collector:
   version: "0.4.1"
