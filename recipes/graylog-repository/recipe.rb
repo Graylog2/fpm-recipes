@@ -38,7 +38,7 @@ class GraylogRepository < FPM::Cookery::Recipe
   end
 
   def install_deb
-    dist = fact('lsbdistcodename').downcase
+    dist = fact('lsb_release -cs').downcase
 
     File.open('graylog.list', 'w') do |file|
       file.puts "deb https://packages.graylog2.org/repo/debian/ #{dist} #{VERSION}"
