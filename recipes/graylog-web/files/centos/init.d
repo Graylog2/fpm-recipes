@@ -37,17 +37,17 @@ SCRIPTNAME=/etc/init.d/$NAME
 LOCKFILE=/var/lock/subsys/$NAME
 RUN=yes
 
-JAVA_OPTS="-Dconfig.file=${CONF_FILE}"
-JAVA_OPTS="$JAVA_OPTS -Dlogger.file=/etc/graylog/web/logback.xml"
-JAVA_OPTS="$JAVA_OPTS -Dpidfile.path=$PID_FILE"
-JAVA_OPTS="$JAVA_OPTS -Dhttp.address=$GRAYLOG_WEB_HTTP_ADDRESS"
-JAVA_OPTS="$JAVA_OPTS -Dhttp.port=$GRAYLOG_WEB_HTTP_PORT"
-
 # Pull in sysconfig settings
 [ -f /etc/sysconfig/graylog-web ] && . /etc/sysconfig/graylog-web
 
 # Exit if the package is not installed
 [ -e "$CMD" ] || exit 0
+
+JAVA_OPTS="-Dconfig.file=${CONF_FILE}"
+JAVA_OPTS="$JAVA_OPTS -Dlogger.file=/etc/graylog/web/logback.xml"
+JAVA_OPTS="$JAVA_OPTS -Dpidfile.path=$PID_FILE"
+JAVA_OPTS="$JAVA_OPTS -Dhttp.address=$GRAYLOG_WEB_HTTP_ADDRESS"
+JAVA_OPTS="$JAVA_OPTS -Dhttp.port=$GRAYLOG_WEB_HTTP_PORT"
 
 start() {
     echo -n $"Starting ${NAME}: "
