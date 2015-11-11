@@ -29,8 +29,12 @@ RUN=yes
 
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
+if [ -f "/usr/share/graylog-server/installation-source.sh" ]; then
+    . "/usr/share/graylog-server/installation-source.sh"
+fi
+
 DAEMON=${JAVA:=/usr/bin/java}
-DAEMON_ARGS="$GRAYLOG_SERVER_JAVA_OPTS $DAEMON_LOG_OPTION -Djava.library.path=/usr/share/graylog-server/lib/sigar -jar $JAR_FILE server -p $PIDFILE -f /etc/graylog/server/server.conf $GRAYLOG_SERVER_ARGS"
+DAEMON_ARGS="$GRAYLOG_SERVER_JAVA_OPTS $DAEMON_LOG_OPTION -Dgraylog2.installation_source=${GRAYLOG_INSTALLATION_SOURCE:=unknown} -Djava.library.path=/usr/share/graylog-server/lib/sigar -jar $JAR_FILE server -p $PIDFILE -f /etc/graylog/server/server.conf $GRAYLOG_SERVER_ARGS"
 
 [ -x "$DAEMON" ] || exit 0
 

@@ -22,6 +22,11 @@
 # Source function library.
 . /etc/rc.d/init.d/functions
 
+# Include this early so the GRAYLOG_INSTALLATION_SOURCE variable is set.
+if [ -f "/usr/share/graylog-server/installation-source.sh" ]; then
+    . "/usr/share/graylog-server/installation-source.sh"
+fi
+
 RETVAL=0
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DESC="Graylog Server"
@@ -30,7 +35,7 @@ JAR_FILE=/usr/share/graylog-server/graylog.jar
 JAVA=/usr/bin/java
 PID_DIR=/var/run/graylog-server
 PID_FILE=$PID_DIR/$NAME.pid
-JAVA_ARGS="-jar -Djava.library.path=/usr/share/graylog-server/lib/sigar -Dlog4j.configuration=file:///etc/graylog/server/log4j.xml $JAR_FILE server -p $PID_FILE -f /etc/graylog/server/server.conf"
+JAVA_ARGS="-jar -Djava.library.path=/usr/share/graylog-server/lib/sigar -Dlog4j.configuration=file:///etc/graylog/server/log4j.xml -Dgraylog2.installation_source=${GRAYLOG_INSTALLATION_SOURCE:=unknown} $JAR_FILE server -p $PID_FILE -f /etc/graylog/server/server.conf"
 SCRIPTNAME=/etc/init.d/$NAME
 LOCKFILE=/var/lock/subsys/$NAME
 GRAYLOG_SERVER_USER=graylog
@@ -41,6 +46,10 @@ GRAYLOG_SERVER_JAVA_OPTS=""
 # Exit if the package is not installed
 [ -e "$JAR_FILE" ] || exit 0
 [ -x "$JAVA" ] || exit 0
+
+if [ -f "/usr/share/graylog-server/installation-source.sh" ]; then
+    . "/usr/share/graylog-server/installation-source.sh"
+fi
 
 start() {
     echo -n $"Starting ${NAME}: "

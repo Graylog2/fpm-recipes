@@ -119,6 +119,9 @@ class GraylogServer < FPM::Cookery::Recipe
       etc('sysconfig').install osfile('sysconfig'), 'graylog-server'
     end
 
+    target = FPM::Cookery::Facts.target
+    share('graylog-server').install file("installation-source.#{target}.sh"), 'installation-source.sh'
+
     share('graylog-server').install 'graylog.jar'
     share('graylog-server/bin').install 'bin/graylog-es-timestamp-fixup'
     share('graylog-server').install 'lib'
