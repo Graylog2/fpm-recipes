@@ -123,6 +123,7 @@ class GraylogServer < FPM::Cookery::Recipe
     share('graylog-server/bin').install 'bin/graylog-es-timestamp-fixup'
     share('graylog-server').install 'lib'
     share('graylog-server').install 'plugin'
+    share('graylog-server/contentpacks').install Dir['data/contentpacks/*.json']
 
     # Remove unused sigar libs.
     sigar_cleanup(share('graylog-server/lib/sigar'))
