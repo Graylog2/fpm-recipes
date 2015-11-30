@@ -3,7 +3,7 @@ default:
   version_major: "1.3"
   version: "1.3.0"
   suffix: "-beta.1"
-  revision: "1"
+  revision: "1.beta.1"
   homepage: "https://www.graylog.org/"
   maintainer: "Graylog, Inc. <hello@graylog.org>"
   vendor: "graylog"
