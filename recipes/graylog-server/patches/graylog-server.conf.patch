@@ -1,5 +1,5 @@
---- graylog.conf.example.orig	2015-11-11 11:32:30.000000000 +0100
-+++ graylog.conf.example	2015-11-11 13:02:50.695707752 +0100
+--- graylog.conf.example.orig	2015-11-30 12:10:36.000000000 +0100
++++ graylog.conf.example	2015-11-30 15:00:07.138404321 +0100
 @@ -31,7 +31,7 @@
  #root_timezone = UTC
  
@@ -9,7 +9,7 @@
  
  # REST API listen URI. Must be reachable by other graylog2-server nodes if you run a cluster.
  rest_listen_uri = http://127.0.0.1:12900/
-@@ -253,7 +253,7 @@
+@@ -258,7 +258,7 @@
  
  # The directory which will be used to store the message journal. The directory must me exclusively used by Graylog and
  # must not contain any other files than the ones created by Graylog itself.
@@ -18,7 +18,7 @@
  
  # Journal hold messages before they could be written to Elasticsearch.
  # For a maximum of 12 hours or 5 GB whichever happens first.
-@@ -403,8 +403,8 @@
+@@ -408,7 +408,7 @@
  #content_packs_loader_enabled = true
  
  # The directory which contains content packs which should be loaded on the first start of Graylog.
@@ -27,6 +27,3 @@
  
  # A comma-separated list of content packs (files in "content_packs_dir") which should be applied on
  # the first start of Graylog.
--#content_packs_auto_load = grok-patterns.json
-\ No newline at end of file
-+#content_packs_auto_load = grok-patterns.json
