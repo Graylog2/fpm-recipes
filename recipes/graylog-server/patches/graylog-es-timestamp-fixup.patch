@@ -1,9 +1,0 @@
---- bin/graylog-es-timestamp-fixup.orig	2014-10-14 15:44:01.087470399 +0200
-+++ bin/graylog-es-timestamp-fixup	2014-10-14 15:44:28.787398257 +0200
-@@ -1,5 +1,5 @@
- #!/bin/bash
- 
--GRAYLOG_JAR="$(dirname $0)/../graylog.jar"
-+GRAYLOG_JAR="/usr/share/graylog-server/graylog.jar"
- 
- exec java -cp $GRAYLOG_JAR org.graylog2.ESTimestampFixup "$@"

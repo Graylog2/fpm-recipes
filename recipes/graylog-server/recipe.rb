@@ -79,7 +79,6 @@ class GraylogServer < FPM::Cookery::Recipe
 
   def build
     patch(workdir('patches/graylog-server.conf.patch'))
-    patch(workdir('patches/graylog-es-timestamp-fixup.patch'))
   end
 
   def install
@@ -123,7 +122,6 @@ class GraylogServer < FPM::Cookery::Recipe
     share('graylog-server').install file("installation-source.#{target}.sh"), 'installation-source.sh'
 
     share('graylog-server').install 'graylog.jar'
-    share('graylog-server/bin').install 'bin/graylog-es-timestamp-fixup'
     share('graylog-server').install 'lib'
     share('graylog-server').install 'plugin'
     share('graylog-server/contentpacks').install Dir['data/contentpacks/*.json']
