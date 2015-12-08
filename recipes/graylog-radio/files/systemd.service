@@ -9,6 +9,7 @@ Restart=always
 RestartSec=10
 User=graylog-radio
 Group=graylog-radio
+LimitNOFILE=64000
 
 ExecStart=/usr/share/graylog-radio/bin/graylog-radio
 

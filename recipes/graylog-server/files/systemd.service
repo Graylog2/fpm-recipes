@@ -9,6 +9,7 @@ Restart=always
 RestartSec=10
 User=graylog
 Group=graylog
+LimitNOFILE=64000
 
 ExecStart=/usr/share/graylog-server/bin/graylog-server
 
