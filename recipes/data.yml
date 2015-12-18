@@ -15,7 +15,7 @@ graylog-server:
 
 graylog-radio:
   source: "https://packages.graylog2.org/releases/graylog2-server/graylog-#{version}#{suffix}.tgz"
-  sha256: "3852879eaae78086011890c786e6d9addc97055f1444c35377a2a4da944b8f99"
+  sha256: "e1649bf8a07340737c063f1dee2eabd4c3ce29fb5605999a2646d08c7aa1a3f2"
 
 graylog-web:
   source: "https://packages.graylog2.org/releases/graylog2-web-interface/graylog-web-interface-#{version}#{suffix}.tgz"
