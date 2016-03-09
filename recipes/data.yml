@@ -13,14 +13,6 @@ graylog-server:
   source: "https://packages.graylog2.org/releases/graylog2-server/graylog-#{version}#{suffix}.tgz"
   sha256: "1e98509376dc22ff1602838cebb49b4732618296acc58063ba34f4a97f667ba0"
 
-graylog-radio:
-  source: "https://packages.graylog2.org/releases/graylog2-server/graylog-#{version}#{suffix}.tgz"
-  sha256: "1e98509376dc22ff1602838cebb49b4732618296acc58063ba34f4a97f667ba0"
-
-graylog-web:
-  source: "https://packages.graylog2.org/releases/graylog2-web-interface/graylog-web-interface-#{version}#{suffix}.tgz"
-  sha256: "e24d9c5618cfac8a2264e7579557221fe2b6cd5c70e1236bd2af4e33fd0b1643"
-
 graylog-collector:
   version: "0.4.2"
   revision: "1"
