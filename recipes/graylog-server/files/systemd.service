@@ -1,7 +1,8 @@
 [Unit]
 Description=Graylog server
 Documentation=http://docs.graylog.org/
-After=network.target
+Wants=network-online.target
+After=network-online.target
 
 [Service]
 Type=simple

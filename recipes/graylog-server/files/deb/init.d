@@ -1,13 +1,12 @@
 #! /bin/sh
 ### BEGIN INIT INFO
 # Provides:          graylog-server
-# Required-Start:    $network $named $remote_fs $syslog
-# Required-Stop:     $network $named $remote_fs $syslog
+# Required-Start:    $network $named $remote_fs
+# Required-Stop:     $network $named $remote_fs
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Graylog Server
-# Description:       Graylog Open Source syslog implementation that stores
-#                    your logs in ElasticSearch
+# Short-Description: Starts Graylog
+# Description:       Starts Graylog using start-stop-daemon
 ### END INIT INFO
 
 # Author: Jonas Genannt <jonas.genannt@capi2name.de>
@@ -16,16 +15,21 @@
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DESC="Graylog Server"
 NAME=graylog-server
+
 JAR_FILE=/usr/share/graylog-server/graylog.jar
 PIDDIR=/var/run/graylog
 PIDFILE=$PIDDIR/$NAME.pid
 DAEMON_LOG_OPTION="-Dlog4j.configuration=file:///etc/graylog/server/log4j.xml"
 SCRIPTNAME=/etc/init.d/$NAME
 GRAYLOG_USER=graylog
-RUN=yes
 
-# Exit if the package is not installed
-[ -e "$JAR_FILE" ] || exit 0
+if [ `id -u` -ne 0 ]; then
+	echo "Superuser privileges required to run this script!"
+	exit 1
+fi
+
+. /lib/init/vars.sh
+. /lib/lsb/init-functions
 
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
@@ -40,9 +44,6 @@ DAEMON_ARGS="$GRAYLOG_SERVER_JAVA_OPTS $DAEMON_LOG_OPTION -Dgraylog2.installatio
 
 DAEMON="$GRAYLOG_COMMAND_WRAPPER $DAEMON"
 
-. /lib/init/vars.sh
-
-. /lib/lsb/init-functions
 
 running()
 {
@@ -74,12 +75,6 @@ await_running()
 
 do_start()
 {
-	if [ "$RUN" != "yes" ] ; then
-		log_progress_msg "(disabled)"
-		log_end_msg 0
-
-		exit 0
-	fi
 	if [ ! -e $PIDDIR ]; then
 		mkdir $PIDDIR
 		chown ${GRAYLOG_USER}:${GRAYLOG_USER} $PIDDIR

@@ -1,4 +1,0 @@
-if [ $1 -eq 0 ]; then
-  systemctl stop graylog-server.service >/dev/null 2>&1 || true
-  systemctl disable graylog-server.service
-fi

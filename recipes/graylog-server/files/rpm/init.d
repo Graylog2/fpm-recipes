@@ -1,6 +1,6 @@
 #! /bin/sh
 #
-# graylog-server Starts/stop the "graylog-server" daemon
+# graylog-server Runs Graylog server
 #
 # chkconfig:   - 95 5
 # description: Runs the graylog-server daemon

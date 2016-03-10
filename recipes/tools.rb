@@ -12,6 +12,10 @@ module Tools
       raise "No fact for: #{key}"
     end
 
+    def targets(valid_targets)
+      Array(valid_targets).member?(FPM::Cookery::Facts.target) and block_given? ? yield : false
+    end
+
     def os
       os = fact('operatingsystem').downcase
 
@@ -53,6 +57,10 @@ module Tools
 
   def fact(key)
     self.class.fact(key)
+  end
+
+  def target
+    FPM::Cookery::Facts.target
   end
 
   def os
