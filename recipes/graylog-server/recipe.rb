@@ -21,7 +21,7 @@ class GraylogServer < FPM::Cookery::Recipe
   replaces 'graylog2-server'
 
   config_files '/etc/graylog/server/server.conf',
-               '/etc/graylog/server/log4j.xml',
+               '/etc/graylog/server/log4j2.xml',
                '/etc/init.d/graylog-server'
 
   targets :deb do
@@ -55,7 +55,7 @@ class GraylogServer < FPM::Cookery::Recipe
     end
 
     etc('graylog/server').install 'graylog.conf.example', 'server.conf'
-    etc('graylog/server').install file('log4j.xml')
+    etc('graylog/server').install file('log4j2.xml')
 
     etc('init.d').install file("#{target}/init.d"), 'graylog-server'
     etc('init.d/graylog-server').chmod(0755)
