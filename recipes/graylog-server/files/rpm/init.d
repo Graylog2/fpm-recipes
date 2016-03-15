@@ -35,7 +35,7 @@ JAR_FILE=/usr/share/graylog-server/graylog.jar
 JAVA=/usr/bin/java
 PID_DIR=/var/run/graylog-server
 PID_FILE=$PID_DIR/$NAME.pid
-JAVA_ARGS="-jar -Djava.library.path=/usr/share/graylog-server/lib/sigar -Dlog4j.configuration=file:///etc/graylog/server/log4j.xml -Dgraylog2.installation_source=${GRAYLOG_INSTALLATION_SOURCE:=unknown} $JAR_FILE server -p $PID_FILE -f /etc/graylog/server/server.conf"
+JAVA_ARGS="-jar -Djava.library.path=/usr/share/graylog-server/lib/sigar -Dlog4j.configurationFile=file:///etc/graylog/server/log4j2.xml -Dgraylog2.installation_source=${GRAYLOG_INSTALLATION_SOURCE:=unknown} $JAR_FILE server -p $PID_FILE -f /etc/graylog/server/server.conf"
 SCRIPTNAME=/etc/init.d/$NAME
 LOCKFILE=/var/lock/subsys/$NAME
 GRAYLOG_SERVER_USER=graylog

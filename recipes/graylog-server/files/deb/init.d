@@ -19,7 +19,7 @@ NAME=graylog-server
 JAR_FILE=/usr/share/graylog-server/graylog.jar
 PIDDIR=/var/run/graylog
 PIDFILE=$PIDDIR/$NAME.pid
-DAEMON_LOG_OPTION="-Dlog4j.configuration=file:///etc/graylog/server/log4j.xml"
+DAEMON_LOG_OPTION="-Dlog4j.configurationFile=file:///etc/graylog/server/log4j2.xml"
 SCRIPTNAME=/etc/init.d/$NAME
 GRAYLOG_USER=graylog
 
