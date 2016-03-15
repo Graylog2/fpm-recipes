@@ -19,6 +19,7 @@ class GraylogServer < FPM::Cookery::Recipe
   license    data.license
 
   replaces 'graylog2-server'
+  conflicts 'graylog2-web', 'graylog-web'
 
   config_files '/etc/graylog/server/server.conf',
                '/etc/graylog/server/log4j2.xml',
@@ -32,7 +33,7 @@ class GraylogServer < FPM::Cookery::Recipe
   end
 
   targets :rpm do
-      config_files '/etc/sysconfig/graylog-server'
+    config_files '/etc/sysconfig/graylog-server'
   end
 
   pre_install    'files/pre-install'
