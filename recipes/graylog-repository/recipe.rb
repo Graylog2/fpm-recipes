@@ -7,8 +7,8 @@ class GraylogRepository < FPM::Cookery::Recipe
 
   description "Package to install Graylog #{VERSION} GPG key and repository"
 
-  name       "graylog-#{VERSION}-repository-#{os}#{osrel}"
-  version    '1.3.0'
+  name       "graylog-repository-#{VERSION}"
+  version    '2.0.0'
   revision   1
   source     '', :with => :noop
   arch       'all'
@@ -19,7 +19,7 @@ class GraylogRepository < FPM::Cookery::Recipe
 
   replaces %w(0.92 0.91 0.90).map {|v|
     "graylog2-#{v}-repository-#{os}#{osrel}"
-  }.concat(%w(1.0 1.1 1.2).map {|v|
+  }.concat(%w(1.0 1.1 1.2 1.3).map {|v|
     "graylog-#{v}-repository-#{os}#{osrel}"
   })
 
@@ -27,21 +27,19 @@ class GraylogRepository < FPM::Cookery::Recipe
   end
 
   def install
-    case os
-    when 'debian', 'ubuntu'
+    case target
+    when :deb
       install_deb
-    when 'centos', 'el'
+    when :rpm
       install_rpm
     else
-      raise "Unknown OS: #{os}"
+      raise "Unknown OS target: #{target} (#{os})"
     end
   end
 
   def install_deb
-    dist = fact('lsbdistcodename').downcase
-
     File.open('graylog.list', 'w') do |file|
-      file.puts "deb https://packages.graylog2.org/repo/debian/ #{dist} #{VERSION}"
+      file.puts "deb https://packages.graylog2.org/repo/debian/ stable #{VERSION}"
     end
 
     etc('apt/trusted.gpg.d').install workdir('files/deb/graylog-keyring.gpg')
@@ -52,7 +50,7 @@ class GraylogRepository < FPM::Cookery::Recipe
     File.open('graylog.repo', 'w') do |file|
       file.puts "[graylog]"
       file.puts "name=graylog"
-      file.puts "baseurl=https://packages.graylog2.org/repo/el/$releasever/#{VERSION}/$basearch/"
+      file.puts "baseurl=https://packages.graylog2.org/repo/el/stable/#{VERSION}/$basearch/"
       file.puts "gpgcheck=1"
       file.puts "gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-graylog"
     end
