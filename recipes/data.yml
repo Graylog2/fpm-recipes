@@ -1,7 +1,7 @@
 ---
 default:
   version_major: "2.0"
-  version: "2.0.1"
+  version: "2.0.2"
   suffix: ""
   revision: "1"
   homepage: "https://www.graylog.org/"
@@ -11,7 +11,7 @@ default:
 
 graylog-server:
   source: "https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz"
-  sha256: "eab5ac7331e60c2b9d86ca2b8f0e24cfc5226d48b54c2b8fe6d6e260c6b33645"
+  sha256: "356792e8694230ca9eede46d7e8869d42b402164186a8e9e89eb4cc7c6d08823"
 
 graylog-collector:
   version: "0.4.2"
