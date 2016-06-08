@@ -26,18 +26,36 @@ class GraylogCollector < FPM::Cookery::Recipe
     depends 'uuid-runtime'
 
     fpm_attributes[:deb_recommends_given?] = true
-    fpm_attributes[:deb_recommends] = [
-      'java7-runtime-headless | openjdk-7-jre-headless'
-    ]
+    case fact('operatingsystemmajrelease')
+    when '16.04'
+      fpm_attributes[:deb_recommends] = [
+        'java8-runtime-headless | openjdk-8-jre-headless'
+      ]
+    else
+      fpm_attributes[:deb_recommends] = [
+        'java7-runtime-headless | openjdk-7-jre-headless'
+      ]
+    end
 
     config_files '/etc/default/graylog-collector'
   end
 
   platforms [:ubuntu] do
-    config_files '/etc/init/graylog-collector.conf'
+    case fact('operatingsystemmajrelease')
+    when '12.04'
+      config_files '/etc/init/graylog-collector.conf'
+    when '14.04'
+      config_files '/etc/init/graylog-collector.conf'
+    end
 
-    post_install "files/ubuntu/post-install"
-    post_uninstall "files/ubuntu/post-uninstall"
+    case fact('operatingsystemmajrelease')
+    when '16.04'
+      post_install "files/ubuntu/post-install-systemd"
+      post_uninstall "files/ubuntu/post-uninstall-systemd"
+    else
+      post_install "files/ubuntu/post-install"
+      post_uninstall "files/ubuntu/post-uninstall"
+    end
   end
 
   platforms [:debian] do
@@ -84,10 +102,15 @@ class GraylogCollector < FPM::Cookery::Recipe
 
     case FPM::Cookery::Facts.platform
     when :ubuntu
-      etc('init').install osfile('upstart.conf'), 'graylog-collector.conf'
+      case fact('operatingsystemmajrelease')
+      when '16.04'
+        root('lib/systemd/system').install file('systemd.service'), 'graylog-collector.service'
+      else
+        etc('init').install osfile('upstart.conf'), 'graylog-collector.conf'
+        etc('init.d').mkpath
+        safesystem "ln -sf /lib/init/upstart-job #{etc('init.d/graylog-collector')}"
+      end
       etc('default').install file('default.sysconfig'), 'graylog-collector'
-      etc('init.d').mkpath
-      safesystem "ln -sf /lib/init/upstart-job #{etc('init.d/graylog-collector')}"
     when :debian
       case fact('operatingsystemmajrelease')
       #when '7'
