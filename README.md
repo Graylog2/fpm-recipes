@@ -111,6 +111,7 @@ $
 
 | Name             | VM Name    |
 |------------------|------------|
+| Ubuntu 16.04 LTS | ubuntu1604 |
 | Ubuntu 14.04 LTS | ubuntu1404 |
 | Ubuntu 12.04 LTS | ubuntu1204 |
 | CentOS 6.5       | centos6    |
