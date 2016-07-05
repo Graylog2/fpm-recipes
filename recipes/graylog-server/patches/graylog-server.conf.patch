@@ -1,5 +1,5 @@
---- graylog.conf.example.orig	2016-05-02 12:11:04.692538226 +0200
-+++ graylog.conf.example	2016-05-02 12:13:34.837468241 +0200
+--- graylog.conf.example.orig	2016-07-05 16:26:01.000000000 +0200
++++ graylog.conf.example	2016-07-05 18:21:44.047106389 +0200
 @@ -30,7 +30,7 @@
  #root_timezone = UTC
  
@@ -9,9 +9,9 @@
  
  # REST API listen URI. Must be reachable by other Graylog server nodes if you run a cluster.
  # When using Graylog Collectors, this URI will be used to receive heartbeat messages and must be accessible for all collectors.
-@@ -123,6 +123,48 @@
- # Default: empty
- #elasticsearch_config_file = /etc/graylog/server/elasticsearch.yml
+@@ -172,6 +172,48 @@
+ #            to your previous 1.x settings so they will be migrated to the database!
+ #elasticsearch_max_time_per_index = 1d
  
 +# Graylog will use multiple indices to store documents in. You can configured the strategy it uses to determine
 +# when to rotate the currently active write index.
@@ -58,9 +58,9 @@
  # Disable checking the version of Elasticsearch for being compatible with this Graylog release.
  # WARNING: Using Graylog with unsupported and untested versions of Elasticsearch may lead to data loss!
  #elasticsearch_disable_version_check = true
-@@ -130,6 +172,21 @@
- # Disable message retention on this node, i. e. disable Elasticsearch index rotation.
- #no_retention = false
+@@ -194,6 +236,21 @@
+ #            to your previous 1.x settings so they will be migrated to the database!
+ retention_strategy = delete
  
 +# How many indices do you want to keep?
 +#
@@ -80,16 +80,16 @@
  # How many Elasticsearch shards and replicas should be used per index? Note that this only applies to newly created indices.
  elasticsearch_shards = 4
  elasticsearch_replicas = 0
-@@ -269,7 +326,7 @@
- 
- # The directory which will be used to store the message journal. The directory must me exclusively used by Graylog and
- # must not contain any other files than the ones created by Graylog itself.
+@@ -333,7 +390,7 @@
+ #   If you create a seperate partition for the journal files and use a file system creating directories like 'lost+found'
+ #   in the root directory, you need to create a sub directory for your journal.
+ #   Otherwise Graylog will log an error message that the journal is corrupt and Graylog will not start.
 -message_journal_dir = data/journal
 +message_journal_dir = /var/lib/graylog-server/journal
  
  # Journal hold messages before they could be written to Elasticsearch.
  # For a maximum of 12 hours or 5 GB whichever happens first.
-@@ -405,7 +462,7 @@
+@@ -468,7 +525,7 @@
  #content_packs_loader_enabled = true
  
  # The directory which contains content packs which should be loaded on the first start of Graylog.
