@@ -30,6 +30,7 @@ class GraylogServer < FPM::Cookery::Recipe
     config_files '/etc/default/graylog-server',
                  '/etc/init/graylog-server.conf',
                  '/etc/logrotate.d/graylog-server'
+    depends 'uuid-runtime'
   end
 
   targets :rpm do
