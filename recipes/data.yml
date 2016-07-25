@@ -2,8 +2,18 @@
 default:
   version_major: "2.1"
   version: "2.1.0"
-  suffix: "-alpha.2"
-  revision: "2.alpha.2"
+  suffix: "-beta.1"
+  # Make sure to always increase the revision when doing alpha/beta/rc releases!
+  # Example:
+  #
+  #   - 2.1.0-beta.1  => version=2.1.0, revision="1.beta.1"
+  #   - 2.1.0-beta.2  => version=2.1.0, revision="2.beta.2"
+  #   - 2.1.0-rc.1    => version=2.1.0, revision="3.rc.1"
+  #   - 2.1.0         => version=2.1.0, revision="4"
+  #   - 2.2.0-alpha.1 => version=2.2.0, revision="1.alpha.1"
+  #
+  # Only reset the revision once the version is bumped.
+  revision: "3.beta.1"
   homepage: "https://www.graylog.org/"
   maintainer: "Graylog, Inc. <hello@graylog.org>"
   vendor: "graylog"
@@ -11,7 +21,7 @@ default:
 
 graylog-server:
   source: "https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz"
-  sha256: "a997b40e5189c9e18b86245a193b6219db6415046c567c230c0f5479fcf73f1f"
+  sha256: "f34c4593e3014d7349de64bdfacfa0ab3356017913258a8da4a489f241a04103"
 
 graylog-collector:
   version: "0.5.0"
