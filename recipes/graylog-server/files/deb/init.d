@@ -83,6 +83,7 @@ do_start()
 		[ "$VERBOSE" != no ] && log_progress_msg "apparently already running"
 		return 1
 	else
+		ulimit -n 64000
 		start-stop-daemon --start --quiet --oknodo --pidfile $PIDFILE \
 			--user $GRAYLOG_USER --chuid $GRAYLOG_USER \
 			--background --startas /bin/bash -- \

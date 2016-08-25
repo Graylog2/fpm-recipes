@@ -54,6 +54,7 @@ fi
 start() {
     echo -n $"Starting ${NAME}: "
     install -d -m 755 -o $GRAYLOG_SERVER_USER -g $GRAYLOG_SERVER_USER -d $PID_DIR
+    ulimit -n 64000
     daemon --check $JAVA --pidfile=${PID_FILE} --user=${GRAYLOG_SERVER_USER} \
         "$GRAYLOG_COMMAND_WRAPPER $JAVA $GRAYLOG_SERVER_JAVA_OPTS $JAVA_ARGS $GRAYLOG_SERVER_ARGS &"
     RETVAL=$?
