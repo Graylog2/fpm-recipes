@@ -10,7 +10,7 @@ RUN yum install -y rubygems ruby-devel make gcc tar rpm-build curl
 RUN gem install fpm-cookery --no-ri --no-rdoc --version 0.25.0
 
 # Install some package dependencies to avoid installing them every time.
-RUN yum install -y java-1.7.0-openjdk util-linux-ng
+RUN yum install -y util-linux-ng
 
 # Remove cached packages and metadata to keep images small.
 RUN yum clean all
