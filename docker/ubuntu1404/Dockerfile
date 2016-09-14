@@ -5,7 +5,7 @@ MAINTAINER Graylog, Inc. <hello@graylog.com>
 RUN apt-get clean
 RUN apt-get update
 RUN apt-get install -y ruby2.0 ruby2.0-dev build-essential curl lsb-release
-RUN gem install fpm-cookery --no-ri --no-rdoc
+RUN gem2.0 install fpm-cookery --no-ri --no-rdoc
 
 # Install some package dependencies to avoid installing them every time.
 RUN apt-get install -y openjdk-7-jre-headless uuid-runtime
