@@ -6,7 +6,7 @@ After=network-online.target
 
 [Service]
 Type=simple
-Restart=always
+Restart=on-failure
 RestartSec=10
 User=graylog
 Group=graylog
