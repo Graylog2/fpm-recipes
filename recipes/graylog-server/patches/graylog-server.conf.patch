@@ -1,6 +1,6 @@
---- graylog.conf.example.orig	2016-07-05 16:26:01.000000000 +0200
-+++ graylog.conf.example	2016-07-05 18:21:44.047106389 +0200
-@@ -30,7 +30,7 @@
+--- graylog.conf.example.orig	2016-12-21 13:55:37.000000000 +0100
++++ graylog.conf.example	2017-01-05 13:34:47.619337710 +0100
+@@ -74,7 +74,7 @@
  #root_timezone = UTC
  
  # Set plugin directory here (relative or absolute)
@@ -9,78 +9,7 @@
  
  # REST API listen URI. Must be reachable by other Graylog server nodes if you run a cluster.
  # When using Graylog Collectors, this URI will be used to receive heartbeat messages and must be accessible for all collectors.
-@@ -172,6 +172,48 @@
- #            to your previous 1.x settings so they will be migrated to the database!
- #elasticsearch_max_time_per_index = 1d
- 
-+# Graylog will use multiple indices to store documents in. You can configured the strategy it uses to determine
-+# when to rotate the currently active write index.
-+# It supports multiple rotation strategies:
-+#   - "count" of messages per index, use elasticsearch_max_docs_per_index below to configure
-+#   - "size" per index, use elasticsearch_max_size_per_index below to configure
-+# valid values are "count", "size" and "time", default is "count"
-+#
-+# ATTENTION: These settings have been moved to the database in 2.0. When you upgrade, make sure to set these
-+#            to your previous 1.x settings so they will be migrated to the database!
-+rotation_strategy = count
-+
-+# (Approximate) maximum number of documents in an Elasticsearch index before a new index
-+# is being created, also see no_retention and elasticsearch_max_number_of_indices.
-+# Configure this if you used 'rotation_strategy = count' above.
-+#
-+# ATTENTION: These settings have been moved to the database in 2.0. When you upgrade, make sure to set these
-+#            to your previous 1.x settings so they will be migrated to the database!
-+elasticsearch_max_docs_per_index = 20000000
-+
-+# (Approximate) maximum size in bytes per Elasticsearch index on disk before a new index is being created, also see
-+# no_retention and elasticsearch_max_number_of_indices. Default is 1GB.
-+# Configure this if you used 'rotation_strategy = size' above.
-+#
-+# ATTENTION: These settings have been moved to the database in 2.0. When you upgrade, make sure to set these
-+#            to your previous 1.x settings so they will be migrated to the database!
-+#elasticsearch_max_size_per_index = 1073741824
-+
-+# (Approximate) maximum time before a new Elasticsearch index is being created, also see
-+# no_retention and elasticsearch_max_number_of_indices. Default is 1 day.
-+# Configure this if you used 'rotation_strategy = time' above.
-+# Please note that this rotation period does not look at the time specified in the received messages, but is
-+# using the real clock value to decide when to rotate the index!
-+# Specify the time using a duration and a suffix indicating which unit you want:
-+#  1w  = 1 week
-+#  1d  = 1 day
-+#  12h = 12 hours
-+# Permitted suffixes are: d for day, h for hour, m for minute, s for second.
-+#
-+# ATTENTION: These settings have been moved to the database in 2.0. When you upgrade, make sure to set these
-+#            to your previous 1.x settings so they will be migrated to the database!
-+#elasticsearch_max_time_per_index = 1d
-+
- # Disable checking the version of Elasticsearch for being compatible with this Graylog release.
- # WARNING: Using Graylog with unsupported and untested versions of Elasticsearch may lead to data loss!
- #elasticsearch_disable_version_check = true
-@@ -194,6 +236,21 @@
- #            to your previous 1.x settings so they will be migrated to the database!
- retention_strategy = delete
- 
-+# How many indices do you want to keep?
-+#
-+# ATTENTION: These settings have been moved to the database in 2.0. When you upgrade, make sure to set these
-+#            to your previous 1.x settings so they will be migrated to the database!
-+elasticsearch_max_number_of_indices = 20
-+
-+# Decide what happens with the oldest indices when the maximum number of indices is reached.
-+# The following strategies are availble:
-+#   - delete # Deletes the index completely (Default)
-+#   - close # Closes the index and hides it from the system. Can be re-opened later.
-+#
-+# ATTENTION: These settings have been moved to the database in 2.0. When you upgrade, make sure to set these
-+#            to your previous 1.x settings so they will be migrated to the database!
-+retention_strategy = delete
-+
- # How many Elasticsearch shards and replicas should be used per index? Note that this only applies to newly created indices.
- elasticsearch_shards = 4
- elasticsearch_replicas = 0
-@@ -333,7 +390,7 @@
+@@ -391,7 +391,7 @@
  #   If you create a seperate partition for the journal files and use a file system creating directories like 'lost+found'
  #   in the root directory, you need to create a sub directory for your journal.
  #   Otherwise Graylog will log an error message that the journal is corrupt and Graylog will not start.
@@ -89,7 +18,7 @@
  
  # Journal hold messages before they could be written to Elasticsearch.
  # For a maximum of 12 hours or 5 GB whichever happens first.
-@@ -468,7 +525,7 @@
+@@ -532,7 +532,7 @@
  #content_packs_loader_enabled = true
  
  # The directory which contains content packs which should be loaded on the first start of Graylog.
