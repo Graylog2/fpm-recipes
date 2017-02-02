@@ -47,6 +47,11 @@ if [ ! -s "$node_id_file" ]; then
 	fi
 fi
 
+if command -v systemctl >/dev/null; then
+	# Reload systemd configuration to make sure the new unit file gets activated
+	systemctl daemon-reload
+fi
+
 if [ "$upgrade" = "true" ]; then
 	# This is an upgrade, exit early.
 	exit 0
@@ -60,7 +65,6 @@ echo ""
 
 # Order is important! Some systems might have both commands!
 if command -v systemctl >/dev/null; then
-	echo "    sudo systemctl daemon-reload"
 	echo "    sudo systemctl enable graylog-server.service"
 	echo ""
 	echo "    sudo systemctl start graylog-server.service"
