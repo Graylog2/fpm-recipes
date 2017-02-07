@@ -9,7 +9,7 @@ class GraylogRepository < FPM::Cookery::Recipe
 
   name       "graylog-#{VERSION}-repository"
   version    '1'
-  revision   4
+  revision   5
   source     '', :with => :noop
   arch       'all'
   homepage   data.homepage
@@ -17,13 +17,16 @@ class GraylogRepository < FPM::Cookery::Recipe
   vendor     data.vendor
   license    data.license
 
-  replaces %w(0.92 0.91 0.90).map {|v|
+  replacements = %w(0.92 0.91 0.90).map {|v|
     "graylog2-#{v}-repository-#{os}#{osrel}"
   }.concat(%w(1.0 1.1 1.2 1.3).map {|v|
     "graylog-#{v}-repository-#{os}#{osrel}"
   }).concat(%w(2.0 2.1).map {|v|
     "graylog-#{v}-repository"
   })
+
+  replaces replacements
+  conflicts replacements
 
   def build
   end
