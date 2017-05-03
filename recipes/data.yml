@@ -21,7 +21,7 @@ default:
 
 graylog-server:
   source: "https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz"
-  sha256: "3de01e7cb8ebc02a7f06cec1c88eded3b717762447bf1b56bff8744f7f5ea80b"
+  sha256: "971651ff05542a8e0f04188f4c27e30fb5495503c3326ee4617504191635d97f"
 
 graylog-collector:
   version: "0.5.0"
