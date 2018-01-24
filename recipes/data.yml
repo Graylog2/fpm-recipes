@@ -1,7 +1,7 @@
 ---
 default:
   version_major: "2.4"
-  version: "2.4.1"
+  version: "2.4.2"
   suffix: ""
   # Make sure to always increase the revision when doing alpha/beta/rc releases!
   # Example:
@@ -21,11 +21,11 @@ default:
 
 graylog-server:
   source: "https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz"
-  sha256: "9244e984f5ed06b2fe90e94c0b38d1388080e36b5dc2aabc22252cb4f70efab6"
+  sha256: "f4826ebf7ca44d5add7ba6d67f3715a55eaa707d6446aabe8123861d7caaf8f4"
 
 graylog-enterprise-plugins:
   source: "https://packages.graylog2.org/releases/graylog-enterprise/plugin-bundle/tgz/graylog-enterprise-plugins-#{version}#{suffix}.tgz"
-  sha256: "daf23f0f94d4297451b4cb7e100548c63e328806f5d3e4a8a52e37ce3869ec06"
+  sha256: "aa02c4544d391e0b8f2b59224fec4285902c111581002b685e8d3080d19c153c"
 
 graylog-collector:
   version: "0.5.0"
