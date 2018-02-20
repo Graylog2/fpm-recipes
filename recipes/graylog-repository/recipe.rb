@@ -57,6 +57,7 @@ class GraylogRepository < FPM::Cookery::Recipe
       file.puts "name=graylog"
       file.puts "baseurl=https://packages.graylog2.org/repo/el/stable/#{VERSION}/$basearch/"
       file.puts "gpgcheck=1"
+      file.puts "repo_gpgcheck=0"
       file.puts "gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-graylog"
     end
 
