@@ -49,7 +49,7 @@ fi
 
 if command -v systemctl >/dev/null; then
 	# Reload systemd configuration to make sure the new unit file gets activated
-	systemctl daemon-reload
+	systemctl daemon-reload || true
 fi
 
 if [ "$upgrade" = "true" ]; then
