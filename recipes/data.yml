@@ -1,8 +1,8 @@
 ---
 default:
-  version_major: "2.4"
-  version: "2.4.3"
-  suffix: ""
+  version_major: "3.0"
+  version: "3.0.0"
+  suffix: "-alpha.2"
   # Make sure to always increase the revision when doing alpha/beta/rc releases!
   # Example:
   #
@@ -13,7 +13,7 @@ default:
   #   - 2.2.0-alpha.1 => version=2.2.0, revision="1.alpha.1"
   #
   # Only reset the revision once the version is bumped.
-  revision: "1"
+  revision: "2.alpha.2"
   homepage: "https://www.graylog.org/"
   maintainer: "Graylog, Inc. <hello@graylog.org>"
   vendor: "graylog"
@@ -21,20 +21,8 @@ default:
 
 graylog-server:
   source: "https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz"
-  sha256: "c6c2e029307abda5e55603375797bec1a4c44fbc2e99988527f4639d6a7a8f4f"
+  sha256: "18e2e2eca1dc512d5cf173a6a4545fef0be4c210f22f9d25aacfbff5e9394fb3"
 
 graylog-enterprise-plugins:
   source: "https://packages.graylog2.org/releases/graylog-enterprise/plugin-bundle/tgz/graylog-enterprise-plugins-#{version}#{suffix}.tgz"
-  sha256: "d36dbf91e47065b05d1bd8f361495722125f0df23bbaaa06da9a1559b6cf807c"
-
-graylog-collector:
-  version: "0.5.0"
-  revision: "1"
-  source: "https://packages.graylog2.org/releases/graylog-collector/graylog-collector-#{version}.tgz"
-  sha256: "f9e5977c8b223d3ad55d7bb2b7c3108df7c0916f37de51dea383937cd447c67b"
-
-check-graylog2-stream:
-  version: "1.2"
-  revision: "1"
-  source: "https://github.com/Graylog2/check-graylog2-stream/releases/download/#{version}/check-graylog2-stream.linux_x86.tar.gz"
-  sha256: "54b3e95195e845730dcdb64b7341c0fb4fb681c509bc92b8f1a80570b15c1651"
+  sha256: "1eaff0288edfabfc5551c6635351720f34b9ad225abb8518b58b761615e87aac"
