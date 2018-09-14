@@ -31,6 +31,9 @@ class GraylogEnterprisePlugins < FPM::Cookery::Recipe
   end
 
   def install
+    share('graylog-server').install 'bin'
+    share('graylog-server/bin').install Dir['bin/*']
+
     share('graylog-server').install 'plugin'
     share('graylog-server/plugin').install 'LICENSE', 'LICENSE-ENTERPRISE'
     share('graylog-server/plugin').install Dir['plugin/*.jar']
