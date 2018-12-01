@@ -2,18 +2,18 @@
 default:
   version_major: "2.5"
   version: "2.5.0"
-  suffix: "-beta.1"
+  suffix: ""
   # Make sure to always increase the revision when doing alpha/beta/rc releases!
   # Example:
   #
-  #   - 2.1.0-beta.1  => version=2.1.0, revision="1.beta.1"
-  #   - 2.1.0-beta.2  => version=2.1.0, revision="2.beta.2"
-  #   - 2.1.0-rc.1    => version=2.1.0, revision="3.rc.1"
-  #   - 2.1.0         => version=2.1.0, revision="4"
-  #   - 2.2.0-alpha.1 => version=2.2.0, revision="1.alpha.1"
+  #   - 2.1.0-beta.1  => version=2.1.0, suffix="-beta.1",  revision="1.beta.1"
+  #   - 2.1.0-beta.2  => version=2.1.0, suffix="-beta.2",  revision="2.beta.2"
+  #   - 2.1.0-rc.1    => version=2.1.0, suffix="-rc.1",    revision="3.rc.1"
+  #   - 2.1.0         => version=2.1.0, suffix="",         revision="4"
+  #   - 2.2.0-alpha.1 => version=2.2.0, suffix="-alpha.1", revision="1.alpha.1"
   #
   # Only reset the revision once the version is bumped.
-  revision: "2.beta.1"
+  revision: "3"
   homepage: "https://www.graylog.org/"
   maintainer: "Graylog, Inc. <hello@graylog.org>"
   vendor: "graylog"
@@ -21,11 +21,11 @@ default:
 
 graylog-server:
   source: "https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz"
-  sha256: "1494a09f32db3b01c86e00fc22264dd448593aacfdeb965a2796a9fdef19befb"
+  sha256: "dc7576ec88adc3f6ab465629cfed72618c36e17e1beabba0acc96ccb0e21bcc2"
 
 graylog-enterprise-plugins:
   source: "https://packages.graylog2.org/releases/graylog-enterprise/plugin-bundle/tgz/graylog-enterprise-plugins-#{version}#{suffix}.tgz"
-  sha256: "c926c2c9d601778abb917a173ebab9d7550eec6b9e9572326a91a73abedcecc8"
+  sha256: "bcf8206bfedd4320966991c3ce11fb4221240ae91b062aff0319e6bab5d4a98f"
 
 graylog-collector:
   version: "0.5.0"
