@@ -2,7 +2,7 @@
 default:
   version_major: "3.0"
   version: "3.0.0"
-  suffix: "-beta.2"
+  suffix: "-beta.3"
   # Make sure to always increase the revision when doing alpha/beta/rc releases!
   # Example:
   #
@@ -13,7 +13,7 @@ default:
   #   - 2.2.0-alpha.1 => version=2.2.0, revision="1.alpha.1"
   #
   # Only reset the revision once the version is bumped.
-  revision: "7.beta.2"
+  revision: "8.beta.3"
   homepage: "https://www.graylog.org/"
   maintainer: "Graylog, Inc. <hello@graylog.org>"
   vendor: "graylog"
@@ -21,8 +21,8 @@ default:
 
 graylog-server:
   source: "https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz"
-  sha256: "568e4c697a52af1ebc578969e05a2bb50d979eff6ae7566a49a877d841c6aa78"
+  sha256: "fa323e7c06f77adc3c32f624a14de4fecf4bd4150807f24e75e720bd9f8cb8c4"
 
 graylog-enterprise-plugins:
   source: "https://packages.graylog2.org/releases/graylog-enterprise/plugin-bundle/tgz/graylog-enterprise-plugins-#{version}#{suffix}.tgz"
-  sha256: "1b365fe7af22b167d16905166921785ac6d33a94866e1464dad7962e14b4bbe5"
+  sha256: "e5a1524ec93ab9b001d075bfe6fab688b8e1a5d1e58bc516beef1030aede2f40"
