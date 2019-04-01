@@ -13,7 +13,7 @@ default:
   #   - 2.2.0-alpha.1 => version=2.2.0, revision="1.alpha.1"
   #
   # Only reset the revision once the version is bumped.
-  revision: "1"
+  revision: "2"
   homepage: "https://www.graylog.org/"
   maintainer: "Graylog, Inc. <hello@graylog.org>"
   vendor: "graylog"
@@ -21,16 +21,16 @@ default:
 
 graylog-server:
   source: "https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz"
-  sha256: "dfaa0d987360891a5a76e58206241b359f7d9a1ad6991d83cfc94b58b637b59c"
+  sha256: "11db663c02173942380b1d1b05a60785aff4d311512dfa993212a626d800401d"
 
 graylog-enterprise-plugins:
   source: "https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-plugins-#{version}#{suffix}.tgz"
-  sha256: "8510a8d08ea7dd2b7a34f381beda6aed67fd327155ec6c96c231b4af6d0c57d1"
+  sha256: "0a202a0ed878b915d97e0d7e1ade8eee96df200f683a36bf0a18fe6bd55c07e8"
 
 graylog-integrations-plugins:
   source: "https://packages.graylog2.org/releases/graylog-integrations/graylog-integrations-plugins-#{version}#{suffix}.tgz"
-  sha256: "8245b76dc1eeab811040c67bc27c983d5ec93f7ded06e261b9a2ddf62cfeb688"
+  sha256: "90babcb6e2b87a69ec1bcf4941d0fbbbee956c6f47caa9f43ff0d336a7a93c35"
 
 graylog-enterprise-integrations-plugins:
   source: "https://packages.graylog2.org/releases/graylog-enterprise-integrations/graylog-enterprise-integrations-plugins-#{version}#{suffix}.tgz"
-  sha256: "25b610cb8110a85764ecf3296d8856ef4e6c0646d14d536a7005a3bd181ee7ea"
+  sha256: "c5ef27be98383330799e00775045877dd04babf063ffdaec7d2fd276eacd1af7"
