@@ -9,7 +9,7 @@ class GraylogRepository < FPM::Cookery::Recipe
 
   name       "graylog-#{VERSION}-repository"
   version    '1'
-  revision   6
+  revision   1
   source     '', :with => :noop
   arch       'all'
   homepage   data.homepage
@@ -21,7 +21,7 @@ class GraylogRepository < FPM::Cookery::Recipe
     "graylog2-#{v}-repository-#{os}#{osrel}"
   }.concat(%w(1.0 1.1 1.2 1.3).map {|v|
     "graylog-#{v}-repository-#{os}#{osrel}"
-  }).concat(%w(2.0 2.1 2.2 2.3 2.4 2.5).map {|v|
+  }).concat(%w(2.0 2.1 2.2 2.3 2.4 2.5 3.0).map {|v|
     "graylog-#{v}-repository"
   })
 

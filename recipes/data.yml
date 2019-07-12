@@ -1,8 +1,8 @@
 ---
 default:
-  version_major: "3.0"
-  version: "3.0.2"
-  suffix: ""
+  version_major: "3.1"
+  version: "3.1.0"
+  suffix: "-beta.1"
   # Make sure to always increase the revision when doing alpha/beta/rc releases!
   # Example:
   #
@@ -13,7 +13,7 @@ default:
   #   - 2.2.0-alpha.1 => version=2.2.0, revision="1.alpha.1"
   #
   # Only reset the revision once the version is bumped.
-  revision: "1"
+  revision: "1.beta.1"
   homepage: "https://www.graylog.org/"
   maintainer: "Graylog, Inc. <hello@graylog.org>"
   vendor: "graylog"
@@ -21,16 +21,16 @@ default:
 
 graylog-server:
   source: "https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz"
-  sha256: "12ee9bda9ff659c231eaf40a7b6f1aa3a8f28cb63506ae4b2a30d9b15a7789f7"
+  sha256: "9be243ba2328a4a4e6afb8f91c55a1ada8814db95642f543b42928697a34cd41"
 
 graylog-enterprise-plugins:
   source: "https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-plugins-#{version}#{suffix}.tgz"
-  sha256: "258f26dcbadbc37c9d9e7eb32b3ea2e273698b4124dd8d8665a6a414711e9411"
+  sha256: "212fb8b60ad19863630636cd301b4fc6bebafe38c3fbffbf04320fc53b756e72"
 
 graylog-integrations-plugins:
   source: "https://packages.graylog2.org/releases/graylog-integrations/graylog-integrations-plugins-#{version}#{suffix}.tgz"
-  sha256: "a61ee3240e2f35ac1da56de5b48f8d4ae707508379cd1d200f661046f6ac4b74"
+  sha256: "7d5c4aefbf4557859311c02ee9088a97872800c81e8a5de0ca43c5004c9bf951"
 
 graylog-enterprise-integrations-plugins:
   source: "https://packages.graylog2.org/releases/graylog-enterprise-integrations/graylog-enterprise-integrations-plugins-#{version}#{suffix}.tgz"
-  sha256: "c7e32ea86c172e9b51b2faff2c380483b7151527d76937594ba45afab5cae83c"
+  sha256: "56d7b82e8d67d89d7679cae82e6affe3c9a0b5ebd8e720ced8967612cfcb5b9b"
