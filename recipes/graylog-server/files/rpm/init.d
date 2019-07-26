@@ -51,6 +51,11 @@ if [ -f "/usr/share/graylog-server/installation-source.sh" ]; then
     . "/usr/share/graylog-server/installation-source.sh"
 fi
 
+# Java versions > 8 don't support UseParNewGC
+if "$JAVA" -XX:+PrintFlagsFinal 2>&1 | grep -q UseParNewGC; then
+	GRAYLOG_SERVER_JAVA_OPTS="$GRAYLOG_SERVER_JAVA_OPTS -XX:UseParNewGC"
+fi
+
 start() {
     echo -n $"Starting ${NAME}: "
     install -d -m 755 -o $GRAYLOG_SERVER_USER -g $GRAYLOG_SERVER_USER -d $PID_DIR
