@@ -16,6 +16,11 @@ if [ -f "/usr/share/graylog-server/installation-source.sh" ]; then
     . "/usr/share/graylog-server/installation-source.sh"
 fi
 
+# Java versions > 8 don't support UseParNewGC
+if ${JAVA:=/usr/bin/java} -XX:+PrintFlagsFinal 2>&1 | grep -q UseParNewGC; then
+	GRAYLOG_SERVER_JAVA_OPTS="$GRAYLOG_SERVER_JAVA_OPTS -XX:+UseParNewGC"
+fi
+
 $GRAYLOG_COMMAND_WRAPPER ${JAVA:=/usr/bin/java} $GRAYLOG_SERVER_JAVA_OPTS \
     -jar -Dlog4j.configurationFile=file:///etc/graylog/server/log4j2.xml \
     -Djava.library.path=/usr/share/graylog-server/lib/sigar \
