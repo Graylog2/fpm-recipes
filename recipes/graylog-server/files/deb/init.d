@@ -43,7 +43,7 @@ DAEMON=${JAVA:=/usr/bin/java}
 
 # Java versions > 8 don't support UseParNewGC
 if "$DAEMON" -XX:+PrintFlagsFinal 2>&1 | grep -q UseParNewGC; then
-	GRAYLOG_SERVER_JAVA_OPTS="$GRAYLOG_SERVER_JAVA_OPTS -XX:UseParNewGC"
+	GRAYLOG_SERVER_JAVA_OPTS="$GRAYLOG_SERVER_JAVA_OPTS -XX:+UseParNewGC"
 fi
 DAEMON_ARGS="$GRAYLOG_SERVER_JAVA_OPTS $DAEMON_LOG_OPTION -Dgraylog2.installation_source=${GRAYLOG_INSTALLATION_SOURCE:=unknown} -Djava.library.path=/usr/share/graylog-server/lib/sigar -jar $JAR_FILE server -p $PIDFILE -f /etc/graylog/server/server.conf $GRAYLOG_SERVER_ARGS"
 

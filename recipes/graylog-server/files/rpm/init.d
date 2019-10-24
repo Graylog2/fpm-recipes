@@ -53,7 +53,7 @@ fi
 
 # Java versions > 8 don't support UseParNewGC
 if "$JAVA" -XX:+PrintFlagsFinal 2>&1 | grep -q UseParNewGC; then
-	GRAYLOG_SERVER_JAVA_OPTS="$GRAYLOG_SERVER_JAVA_OPTS -XX:UseParNewGC"
+	GRAYLOG_SERVER_JAVA_OPTS="$GRAYLOG_SERVER_JAVA_OPTS -XX:+UseParNewGC"
 fi
 
 start() {
