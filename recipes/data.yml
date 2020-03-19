@@ -34,3 +34,9 @@ graylog-integrations-plugins:
 graylog-enterprise-integrations-plugins:
   source: "https://packages.graylog2.org/releases/graylog-enterprise-integrations/graylog-enterprise-integrations-plugins-#{version}#{suffix}.tgz"
   sha256: "58fcc0ac3f6994066782b3658b35bd28fbcbe6bb113bf00363f576aa2b78eab5"
+
+collector-sidecar:
+  source: "https://graylog2-releases.s3-eu-west-1.amazonaws.com/graylog-collector-sidecar/#{version}/graylog-sidecar-#{version}.tar.gz"
+  sha256: "f780ed0d4ddeff4ac5768ef16b21e76e15daab9e16e01e85ff86541633fe3304"
+  version_major: "1.0"
+  version: "1.0.3"
