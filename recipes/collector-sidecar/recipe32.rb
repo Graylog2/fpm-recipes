@@ -1,7 +1,7 @@
-require_relative 'tools'
+require_relative '../tools'
 
 class GraylogSidecar < FPM::Cookery::Recipe
-  description 'Graylog sidecar'
+  description 'Graylog collector sidecar'
 
   name     'graylog-sidecar'
   version  data.version
@@ -9,7 +9,8 @@ class GraylogSidecar < FPM::Cookery::Recipe
   homepage 'https://graylog.org'
   arch     'i386'
 
-  source   "file:../../build/#{version}/linux/386/graylog-sidecar"
+  source data.source
+  sha256 data.sha256
 
   maintainer 'Graylog, Inc. <hello@graylog.org>'
   vendor     'graylog'
@@ -23,8 +24,8 @@ class GraylogSidecar < FPM::Cookery::Recipe
   end
 
   def install
-    bin.install 'graylog-sidecar'
-    etc('graylog/sidecar').install '../../../sidecar-example.yml', 'sidecar.yml'
+    bin.install "#{version}/linux/386/graylog-sidecar"
+    etc('graylog/sidecar').install '../../sidecar-example.yml', 'sidecar.yml'
     var('lib/graylog-sidecar/generated').mkdir
     var('log/graylog-sidecar').mkdir
     var('run/graylog-sidecar').mkdir
