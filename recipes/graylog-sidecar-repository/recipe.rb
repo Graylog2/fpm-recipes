@@ -17,16 +17,6 @@ class GraylogSidecarRepository < FPM::Cookery::Recipe
   vendor     data.vendor
   license    data.license
 
-  replacements = %w(0.92 0.91 0.90).map {|v|
-    "graylog2-#{v}-repository-#{os}#{osrel}"
-  }.concat(%w(1.0 1.1 1.2 1.3).map {|v|
-    "graylog-#{v}-repository-#{os}#{osrel}"
-  }).concat(%w(2.0 2.1 2.2 2.3 2.4 2.5 3.0 3.1).map {|v|
-    "graylog-#{v}-repository"
-  })
-
-  replaces replacements
-  conflicts replacements
 
   def build
   end
