@@ -1,6 +1,6 @@
 require_relative '../tools'
 
-class GraylogRepository < FPM::Cookery::Recipe
+class GraylogSidecarRepository < FPM::Cookery::Recipe
   include Tools
 
   name       "graylog-sidecar-repository"
