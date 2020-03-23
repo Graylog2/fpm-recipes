@@ -68,7 +68,7 @@ class GraylogRepository < FPM::Cookery::Recipe
   def after_build_package(package)
     Dir.chdir(pkgdir) do
       ext = File.extname(package.to_s)
-      target = "graylog-#{VERSION}-repository_latest#{ext}"
+      target = "graylog-sidecar-#{VERSION}-repository_latest#{ext}"
 
       FPM::Cookery::Log.info("Copy #{package.to_s} to #{target}")
 
