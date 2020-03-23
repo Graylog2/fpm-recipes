@@ -3,11 +3,11 @@ require_relative '../tools'
 class GraylogRepository < FPM::Cookery::Recipe
   include Tools
 
+  name       "graylog-sidecar-repository"
   VERSION = data.version_major
 
-  description "Package to install Graylog #{VERSION} Sidecar GPG key and repository"
+  description "Package to install Graylog Sidecar GPG key and repository"
 
-  name       "graylog-sidecar-repository"
   version    '1'
   revision   1
   source     '', :with => :noop
