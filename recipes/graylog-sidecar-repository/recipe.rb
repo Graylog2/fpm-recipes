@@ -9,7 +9,7 @@ class GraylogSidecarRepository < FPM::Cookery::Recipe
   description "Package to install Graylog Sidecar GPG key and repository"
 
   version    '1'
-  revision   1
+  revision   2
   source     '', :with => :noop
   arch       'all'
   homepage   data.homepage
@@ -43,8 +43,8 @@ class GraylogSidecarRepository < FPM::Cookery::Recipe
 
   def install_rpm
     File.open('graylog-sidecar.repo', 'w') do |file|
-      file.puts "[graylog]"
-      file.puts "name=graylog"
+      file.puts "[graylog-sidecar]"
+      file.puts "name=graylog-sidecar"
       file.puts "baseurl=https://packages.graylog2.org/repo/el/sidecar-stable/#{VERSION}/$basearch/"
       file.puts "gpgcheck=1"
       file.puts "repo_gpgcheck=0"
