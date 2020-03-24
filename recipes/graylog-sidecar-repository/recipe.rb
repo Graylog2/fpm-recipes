@@ -33,26 +33,26 @@ class GraylogSidecarRepository < FPM::Cookery::Recipe
   end
 
   def install_deb
-    File.open('graylog.list', 'w') do |file|
+    File.open('graylog-sidecar.list', 'w') do |file|
       file.puts "deb https://packages.graylog2.org/repo/debian/ sidecar-stable #{VERSION}"
     end
 
-    etc('apt/trusted.gpg.d').install workdir('files/deb/graylog-keyring.gpg')
-    etc('apt/sources.list.d').install 'graylog.list'
+    etc('apt/trusted.gpg.d').install workdir('files/deb/graylog-sidecar-keyring.gpg')
+    etc('apt/sources.list.d').install 'graylog-sidecar.list'
   end
 
   def install_rpm
-    File.open('graylog.repo', 'w') do |file|
+    File.open('graylog-sidecar.repo', 'w') do |file|
       file.puts "[graylog]"
       file.puts "name=graylog"
       file.puts "baseurl=https://packages.graylog2.org/repo/el/sidecar-stable/#{VERSION}/$basearch/"
       file.puts "gpgcheck=1"
       file.puts "repo_gpgcheck=0"
-      file.puts "gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-graylog"
+      file.puts "gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-graylog-sidecar"
     end
 
-    etc('pki/rpm-gpg').install workdir('files/rpm/RPM-GPG-KEY-graylog')
-    etc('yum.repos.d').install 'graylog.repo'
+    etc('pki/rpm-gpg').install workdir('files/rpm/RPM-GPG-KEY-graylog-sidecar')
+    etc('yum.repos.d').install 'graylog-sidecar.repo'
   end
 
   def after_build_package(package)
