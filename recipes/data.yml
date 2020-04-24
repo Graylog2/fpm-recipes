@@ -25,11 +25,11 @@ graylog-server:
 
 graylog-enterprise-plugins:
   source: "https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-plugins-#{version}#{suffix}.tgz"
-  sha256: "be9d7eff371624d60e5efea68212c848396d149b46cc328e10586550ae90345e"
+  sha256: "e17e68cc8cd5c9a19bb557b47fa951d12c6f0c4a413466af48dc62d1160b24f8"
 
 graylog-integrations-plugins:
   source: "https://packages.graylog2.org/releases/graylog-integrations/graylog-integrations-plugins-#{version}#{suffix}.tgz"
-  sha256: "e17e68cc8cd5c9a19bb557b47fa951d12c6f0c4a413466af48dc62d1160b24f8"
+  sha256: "be9d7eff371624d60e5efea68212c848396d149b46cc328e10586550ae90345e"
 
 graylog-enterprise-integrations-plugins:
   source: "https://packages.graylog2.org/releases/graylog-enterprise-integrations/graylog-enterprise-integrations-plugins-#{version}#{suffix}.tgz"
