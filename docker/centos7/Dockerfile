@@ -13,6 +13,7 @@ RUN gem install public_suffix -v 2.0.5
 RUN gem install facter -v 2.5.7
 RUN gem install fast_gettext -v 1.1.2
 RUN gem install puppet -v 5.5.19
+RUN gem install ffi -v 1.12.2
 RUN gem install fpm-cookery --no-ri --no-rdoc --version 0.25.0
 
 # Remove cached packages and metadata to keep images small.
