@@ -12,7 +12,7 @@ pipeline
    parameters
    {
      string(name: 'VERSION', description: 'Version of Graylog to build (3.2, 3.3, etc).')
-     gitParameter branchFilter: 'origin/(.*)', defaultValue: '', name: 'BRANCH', type: 'PT_BRANCH', sortMode: 'DESCENDING_SMART', description: 'The branch of fpm-recipes that should be checked out (3.2, 3.3, master, etc).'
+     gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH', sortMode: 'DESCENDING_SMART', description: 'The branch of fpm-recipes that should be checked out (3.2, 3.3, master, etc).'
    }
 
    stages
