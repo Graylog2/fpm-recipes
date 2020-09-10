@@ -2,7 +2,6 @@
 
 import argparse
 import yaml
-import fileinput
 
 yaml_comments = """  # Make sure to always increase the revision when doing alpha/beta/rc releases!
   # Example:
