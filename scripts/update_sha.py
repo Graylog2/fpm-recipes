@@ -18,12 +18,30 @@ parser = argparse.ArgumentParser(description='Update package sha256 values in da
 parser.add_argument('--path', dest='yaml_path', help='The path to the yaml file to update.', required=True)
 parser.add_argument('--package-name', dest='package_name', help='The name of the package that should be updated.', required=True)
 parser.add_argument('--sha256', dest='checksum', help="The sha256 value that should be set for the package.", required=True)
+parser.add_argument('--version-major', dest='version_major', help='The major version (e.g, 3.3, 4.0)')
+parser.add_argument('--version', dest='version', help='The semantic version (3.3.0, 4.0.0)')
+parser.add_argument('--suffix', dest='suffix', help='The package suffix (e.g, -rc.1). Must use equal sign if suffix begins with dash. (--suffix=-rc.2)')
+parser.add_argument('--revision', dest='revision', help='The package revision. Subsequent releases for the same version must bump this. It only resets when the version goes up.')
 
 args = parser.parse_args()
 
 with open(args.yaml_path) as f:
     data = yaml.load(f, Loader=yaml.FullLoader)
-    data[args.package_name]['sha256'] = args.checksum
+
+    if args.checksum:
+        data[args.package_name]['sha256'] = args.checksum
+
+    if args.version_major:
+        data['default']['version_major'] = args.version_major
+
+    if args.version:
+        data['default']['version'] = args.version
+
+    if args.suffix:
+        data['default']['suffix'] = args.suffix
+
+    if args.revision:
+        data['default']['revision'] = args.revision
 
 with open(args.yaml_path, 'w') as f:
     yaml.dump(data, f, default_flow_style=False, sort_keys=False)
