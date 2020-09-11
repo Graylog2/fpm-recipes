@@ -3,6 +3,15 @@
 import argparse
 import yaml
 
+class MyDumper(yaml.SafeDumper):
+    # HACK: insert blank lines between top-level objects
+    # inspired by https://stackoverflow.com/a/44284819/3786245
+    def write_line_break(self, data=None):
+        super().write_line_break(data)
+
+        if len(self.indents) == 1:
+            super().write_line_break()
+
 yaml_comments = """  # Make sure to always increase the revision when doing alpha/beta/rc releases!
   # Example:
   #
@@ -49,9 +58,11 @@ with open(args.yaml_path) as f:
     if args.revision:
         data['default']['revision'] = args.revision
 
+#write out the new yaml file
 with open(args.yaml_path, 'w') as f:
-    yaml.dump(data, f, default_flow_style=False, sort_keys=False)
+    yaml.dump(data, f, Dumper=MyDumper, default_flow_style=False, sort_keys=False)
 
+#insert comments at top of file
 with open(args.yaml_path, 'r+') as f:
     content = f.read()
     f.seek(0, 0)
