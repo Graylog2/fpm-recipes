@@ -14,7 +14,7 @@ yaml_comments = """  # Make sure to always increase the revision when doing alph
   #
   # Only reset the revision once the version is bumped."""
 
-parser = argparse.ArgumentParser(description='Update package sha256 values in data.yml')
+parser = argparse.ArgumentParser(description='Update values in data.yml')
 parser.add_argument('--path', dest='yaml_path', help='The path to the yaml file to update.', required=True)
 parser.add_argument('--package-name', dest='package_name', help='The name of the package that should be updated.')
 parser.add_argument('--sha256', dest='checksum', help="The sha256 value that should be set for the package.")
