@@ -10,7 +10,7 @@
   # Only reset the revision once the version is bumped.
 default:
   version_major: '3.3'
-  version: 3.3.7
+  version: 3.3.8
   suffix: ''
   revision: '1'
   homepage: https://www.graylog.org/
@@ -20,19 +20,19 @@ default:
 
 graylog-server:
   source: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz
-  sha256: 19571e76dc547be6a00f075cae2cb1421513826932debf4ebc8833c2dd0b12a5
+  sha256: 37c795ffc516115c7d1d1e0fb805f49473a0f6dce86c7a41b90272dd9e3eac78
 
 graylog-enterprise-plugins:
   source: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-plugins-#{version}#{suffix}.tgz
-  sha256: 6ad4169d558eca2069ecee7bd0a391dc4557b9150232b4a673b798c912a82976
+  sha256: f39f99e263378743e2ae389bf3eb5c9c4393f214fa6f70a62829d468366588db
 
 graylog-integrations-plugins:
   source: https://packages.graylog2.org/releases/graylog-integrations/graylog-integrations-plugins-#{version}#{suffix}.tgz
-  sha256: 79d396b5f19c5441fd3dcbca5bcddd072d64152ce234479c946d0a4f869a41f0
+  sha256: 22536cf906e46be7014ab2eec24b215ab98bcf38e7b406a662f1db48441e5d01
 
 graylog-enterprise-integrations-plugins:
   source: https://packages.graylog2.org/releases/graylog-enterprise-integrations/graylog-enterprise-integrations-plugins-#{version}#{suffix}.tgz
-  sha256: 93dadc88868ebd48a288ff51e31fb93f7dc27688918e9e61522eb73e3307a654
+  sha256: 383c74eaa61dcaedf644dbeeb70f1f3bb994ed7e70550c94da9db3c7afc0c794
 
 graylog-sidecar:
   source: https://packages.graylog2.org/releases/graylog-collector-sidecar/#{version}/graylog-sidecar-#{version}.tar.gz
