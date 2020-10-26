@@ -34,6 +34,10 @@ graylog-enterprise-integrations-plugins:
   source: https://packages.graylog2.org/releases/graylog-enterprise-integrations/graylog-enterprise-integrations-plugins-#{version}#{suffix}.tgz
   sha256: b8a4924b6d1858b15bbd8ffc066ef5b16efba65d08e8a9553819e674869bd3a2
 
+graylog-forwarder:
+  source: https://packages.graylog2.org/releases/cloud/forwarder/graylog-cloud-forwarder-3.3.9-SNAPSHOT-20201023205426.tar.gz
+  sha256: e47fa296574e600fe575749406e5543477faa6d609a2562dab4508f74f7bf7d7
+
 graylog-sidecar:
   source: https://packages.graylog2.org/releases/graylog-collector-sidecar/#{version}/graylog-sidecar-#{version}.tar.gz
   sha256: f780ed0d4ddeff4ac5768ef16b21e76e15daab9e16e01e85ff86541633fe3304
