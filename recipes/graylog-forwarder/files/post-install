@@ -1,0 +1,74 @@
+#!/bin/sh
+
+set -e
+
+# Flag to indicate if this is an upgrade
+upgrade="false"
+
+case "$1" in
+	# DEB based systems
+	configure)
+		if [ -z "$2" ]; then
+			upgrade="false"
+
+		else
+			upgrade="true"
+		fi
+		;;
+	abort-deconfigure|abort-upgrade|abort-remove)
+		;;
+	# RPM based systems
+	1)
+		# Installation
+		upgrade="false"
+		;;
+	2)
+		# Upgrade
+		upgrade="true"
+		;;
+	*)
+		echo "[ERROR] post-install script called with unknown argument: '$1'"
+		exit 1
+		;;
+esac
+
+
+if command -v systemctl >/dev/null; then
+	# Reload systemd configuration to make sure the new unit file gets activated
+	systemctl daemon-reload || true
+fi
+
+if [ "$upgrade" = "true" ]; then
+	# This is an upgrade, exit early.
+	exit 0
+fi
+
+echo "################################################################################"
+echo "Graylog does NOT start automatically!"
+echo ""
+echo "Please run the following commands if you want to start Graylog automatically on system boot:"
+echo ""
+
+# Order is important! Some systems might have both commands!
+if command -v systemctl >/dev/null; then
+	echo "    sudo systemctl enable graylog-server.service"
+	echo ""
+	echo "    sudo systemctl start graylog-server.service"
+elif command -v chkconfig >/dev/null; then
+	echo "    sudo chkconfig --add graylog-server"
+	echo ""
+	echo "    sudo service graylog-server start"
+elif command -v initctl >/dev/null; then
+	echo "    sudo rm -f /etc/init/graylog-server.override"
+	echo ""
+	echo "    sudo start graylog-server"
+elif command -v update-rc.d >/dev/null; then
+	echo "    sudo update-rc.d graylog-server defaults 95 10"
+	echo ""
+	echo "    sudo /etc/init.d/graylog-server start"
+fi
+
+echo ""
+echo "################################################################################"
+
+exit 0

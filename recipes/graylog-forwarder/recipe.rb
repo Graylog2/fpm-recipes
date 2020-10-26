@@ -27,6 +27,11 @@ class GraylogForwarder < FPM::Cookery::Recipe
   #   config_files '/etc/graylog/forwarder/forwarder.conf'
   # end
 
+  pre_install    'files/pre-install'
+  post_install   'files/post-install'
+  pre_uninstall  'files/pre-uninstall'
+  post_uninstall 'files/post-uninstall'
+
   def build
   end
 
