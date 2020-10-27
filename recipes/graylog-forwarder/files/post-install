@@ -51,29 +51,15 @@ if [ "$upgrade" = "true" ]; then
 	exit 0
 fi
 
-echo "################################################################################"
-echo "Graylog does NOT start automatically!"
-echo ""
-echo "Please run the following commands if you want to start Graylog automatically on system boot:"
-echo ""
-
-# Order is important! Some systems might have both commands!
 if command -v systemctl >/dev/null; then
-	echo "    sudo systemctl enable graylog-server.service"
+	echo "################################################################################"
+	echo "Graylog does NOT start automatically!"
 	echo ""
-	echo "    sudo systemctl start graylog-server.service"
-elif command -v chkconfig >/dev/null; then
-	echo "    sudo chkconfig --add graylog-server"
+	echo "Please run the following commands if you want to start Graylog automatically on system boot:"
 	echo ""
-	echo "    sudo service graylog-server start"
-elif command -v initctl >/dev/null; then
-	echo "    sudo rm -f /etc/init/graylog-server.override"
+	echo "    sudo systemctl enable graylog-forwarder.service"
 	echo ""
-	echo "    sudo start graylog-server"
-elif command -v update-rc.d >/dev/null; then
-	echo "    sudo update-rc.d graylog-server defaults 95 10"
-	echo ""
-	echo "    sudo /etc/init.d/graylog-server start"
+	echo "    sudo systemctl start graylog-forwarder.service"
 fi
 
 echo ""
