@@ -18,14 +18,14 @@ class GraylogForwarder < FPM::Cookery::Recipe
   vendor     data.vendor
   license    'see https://www.graylog.org/enterprise'
 
-  # targets :deb do
-  #   section 'net'
-  #   config_files '/etc/graylog/forwarder/forwarder.conf'
-  # end
-  #
-  # targets :rpm do
-  #   config_files '/etc/graylog/forwarder/forwarder.conf'
-  # end
+  targets :deb do
+    section 'net'
+    config_files '/etc/graylog/forwarder/forwarder.conf'
+  end
+
+  targets :rpm do
+    config_files '/etc/graylog/forwarder/forwarder.conf'
+  end
 
   pre_install    'files/pre-install'
   post_install   'files/post-install'
@@ -40,7 +40,8 @@ class GraylogForwarder < FPM::Cookery::Recipe
     share('graylog-forwarder').install 'graylog-cloud-forwarder.jar'
     share('graylog-forwarder').install 'bin'
     share('graylog-forwarder/bin').install Dir['bin/*']
-
+    share('graylog-forwarder').install 'config'
+    share('graylog-forwarder/config').install Dir['config/jvm.options']
     share('graylog-forwarder').install 'plugin'
     share('graylog-forwarder/plugin').install Dir['plugin/*.jar']
   end
