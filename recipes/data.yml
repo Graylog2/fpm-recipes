@@ -12,7 +12,7 @@ default:
   version_major: '4.0'
   version: 4.0.0
   suffix: -beta.2
-  revision: '2.beta.2'
+  revision: 2.beta.2
   homepage: https://www.graylog.org/
   maintainer: Graylog, Inc. <hello@graylog.org>
   vendor: graylog
@@ -35,8 +35,8 @@ graylog-enterprise-integrations-plugins:
   sha256: b8a4924b6d1858b15bbd8ffc066ef5b16efba65d08e8a9553819e674869bd3a2
 
 graylog-forwarder:
-  source: https://packages.graylog2.org/releases/cloud/forwarder/3.3.9/graylog-cloud-forwarder-3.3.9-20201029224621.tar.gz
-  sha256: 33939d30bd0d75d689a4513d76a3d8c4a5368e8ef676343e109e111105c42c95
+  source: https://packages.graylog2.org/releases/cloud/forwarder/3.3.9/graylog-cloud-forwarder-3.3.9-20201030161620.tar.gz
+  sha256: c9777b35196a43ecbaa53775078f2383f33b06b1978ef863a9801266af7496e7
   version_major: '3.3'
   version: 3.3.9
   revision: '1'
