@@ -8,7 +8,6 @@
   #   - 2.2.0-alpha.1 => version=2.2.0, revision="1.alpha.1"
   #
   # Only reset the revision once the version is bumped.
-  #Test
 default:
   version_major: '4.0'
   version: 4.0.0
