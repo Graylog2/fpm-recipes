@@ -6,6 +6,7 @@ user="graylog-forwarder"
 group="graylog-forwarder"
 datadir="/usr/share/graylog-forwarder"
 cfgdir="/etc/graylog/forwarder"
+journaldir="/var/lib/graylog-forwarder"
 
 # Flag to indicate if this is an upgrade
 upgrade="false"
@@ -40,6 +41,9 @@ esac
 #ensure files are owned by graylog-forwarder user
 chown -R "$user:$group" "$datadir"
 chown -R "$user:$group" "$cfgdir"
+
+mkdir -p "$journaldir"
+chown -R "$user:$group" "$journaldir"
 
 if command -v systemctl >/dev/null; then
 	# Reload systemd configuration to make sure the new unit file gets activated
