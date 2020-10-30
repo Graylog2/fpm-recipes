@@ -6,10 +6,10 @@ After=network-online.target
 
 [Service]
 Type=simple
+User=graylog-forwarder
+Group=graylog-forwarder
 Restart=on-failure
 RestartSec=10
-User=root
-Group=root
 LimitNOFILE=64000
 
 WorkingDirectory=/usr/share/graylog-forwarder
