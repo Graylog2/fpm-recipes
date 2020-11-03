@@ -57,9 +57,9 @@ fi
 
 if command -v systemctl >/dev/null; then
 	echo "################################################################################"
-	echo "Graylog does NOT start automatically!"
+	echo "Graylog Forwarder does NOT start automatically!"
 	echo ""
-	echo "Please run the following commands if you want to start Graylog automatically on system boot:"
+	echo "Please run the following commands if you want to start Graylog Forwarder automatically on system boot:"
 	echo ""
 	echo "    sudo systemctl enable graylog-forwarder.service"
 	echo ""
