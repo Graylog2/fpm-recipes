@@ -12,7 +12,7 @@ Restart=on-failure
 RestartSec=10
 LimitNOFILE=64000
 
-WorkingDirectory=/usr/share/graylog-forwarder
+WorkingDirectory=/var/lib/graylog-forwarder
 ExecStart=/usr/share/graylog-forwarder/bin/graylog-forwarder run -f /etc/graylog/forwarder/forwarder.conf
 
 # When a JVM receives a SIGTERM signal it exits with 143.

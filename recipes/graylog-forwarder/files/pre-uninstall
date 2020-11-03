@@ -38,15 +38,6 @@ fi
 if command -v systemctl >/dev/null; then
 	systemctl --no-reload stop graylog-forwarder.service >/dev/null 2>&1 || true
 	systemctl disable graylog-forwarder>/dev/null 2>&1 || true
-elif command -v chkconfig >/dev/null; then
-	/etc/init.d/graylog-forwarder stop || true
-	chkconfig --del graylog-forwarder 2>/dev/null || true
-elif command -v initctl >/dev/null; then
-	stop graylog-forwarder 2>/dev/null || true
-	echo "manual" > "/etc/init/graylog-forwarder.override" || true
-elif command -v update-rc.d >/dev/null; then
-	/etc/init.d/graylog-forwarder stop || true
-        update-rc.d graylog-forwarder remove >/dev/null || true
 fi
 
 exit 0

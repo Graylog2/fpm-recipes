@@ -37,13 +37,15 @@ class GraylogForwarder < FPM::Cookery::Recipe
 
   def install
     etc('graylog/forwarder').install file('forwarder.conf'), 'forwarder.conf'
+    etc('graylog/forwarder').install Dir['config/jvm.options']
+    
     share('graylog-forwarder').install 'graylog-cloud-forwarder.jar'
 
     share('graylog-forwarder').install 'bin'
     share('graylog-forwarder/bin').install Dir['bin/*']
 
     share('graylog-forwarder').install 'config'
-    share('graylog-forwarder/config').install Dir['config/jvm.options']
+
 
     share('graylog-forwarder').install 'plugin'
     share('graylog-forwarder/plugin').install Dir['plugin/*.jar']
