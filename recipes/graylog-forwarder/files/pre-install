@@ -5,7 +5,6 @@ set -e
 user="graylog-forwarder"
 group="graylog-forwarder"
 datadir="/var/lib/graylog-forwarder"
-logdir="/var/log/graylog-forwarder"
 
 case "$1" in
 	# DEB based systems
@@ -45,6 +44,5 @@ esac
 
 # Create directories
 install -d -o "$user" -g "$group" -m 0755 "$datadir"
-install -d -o "$user" -g "$group" -m 0755 "$logdir"
 
 exit 0

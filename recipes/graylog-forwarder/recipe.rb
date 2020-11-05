@@ -46,9 +46,7 @@ class GraylogForwarder < FPM::Cookery::Recipe
     share('graylog-forwarder').install 'bin'
     share('graylog-forwarder/bin').install Dir['bin/*']
 
-    share('graylog-forwarder').install 'config'
-
-
+    Dir['plugin/*.jar'].each {|jar| mv(jar, jar.gsub('-SNAPSHOT', "-#{revision}")) }
     share('graylog-forwarder').install 'plugin'
     share('graylog-forwarder/plugin').install Dir['plugin/*.jar']
 
