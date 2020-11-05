@@ -15,6 +15,8 @@ LimitNOFILE=64000
 WorkingDirectory=/var/lib/graylog-forwarder
 ExecStart=/usr/share/graylog-forwarder/bin/graylog-forwarder run -f /etc/graylog/forwarder/forwarder.conf
 
+Environment="FORWARDER_JVM_OPTIONS_FILE=/etc/graylog/forwarder/jvm.options"
+
 # When a JVM receives a SIGTERM signal it exits with 143.
 SuccessExitStatus=143
 
