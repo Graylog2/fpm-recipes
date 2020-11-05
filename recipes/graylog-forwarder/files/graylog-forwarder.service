@@ -1,5 +1,5 @@
 [Unit]
-Description=Graylog Cloud Forwarder
+Description=Graylog Forwarder
 Documentation=http://docs.graylog.org/
 Wants=network-online.target
 After=network-online.target
