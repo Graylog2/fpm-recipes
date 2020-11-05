@@ -4,7 +4,7 @@ set -e
 
 user="graylog-forwarder"
 group="graylog-forwarder"
-datadir="/usr/share/graylog-forwarder"
+datadir="/var/lib/graylog-forwarder"
 logdir="/var/log/graylog-forwarder"
 
 case "$1" in
