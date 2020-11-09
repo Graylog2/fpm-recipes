@@ -20,13 +20,11 @@ class GraylogForwarder < FPM::Cookery::Recipe
 
   targets :deb do
     section 'net'
-    config_files '/etc/graylog/forwarder/forwarder.conf'
-    config_files '/etc/graylog/forwarder/jvm.options'
+    config_files '/etc/graylog/forwarder/forwarder.conf', '/etc/graylog/forwarder/jvm.options'
   end
 
   targets :rpm do
-    config_files '/etc/graylog/forwarder/forwarder.conf'
-    config_files '/etc/graylog/forwarder/jvm.options'
+    config_files '/etc/graylog/forwarder/forwarder.conf', config_files '/etc/graylog/forwarder/jvm.options'
   end
 
   pre_install    'files/pre-install'

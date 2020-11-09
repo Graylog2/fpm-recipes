@@ -43,7 +43,7 @@ chown -R "$user:$group" "$cfgdir"
 
 #ensure node-id is in the correct directory
 if [ -s "${bindir}/data/node-id" ]  && [ ! -s "${datadir}/data/node-id" ]; then
-	mv "${bindir}/data" "${datadir}/data"
+	mv "${bindir}/data/node-id" "${datadir}/data/node-id"
 fi
 
 if command -v systemctl >/dev/null; then

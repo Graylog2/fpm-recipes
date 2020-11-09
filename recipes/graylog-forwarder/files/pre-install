@@ -26,8 +26,8 @@ case "$1" in
 	# RPM based systems
 	1|2)
 		# Create graylog group
-		if ! getent group "$user" >/dev/null; then
-			groupadd -r "$user"
+		if ! getent group "$group" >/dev/null; then
+			groupadd -r "$group"
 		fi
 
 		# Create graylog user
@@ -44,5 +44,6 @@ esac
 
 # Create directories
 install -d -o "$user" -g "$group" -m 0755 "$datadir"
+install -d -o "$user" -g "$group" -m 0755 "$datadir/data"
 
 exit 0
