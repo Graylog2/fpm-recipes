@@ -1,0 +1,73 @@
+#!/bin/sh
+
+set -e
+
+user="graylog-forwarder"
+group="graylog-forwarder"
+bindir="/usr/share/graylog-forwarder"
+datadir="/var/lib/graylog-forwarder"
+cfgdir="/etc/graylog/forwarder"
+
+# Flag to indicate if this is an upgrade
+upgrade="false"
+
+case "$1" in
+	# DEB based systems
+	configure)
+		if [ -z "$2" ]; then
+			upgrade="false"
+
+		else
+			upgrade="true"
+		fi
+		;;
+	abort-deconfigure|abort-upgrade|abort-remove)
+		;;
+	# RPM based systems
+	1)
+		# Installation
+		upgrade="false"
+		;;
+	2)
+		# Upgrade
+		upgrade="true"
+		;;
+	*)
+		echo "[ERROR] post-install script called with unknown argument: '$1'"
+		exit 1
+		;;
+esac
+
+#ensure files are owned by graylog-forwarder user
+chown -R "$user:$group" "$cfgdir"
+
+#ensure node-id is in the correct directory
+if [ -s "${bindir}/data/node-id" ]  && [ ! -s "${datadir}/data/node-id" ]; then
+	mv "${bindir}/data/node-id" "${datadir}/data/node-id"
+fi
+
+if command -v systemctl >/dev/null; then
+	# Reload systemd configuration to make sure the new unit file gets activated
+	systemctl daemon-reload || true
+fi
+
+if [ "$upgrade" = "true" ]; then
+	# This is an upgrade, exit early.
+	exit 0
+fi
+
+if command -v systemctl >/dev/null; then
+	echo "################################################################################"
+	echo "Graylog Forwarder does NOT start automatically!"
+	echo ""
+	echo "Please run the following commands if you want to start Graylog Forwarder automatically on system boot:"
+	echo ""
+	echo "    sudo systemctl enable graylog-forwarder.service"
+	echo ""
+	echo "    sudo systemctl start graylog-forwarder.service"
+fi
+
+echo ""
+echo "################################################################################"
+
+exit 0
