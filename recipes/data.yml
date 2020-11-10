@@ -11,8 +11,8 @@
 default:
   version_major: '4.0'
   version: 4.0.0
-  suffix: -beta.4
-  revision: 4.beta.4
+  suffix: -rc.1
+  revision: 5.rc.1
   homepage: https://www.graylog.org/
   maintainer: Graylog, Inc. <hello@graylog.org>
   vendor: graylog
@@ -20,19 +20,19 @@ default:
 
 graylog-server:
   source: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz
-  sha256: 57fd7180720aa4e42e0cccda82b681f18029427f9f8ae244d15b1913fe821f88
+  sha256: 2499a4a8becd45257f7eae7be832a4227ccf5788306eb1a197fc2f2ac17cecca
 
 graylog-enterprise-plugins:
   source: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-plugins-#{version}#{suffix}.tgz
-  sha256: 44b5ac4a4037230fe70008a481e2682c3dce731177b94ebc2a4ab6a854eaa10a
+  sha256: 45de29af7f6a192bc0aa2f03d375efde648e55709c644505f96336eeb5f52124
 
 graylog-integrations-plugins:
   source: https://packages.graylog2.org/releases/graylog-integrations/graylog-integrations-plugins-#{version}#{suffix}.tgz
-  sha256: 228d12103f8f37c10707595f39d286c2c820badc460187eabfd3c08ccaf5be41
+  sha256: 43e2bf5d625f7c173cbe0da311a88823e73414e70de339f40e4cef106592579d
 
 graylog-enterprise-integrations-plugins:
   source: https://packages.graylog2.org/releases/graylog-enterprise-integrations/graylog-enterprise-integrations-plugins-#{version}#{suffix}.tgz
-  sha256: c791302478c94953ae10de25d6fdc33abd020290bdff3acaa46290f9b7e95590
+  sha256: c9603e228a6118827704bb28ec1dc88e7414dcdf54d1e595e5c3665ada28b771
 
 graylog-forwarder:
   source: https://packages.graylog2.org/releases/cloud/forwarder/3.3.9/graylog-cloud-forwarder-3.3.9-20201030161620.tar.gz
