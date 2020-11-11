@@ -1,0 +1,10 @@
+/var/log/graylog-server/console.log {
+	weekly
+	missingok
+	rotate 7
+	compress
+	delaycompress
+	notifempty
+	sharedscripts
+	copytruncate
+}
