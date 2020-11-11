@@ -22,10 +22,10 @@ graylog-server:
   source: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz
   sha256: 2499a4a8becd45257f7eae7be832a4227ccf5788306eb1a197fc2f2ac17cecca
 
-#graylog-enterprise:
+graylog-enterprise:
   #source: https://packages.graylog2.org/releases/graylog/graylog-enterprise-#{version}#{suffix}.tgz
-  #source: https://packages.graylog2.org/releases/test/graylog-enterprise-4.1.0-SNAPSHOT-20201111174155.tgz
-  #sha256: 7500b86809386b3e319a6aa08f7802600bedadbb30286c4d8152d5d7207b9e55
+  source: https://packages.graylog2.org/releases/test/graylog-enterprise-4.1.0-SNAPSHOT-20201111174155.tgz
+  sha256: 7500b86809386b3e319a6aa08f7802600bedadbb30286c4d8152d5d7207b9e55
 
 graylog-enterprise-plugins:
   source: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-plugins-#{version}#{suffix}.tgz

@@ -1,6 +1,6 @@
 require_relative '../tools'
 
-class GraylogServer < FPM::Cookery::Recipe
+class GraylogEnterpriseServer < FPM::Cookery::Recipe
   include Tools
 
   description 'Graylog Enterprise Server'
