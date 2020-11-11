@@ -30,7 +30,7 @@ class GraylogEnterpriseServer < FPM::Cookery::Recipe
     config_files '/etc/default/graylog-server',
                  '/etc/init/graylog-server.conf',
                  '/etc/logrotate.d/graylog-server'
-    depends 'uuid-runtime'
+    #depends 'uuid-runtime'
   end
 
   targets :rpm do
@@ -71,6 +71,11 @@ class GraylogEnterpriseServer < FPM::Cookery::Recipe
     share('graylog-server').install 'graylog.jar'
     share('graylog-server').install 'lib'
     share('graylog-server').install 'plugin'
+
+    share('graylog-server').install 'LICENSE'
+    share('graylog-server/bin').install 'bin/chromedriver'
+    share('graylog-server/bin').install 'bin/chromedriver_start.sh'
+    share('graylog-server/bin').install 'bin/headless_shell'
 
     # Remove unused sigar libs.
     sigar_cleanup(share('graylog-server/lib/sigar'))
