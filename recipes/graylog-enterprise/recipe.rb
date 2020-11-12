@@ -30,20 +30,21 @@ class GraylogEnterpriseServer < FPM::Cookery::Recipe
     config_files '/etc/default/graylog-server',
                  '/etc/init/graylog-server.conf',
                  '/etc/logrotate.d/graylog-server'
-    #depends 'uuid-runtime'
+    depends 'uuid-runtime'
   end
 
   targets :rpm do
     config_files '/etc/sysconfig/graylog-server'
   end
 
-  pre_install    'files/pre-install'
-  post_install   'files/post-install'
-  pre_uninstall  'files/pre-uninstall'
-  post_uninstall 'files/post-uninstall'
+  # Use scripts from server recipe to avoid duplicating them
+  pre_install    '../graylog-server/files/pre-install'
+  post_install   '../graylog-server/files/post-install'
+  pre_uninstall  '../graylog-server/files/pre-uninstall'
+  post_uninstall '../graylog-server/files/post-uninstall'
 
   def build
-    patch(workdir('patches/graylog-server.conf.patch'))
+    patch(workdir('../graylog-server/patches/graylog-server.conf.patch'))
   end
 
   def install
@@ -79,5 +80,17 @@ class GraylogEnterpriseServer < FPM::Cookery::Recipe
 
     # Remove unused sigar libs.
     sigar_cleanup(share('graylog-server/lib/sigar'))
+  end
+
+  # Override inherited method to make use of files in the server recipe to
+  # avoid duplicating the files in this one
+  def file(path)
+    if File.exists?(super(path))
+      # If the requested file exists in this recipe folder, use it
+      super(path)
+    else
+      # Otherwise use the one from the server recipe
+      workdir('../graylog-server/files')/path
+    end
   end
 end
