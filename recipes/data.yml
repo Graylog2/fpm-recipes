@@ -24,7 +24,7 @@ graylog-server:
 
 graylog-enterprise:
   source: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}.tgz
-  sha256: 6ada535d869e273dc3f07893f9181f6ebbb3bb4a7e094b7e34809b0c65ed3466
+  sha256: d74e7c00e657a87d37ea71979e99b97ec5b6bdfb9dc06d723c436112ab79a283
 
 graylog-enterprise-plugins:
   source: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-plugins-#{version}#{suffix}.tgz
