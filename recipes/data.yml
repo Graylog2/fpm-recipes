@@ -12,7 +12,7 @@ default:
   version_major: '4.0'
   version: 4.0.0
   suffix: -rc.2
-  revision: 6.rc.2
+  revision: 7.rc.2
   homepage: https://www.graylog.org/
   maintainer: Graylog, Inc. <hello@graylog.org>
   vendor: graylog
