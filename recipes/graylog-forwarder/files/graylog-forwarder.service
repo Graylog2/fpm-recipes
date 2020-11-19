@@ -1,0 +1,28 @@
+[Unit]
+Description=Graylog Forwarder
+Documentation=http://docs.graylog.org/
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=graylog-forwarder
+Group=graylog-forwarder
+Restart=on-failure
+RestartSec=10
+LimitNOFILE=64000
+
+WorkingDirectory=/var/lib/graylog-forwarder
+ExecStart=/usr/share/graylog-forwarder/bin/graylog-forwarder run -f /etc/graylog/forwarder/forwarder.conf
+
+Environment="FORWARDER_JVM_OPTIONS_FILE=/etc/graylog/forwarder/jvm.options"
+
+# When a JVM receives a SIGTERM signal it exits with 143.
+SuccessExitStatus=143
+
+# Make sure stderr/stdout is captured in the systemd journal.
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
