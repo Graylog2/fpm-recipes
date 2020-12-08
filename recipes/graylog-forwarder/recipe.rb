@@ -37,6 +37,7 @@ class GraylogForwarder < FPM::Cookery::Recipe
 
   def install
     etc('graylog/forwarder').install file('forwarder.conf'), 'forwarder.conf'
+    etc('graylog/forwarder').install file('log4j2.xml'), 'log4j2.xml'
     etc('graylog/forwarder').install Dir['config/jvm.options']
 
     share('graylog-forwarder').install 'graylog-cloud-forwarder.jar'
