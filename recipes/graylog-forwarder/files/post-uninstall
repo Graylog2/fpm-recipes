@@ -5,6 +5,8 @@ set -e
 user="graylog-forwarder"
 group="graylog-forwarder"
 cfgdir="/etc/graylog/forwarder"
+logdir="/var/log/graylog-forwarder"
+datadir="/var/lib/graylog-forwarder"
 
 remove_data="false"
 
@@ -37,7 +39,7 @@ case "$1" in
 esac
 
 if [ "$remove_data" = "true" ]; then
-	rm -rf "$cfgdir"
+	rm -rf "$datadir" "$cfgdir" "$logdir"
 
 	if id "$user" > /dev/null 2>&1 ; then
 		userdel "$user" || true
