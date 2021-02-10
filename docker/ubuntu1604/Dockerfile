@@ -4,7 +4,7 @@ MAINTAINER Graylog, Inc. <hello@graylog.com>
 
 RUN apt-get clean
 RUN apt-get update
-RUN apt-get install -y ruby ruby2.3 ruby2.3-dev build-essential curl lsb-release
+RUN apt-get install -y ruby ruby2.3 ruby2.3-dev build-essential curl lsb-release git
 RUN gem install fpm-cookery --no-ri --no-rdoc
 
 # Install some package dependencies to avoid installing them every time.
