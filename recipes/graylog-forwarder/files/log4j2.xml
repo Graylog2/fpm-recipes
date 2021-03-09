@@ -15,8 +15,9 @@
         <Logger name="org.graylog" level="info"/>
         <Logger name="com.github.joschi.jadconfig" level="warn"/>
         <!-- Silence Kafka log chatter -->
-        <Logger name="kafka.log.Log" level="warn"/>
-        <Logger name="kafka.log.OffsetIndex" level="warn"/>
+        <Logger name="org.graylog.shaded.kafka09.log.Log" level="warn"/>
+        <Logger name="org.graylog.shaded.kafka09.log.OffsetIndex" level="warn"/>
+        <Logger name="org.apache.kafka.clients.consumer.ConsumerConfig" level="warn"/>
 
         <Root level="info">
             <AppenderRef ref="rolling-file"/>
