@@ -47,7 +47,7 @@ graylog-forwarder:
 
 graylog-sidecar:
   source: https://packages.graylog2.org/releases/graylog-collector-sidecar/#{version}/graylog-sidecar-#{version}.tar.gz
-  sha256: 7935084f4195d375a78601e3c97902c9783e4808405041b4c80896c8c999be1f
+  sha256: c3594d7aa5b5046308c89f1e3cb32fd7dab1bb51b1b20106ba19dd9106482d6f
   version_major: '1.1'
   version: 1.1.0
 
