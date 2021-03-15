@@ -60,3 +60,4 @@ graylog-illuminate:
   sha256: 15c9f4c68f2cb4c02f6f3a14a42ce2aa76c546f065275f3c1bbf49fcf713150f
   version_major: '1.5'
   version: 1.5.0
+  license: Proprietary
