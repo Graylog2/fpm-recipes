@@ -1,0 +1,42 @@
+#!/bin/sh
+
+set -e
+
+cfgdir="/etc/graylog/graylog_illuminate_core"
+
+remove_data="false"
+
+case "$1" in
+	# DEB based systems
+	remove)
+		remove_data="false"
+		;;
+
+	purge)
+		remove_data="true"
+		;;
+
+	upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
+		# Nothing to do here
+		;;
+	# RPM based systems
+	0)
+		# Removal
+		remove_data="true"
+		;;
+	1)
+		# Upgrade
+		remove_data="false"
+		;;
+	*)
+		echo "[ERROR] post-uninstall script called with unknown argument: '$1'"
+		exit 1
+		;;
+esac
+
+#delete renamed .default files
+if [ "$remove_data" = "true" ]; then
+	rm -rf "$cfgdir"
+fi
+
+exit 0
