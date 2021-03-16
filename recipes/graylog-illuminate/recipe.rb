@@ -20,7 +20,8 @@ class GraylogIlluminate < FPM::Cookery::Recipe
                  Dir['graylog_illuminate_windows/*'],
                  Dir['graylog_illuminate_okta/*'],
                  Dir['graylog_illuminate_paloalto/*'],
-                 Dir['graylog_illuminate_o365/*']
+                 Dir['graylog_illuminate_o365/*'],
+                 Dir['illuminate_elastic_template/*']
 
   fpm_attributes rpm_os: 'linux'
 
@@ -46,5 +47,8 @@ class GraylogIlluminate < FPM::Cookery::Recipe
 
     etc('graylog/graylog_illuminate_o365').install Dir['graylog_illuminate_o365/*']
     etc('graylog/graylog_illuminate_o365').chmod(0755)
+
+    etc('graylog/illuminate_elastic_template').install Dir['illuminate_elastic_template/*']
+    etc('graylog/illuminate_elastic_template').chmod(0755)
   end
 end
