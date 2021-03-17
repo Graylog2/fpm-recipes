@@ -46,7 +46,7 @@ if "$DAEMON" -XX:+PrintFlagsFinal 2>&1 | grep -q UseParNewGC; then
 	GRAYLOG_SERVER_JAVA_OPTS="$GRAYLOG_SERVER_JAVA_OPTS -XX:+UseParNewGC"
 fi
 
-# Java versions > 15 don't support CMS Garbage Collector
+# Java versions >= 15 don't support CMS Garbage Collector
 if "$DAEMON" -XX:+PrintFlagsFinal 2>&1 | grep -q UseConcMarkSweepGC; then
 	GRAYLOG_SERVER_JAVA_OPTS="$GRAYLOG_SERVER_JAVA_OPTS -XX:+UseConcMarkSweepGC"
 fi
