@@ -56,6 +56,11 @@ if "$JAVA" -XX:+PrintFlagsFinal 2>&1 | grep -q UseParNewGC; then
 	GRAYLOG_SERVER_JAVA_OPTS="$GRAYLOG_SERVER_JAVA_OPTS -XX:+UseParNewGC"
 fi
 
+# Java versions >= 15 don't support CMS Garbage Collector
+if "$JAVA" -XX:+PrintFlagsFinal 2>&1 | grep -q UseConcMarkSweepGC; then
+	GRAYLOG_SERVER_JAVA_OPTS="$GRAYLOG_SERVER_JAVA_OPTS -XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled -XX:+CMSClassUnloadingEnabled"
+fi
+
 start() {
     echo -n $"Starting ${NAME}: "
     install -d -m 755 -o $GRAYLOG_SERVER_USER -g $GRAYLOG_SERVER_USER -d $PID_DIR

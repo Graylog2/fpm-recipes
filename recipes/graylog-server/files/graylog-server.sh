@@ -21,6 +21,11 @@ if ${JAVA:=/usr/bin/java} -XX:+PrintFlagsFinal 2>&1 | grep -q UseParNewGC; then
 	GRAYLOG_SERVER_JAVA_OPTS="$GRAYLOG_SERVER_JAVA_OPTS -XX:+UseParNewGC"
 fi
 
+# Java versions >= 15 don't support CMS Garbage Collector
+if ${JAVA:=/usr/bin/java} -XX:+PrintFlagsFinal 2>&1 | grep -q UseConcMarkSweepGC; then
+	GRAYLOG_SERVER_JAVA_OPTS="$GRAYLOG_SERVER_JAVA_OPTS -XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled -XX:+CMSClassUnloadingEnabled"
+fi
+
 $GRAYLOG_COMMAND_WRAPPER ${JAVA:=/usr/bin/java} $GRAYLOG_SERVER_JAVA_OPTS \
     -jar -Dlog4j.configurationFile=file:///etc/graylog/server/log4j2.xml \
     -Djava.library.path=/usr/share/graylog-server/lib/sigar \
