@@ -58,17 +58,8 @@ fi
 
 # Java versions >= 15 don't support CMS Garbage Collector
 if "$JAVA" -XX:+PrintFlagsFinal 2>&1 | grep -q UseConcMarkSweepGC; then
-	GRAYLOG_SERVER_JAVA_OPTS="$GRAYLOG_SERVER_JAVA_OPTS -XX:+UseConcMarkSweepGC"
+	GRAYLOG_SERVER_JAVA_OPTS="$GRAYLOG_SERVER_JAVA_OPTS -XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled -XX:+CMSClassUnloadingEnabled"
 fi
-
-if "$JAVA" -XX:+PrintFlagsFinal 2>&1 | grep -q CMSConcurrentMTEnabled; then
-	GRAYLOG_SERVER_JAVA_OPTS="$GRAYLOG_SERVER_JAVA_OPTS -XX:+CMSConcurrentMTEnabled"
-fi
-
-if "$JAVA" -XX:+PrintFlagsFinal 2>&1 | grep -q CMSClassUnloadingEnabled; then
-	GRAYLOG_SERVER_JAVA_OPTS="$GRAYLOG_SERVER_JAVA_OPTS -XX:+CMSClassUnloadingEnabled"
-fi
-
 
 start() {
     echo -n $"Starting ${NAME}: "
