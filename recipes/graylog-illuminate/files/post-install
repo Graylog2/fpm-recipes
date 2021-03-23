@@ -38,11 +38,11 @@ chmod 0644 /etc/graylog/graylog_illuminate_paloalto/*
 chmod 0644 /etc/graylog/graylog_illuminate_o365/*
 
 if [ ! -f "/etc/graylog/graylog_illuminate_core/static_accounts.csv" ]; then
-	mv /etc/graylog/graylog_illuminate_core/static_accounts.csv.default /etc/graylog/graylog_illuminate_core/static_accounts.csv
+	cp /etc/graylog/graylog_illuminate_core/static_accounts.csv.default /etc/graylog/graylog_illuminate_core/static_accounts.csv
 fi
 
 if [ ! -f "/etc/graylog/graylog_illuminate_core/static_devices.csv" ]; then
-	mv /etc/graylog/graylog_illuminate_core/static_devices.csv.default /etc/graylog/graylog_illuminate_core/static_devices.csv
+	cp /etc/graylog/graylog_illuminate_core/static_devices.csv.default /etc/graylog/graylog_illuminate_core/static_devices.csv
 fi
 
 if [ "$upgrade" = "true" ]; then

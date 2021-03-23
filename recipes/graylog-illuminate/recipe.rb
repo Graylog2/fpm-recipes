@@ -29,8 +29,6 @@ class GraylogIlluminate < FPM::Cookery::Recipe
     }
   }.flatten
 
-  fpm_attributes rpm_os: 'linux'
-
   post_install   'files/post-install'
   post_uninstall 'files/post-uninstall'
 
