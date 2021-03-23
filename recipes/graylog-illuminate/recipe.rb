@@ -16,12 +16,18 @@ class GraylogIlluminate < FPM::Cookery::Recipe
   vendor     'graylog'
   license    data.license
 
-  config_files   Dir['graylog_illuminate_core/*'],
-                 Dir['graylog_illuminate_windows/*'],
-                 Dir['graylog_illuminate_okta/*'],
-                 Dir['graylog_illuminate_paloalto/*'],
-                 Dir['graylog_illuminate_o365/*'],
-                 Dir['illuminate_elastic_template/*']
+  config_files [
+    'graylog_illuminate_core',
+    'graylog_illuminate_windows',
+    'graylog_illuminate_okta',
+    'graylog_illuminate_paloalto',
+    'graylog_illuminate_o365',
+    'illuminate_elastic_template'
+  ].map {|type|
+    Dir["#{type}/*"].map {|f|
+      File.join("/etc/graylog/#{type}", File.basename(f))
+    }
+  }.flatten
 
   fpm_attributes rpm_os: 'linux'
 
