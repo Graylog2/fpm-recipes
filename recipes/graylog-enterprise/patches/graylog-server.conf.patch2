@@ -5,5 +5,5 @@
  # Default: TLSv1.2,TLSv1.3  (might be automatically adjusted to protocols supported by the JDK)
  #enabled_tls_protocols= TLSv1.2,TLSv1.3
 +
-+# An absolute or relative path where scripts are permitted to be executed from.
++# An absolute path where scripts are permitted to be executed from.
 +integrations_scripts_dir = /usr/share/graylog-server/scripts
