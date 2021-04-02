@@ -47,6 +47,7 @@ class GraylogEnterpriseServer < FPM::Cookery::Recipe
 
   def build
     patch(workdir('../graylog-server/patches/graylog-server.conf.patch'))
+    patch(workdir('patches/graylog-server.conf.patch2'))
   end
 
   def install
@@ -79,6 +80,9 @@ class GraylogEnterpriseServer < FPM::Cookery::Recipe
     share('graylog-server/bin').install 'bin/chromedriver'
     share('graylog-server/bin').install 'bin/chromedriver_start.sh'
     share('graylog-server/bin').install 'bin/headless_shell'
+
+    share('graylog-server/scripts').mkdir
+    share('graylog-server/scripts').chmod(0755)
 
     # Remove unused sigar libs.
     sigar_cleanup(share('graylog-server/lib/sigar'))
