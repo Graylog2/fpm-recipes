@@ -10,7 +10,7 @@
   # Only reset the revision once the version is bumped.
 default:
   version_major: '4.0'
-  version: 4.0.5
+  version: 4.0.6
   suffix: ''
   revision: '1'
   homepage: https://www.graylog.org/
@@ -20,23 +20,23 @@ default:
 
 graylog-server:
   source: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz
-  sha256: fea34a58738c3dbe40c134281954f276688d6900c7d0acc748bd91feef9b6d75
+  sha256: b716f7733e50e683c893849b32c76e8778eca8e101d2417f44c5034fea6710e6
 
 graylog-enterprise:
   source: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}.tgz
-  sha256: 3a4b3a151af546630f0be3fc4177b3370e4b764e3e38574e9b5982c3f4515077
+  sha256: c3217fd2d711912773adef4e632c66d86657c5f0a66847464054e39de8ad63a3
 
 graylog-enterprise-plugins:
   source: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-plugins-#{version}#{suffix}.tgz
-  sha256: 18798a7d4d42a7be1b46b3996a642518954ddf88c916f00ee7cea6a7f2521ba4
+  sha256: 19d9038c4b81d2c57dd7b2f40c07c26b71970d9c1ee303045213e01b670687c3
 
 graylog-integrations-plugins:
   source: https://packages.graylog2.org/releases/graylog-integrations/graylog-integrations-plugins-#{version}#{suffix}.tgz
-  sha256: 135dbdc61a30b19c3a353102b34c0cd0e46df8b7248d30c970e7f6cf09075bc8
+  sha256: d5068796bc16acaef818dc21c1090138a78d7f6420c375f7094128279d9caff5
 
 graylog-enterprise-integrations-plugins:
   source: https://packages.graylog2.org/releases/graylog-enterprise-integrations/graylog-enterprise-integrations-plugins-#{version}#{suffix}.tgz
-  sha256: e6650ffdce854e7ee0c8b1887d9626ed683be04ded08962659c7c3453126e51b
+  sha256: 0d334fb45ff50b5475ce6f6a618f45257e970e707ec668fda226a72989e77260
 
 graylog-forwarder:
   source: https://packages.graylog2.org/releases/cloud/forwarder/3.3.9/graylog-cloud-forwarder-3.3.9-20201119163247.tar.gz
@@ -56,8 +56,8 @@ graylog-sidecar-repository:
   version: 1.1.0
 
 graylog-illuminate:
-  source: #Jenkins Pipeline updates these values dynamically
-  sha256:
+  source: null
+  sha256: null
   version_major: '1.5'
   version: 1.5.0
   license: Proprietary
