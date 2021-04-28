@@ -36,6 +36,12 @@ chmod 0644 /etc/graylog/graylog_illuminate_windows/*
 chmod 0644 /etc/graylog/graylog_illuminate_okta/*
 chmod 0644 /etc/graylog/graylog_illuminate_paloalto/*
 chmod 0644 /etc/graylog/graylog_illuminate_o365/*
+chmod 0644 /usr/share/graylog-illuminate/content_packs/illuminate_core/*
+chmod 0644 /usr/share/graylog-illuminate/content_packs/illuminate_events/*
+chmod 0644 /usr/share/graylog-illuminate/content_packs/illuminate_o365/*
+chmod 0644 /usr/share/graylog-illuminate/content_packs/illuminate_okta/*
+chmod 0644 /usr/share/graylog-illuminate/content_packs/illuminate_paloalto/*
+chmod 0644 /usr/share/graylog-illuminate/content_packs/illuminate_windows/*
 
 if [ ! -f "/etc/graylog/graylog_illuminate_core/static_accounts.csv" ]; then
 	cp /etc/graylog/graylog_illuminate_core/static_accounts.csv.default /etc/graylog/graylog_illuminate_core/static_accounts.csv
