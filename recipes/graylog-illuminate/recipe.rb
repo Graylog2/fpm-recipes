@@ -22,7 +22,8 @@ class GraylogIlluminate < FPM::Cookery::Recipe
     'graylog_illuminate_okta',
     'graylog_illuminate_paloalto',
     'graylog_illuminate_o365',
-    'illuminate_elastic_template'
+    'illuminate_elastic_template',
+    'illuminate'
   ].map {|type|
     Dir["#{type}/*"].map {|f|
       File.join("/etc/graylog/#{type}", File.basename(f))
@@ -53,6 +54,9 @@ class GraylogIlluminate < FPM::Cookery::Recipe
     etc('graylog/graylog_illuminate_o365').install Dir['graylog_illuminate_o365/*']
     etc('graylog/graylog_illuminate_o365').chmod(0755)
 
+    etc('graylog/illuminate').install Dir['illuminate/sysmon/*']
+    etc('graylog/illuminate').chmod(0755)
+
     # Content packs
     share('graylog-illuminate/content_packs/illuminate_core').install Dir['illuminate_core/*']
     share('graylog-illuminate/content_packs/illuminate_core').chmod(0755)
@@ -74,6 +78,9 @@ class GraylogIlluminate < FPM::Cookery::Recipe
 
     share('graylog-illuminate/content_packs/illuminate_elastic_template').install Dir['illuminate_elastic_template/*']
     share('graylog-illuminate/content_packs/illuminate_elastic_template').chmod(0755)
+
+    share('graylog-illuminate/content_packs/illuminate_sysmon').install Dir['illuminate_sysmon/*']
+    share('graylog-illuminate/content_packs/illuminate_sysmon').chmod(0755)
 
     # Install scripts
     share('graylog-illuminate').install 'upload-content-packs.sh'
