@@ -69,11 +69,7 @@ class GraylogServer < FPM::Cookery::Recipe
     share('graylog-server').install file("installation-source.#{target}.sh"), 'installation-source.sh'
 
     share('graylog-server').install 'graylog.jar'
-    share('graylog-server').install 'lib'
     share('graylog-server').install 'plugin'
     share('graylog-server').install 'LICENSE'
-
-    # Remove unused sigar libs.
-    sigar_cleanup(share('graylog-server/lib/sigar'))
   end
 end

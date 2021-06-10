@@ -73,7 +73,6 @@ class GraylogEnterpriseServer < FPM::Cookery::Recipe
     share('graylog-server').install file("installation-source.#{target}.sh"), 'installation-source.sh'
 
     share('graylog-server').install 'graylog.jar'
-    share('graylog-server').install 'lib'
     share('graylog-server').install 'plugin'
 
     share('graylog-server').install 'LICENSE'
@@ -83,9 +82,6 @@ class GraylogEnterpriseServer < FPM::Cookery::Recipe
 
     share('graylog-server/scripts').mkdir
     share('graylog-server/scripts').chmod(0755)
-
-    # Remove unused sigar libs.
-    sigar_cleanup(share('graylog-server/lib/sigar'))
   end
 
   # Override inherited method to make use of files in the server recipe to
