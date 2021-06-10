@@ -11,8 +11,8 @@
 default:
   version_major: '4.1'
   version: 4.1.0
-  suffix: '1.beta.1'
-  revision: '1'
+  suffix: '-beta.1'
+  revision: '1.beta.1'
   homepage: https://www.graylog.org/
   maintainer: Graylog, Inc. <hello@graylog.org>
   vendor: graylog
