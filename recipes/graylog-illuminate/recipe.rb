@@ -54,8 +54,9 @@ class GraylogIlluminate < FPM::Cookery::Recipe
     etc('graylog/graylog_illuminate_o365').install Dir['graylog_illuminate_o365/*']
     etc('graylog/graylog_illuminate_o365').chmod(0755)
 
-    etc('graylog/illuminate').install Dir['illuminate/sysmon/*']
+    etc('graylog/illuminate/sysmon').install Dir['illuminate/sysmon/*']
     etc('graylog/illuminate').chmod(0755)
+    etc('graylog/illuminate/sysmon').chmod(0755)
 
     # Content packs
     share('graylog-illuminate/content_packs/illuminate_core').install Dir['illuminate_core/*']
