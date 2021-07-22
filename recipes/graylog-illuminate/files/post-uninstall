@@ -2,7 +2,7 @@
 
 set -e
 
-cfgdir="/etc/graylog/graylog_illuminate_core"
+cfgdir="/etc/graylog/illuminate"
 
 remove_data="false"
 
