@@ -17,12 +17,12 @@ class GraylogIlluminate < FPM::Cookery::Recipe
   license    data.license
 
   config_files [
-    'graylog_illuminate_core',
-    'graylog_illuminate_windows',
-    'graylog_illuminate_okta',
-    'graylog_illuminate_paloalto',
-    'graylog_illuminate_o365',
-    'illuminate_elastic_template',
+    'core',
+    'windows',
+    'okta',
+    'paloalto',
+    'o365',
+    'template',
     'illuminate'
   ].map {|type|
     Dir["#{type}/*"].map {|f|
@@ -39,20 +39,20 @@ class GraylogIlluminate < FPM::Cookery::Recipe
 
   def install
     # Server files
-    etc('graylog/graylog_illuminate_core').install Dir['graylog_illuminate_core/*']
-    etc('graylog/graylog_illuminate_core').chmod(0755)
+    etc('graylog/illuminate/core').install Dir['graylog_illuminate_core/*']
+    etc('graylog/illuminate/core').chmod(0755)
 
-    etc('graylog/graylog_illuminate_windows').install Dir['graylog_illuminate_windows/*']
-    etc('graylog/graylog_illuminate_windows').chmod(0755)
+    etc('graylog/illuminate/windows').install Dir['graylog_illuminate_windows/*']
+    etc('graylog/illuminate/windows').chmod(0755)
 
-    etc('graylog/graylog_illuminate_okta').install Dir['graylog_illuminate_okta/*']
-    etc('graylog/graylog_illuminate_okta').chmod(0755)
+    etc('graylog/illuminate/okta').install Dir['graylog_illuminate_okta/*']
+    etc('graylog/illuminate/okta').chmod(0755)
 
-    etc('graylog/graylog_illuminate_paloalto').install Dir['graylog_illuminate_paloalto/*']
-    etc('graylog/graylog_illuminate_paloalto').chmod(0755)
+    etc('graylog/illuminate/paloalto').install Dir['graylog_illuminate_paloalto/*']
+    etc('graylog/illuminate/paloalto').chmod(0755)
 
-    etc('graylog/graylog_illuminate_o365').install Dir['graylog_illuminate_o365/*']
-    etc('graylog/graylog_illuminate_o365').chmod(0755)
+    etc('graylog/illuminate/o365').install Dir['graylog_illuminate_o365/*']
+    etc('graylog/illuminate/o365').chmod(0755)
 
     etc('graylog/illuminate/sysmon').install Dir['illuminate/sysmon/*']
     etc('graylog/illuminate').chmod(0755)
@@ -77,8 +77,8 @@ class GraylogIlluminate < FPM::Cookery::Recipe
     share('graylog-illuminate/content_packs/illuminate_windows').install Dir['illuminate_windows/*']
     share('graylog-illuminate/content_packs/illuminate_windows').chmod(0755)
 
-    share('graylog-illuminate/content_packs/illuminate_elastic_template').install Dir['illuminate_elastic_template/*']
-    share('graylog-illuminate/content_packs/illuminate_elastic_template').chmod(0755)
+    etc('graylog/illuminate/elastic_template').install Dir['illuminate_elastic_template/*']
+    etc('graylog/illuminate/elastic_template').chmod(0755)
 
     share('graylog-illuminate/content_packs/illuminate_sysmon').install Dir['illuminate_sysmon/*']
     share('graylog-illuminate/content_packs/illuminate_sysmon').chmod(0755)
