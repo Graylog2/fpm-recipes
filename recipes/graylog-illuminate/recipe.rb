@@ -38,7 +38,7 @@ class GraylogIlluminate < FPM::Cookery::Recipe
   end
 
   def install
-    # Server files
+    # Lookup files
     etc('graylog/illuminate/core').install Dir['illuminate/core/*']
     etc('graylog/illuminate/core').chmod(0755)
 
@@ -61,6 +61,9 @@ class GraylogIlluminate < FPM::Cookery::Recipe
     etc('graylog/illuminate/elastic_template').install Dir['illuminate/elastic_template/*']
     etc('graylog/illuminate/elastic_template').chmod(0755)
 
+    etc('graylog/illuminate/linux_auditbeat').install Dir['illuminate/linux_auditbeat/*']
+    etc('graylog/illuminate/linux_auditbeat').chmod(0755)
+
     # Content packs
     share('graylog-illuminate/content_packs/illuminate_core').install Dir['illuminate_core/*']
     share('graylog-illuminate/content_packs/illuminate_core').chmod(0755)
@@ -82,6 +85,9 @@ class GraylogIlluminate < FPM::Cookery::Recipe
 
     share('graylog-illuminate/content_packs/illuminate_sysmon').install Dir['illuminate_sysmon/*']
     share('graylog-illuminate/content_packs/illuminate_sysmon').chmod(0755)
+
+    share('graylog-illuminate/content_packs/illuminate_linux_auditbeat').install Dir['illuminate_linux_auditbeat/*']
+    share('graylog-illuminate/content_packs/illuminate_linux_auditbeat').chmod(0755)
 
     # Install scripts
     share('graylog-illuminate').install 'upload-content-packs.sh'
