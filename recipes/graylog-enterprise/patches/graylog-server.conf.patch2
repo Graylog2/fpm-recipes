@@ -1,10 +1,12 @@
---- graylog.conf.example        2021-03-31 10:00:49.785429250 -0500
-+++ graylog.conf        2021-03-31 10:00:40.693473340 -0500
-@@ -723,3 +723,7 @@ proxied_requests_thread_pool_size = 32
- # Configures the refresh interval for the monitored Prometheus exporter mapping files.
+--- graylog.conf.example.orig	2021-09-29 11:46:52.263406655 -0500
++++ graylog.conf.example	2021-09-29 11:52:19.317932067 -0500
+@@ -724,6 +724,9 @@
  # Default: 60s
  #prometheus_exporter_mapping_file_refresh_interval = 60s
-+
-+
+ 
 +# An absolute path where scripts are permitted to be executed from.
 +integrations_scripts_dir = /usr/share/graylog-server/scripts
++
+ # Optional allowed paths for Graylog data files. If provided, certain operations in Graylog will only be permitted
+ # if the data file(s) are located in the specified paths (for example, with the CSV File lookup adapter).
+ # All subdirectories of indicated paths are allowed by default. This Provides an additional layer of security,
