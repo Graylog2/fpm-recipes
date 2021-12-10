@@ -7,6 +7,9 @@ GRAYLOG_SERVER_JAVA_OPTS="-Xms1g -Xmx1g -XX:NewRatio=1 -server -XX:+ResizeTLAB -
 # Avoid endless loop with some TLSv1.3 implementations.
 GRAYLOG_SERVER_JAVA_OPTS="$GRAYLOG_SERVER_JAVA_OPTS -Djdk.tls.acknowledgeCloseNotify=true"
 
+# Fix for log4j CVE-2021-44228
+GRAYLOG_SERVER_JAVA_OPTS="$GRAYLOG_SERVER_JAVA_OPTS -Dlog4j2.formatMsgNoLookups=true"
+
 # Pass some extra args to graylog-server. (i.e. "-d" to enable debug mode)
 GRAYLOG_SERVER_ARGS=""
 
