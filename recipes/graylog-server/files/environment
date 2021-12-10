@@ -4,6 +4,9 @@ JAVA=/usr/bin/java
 # Default Java options for heap and garbage collection.
 GRAYLOG_SERVER_JAVA_OPTS="-Xms1g -Xmx1g -XX:NewRatio=1 -server -XX:+ResizeTLAB -XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled -XX:+CMSClassUnloadingEnabled -XX:-OmitStackTraceInFastThrow"
 
+# Fix for log4j CVE-2021-44228
+GRAYLOG_SERVER_JAVA_OPTS="$GRAYLOG_SERVER_JAVA_OPTS -Dlog4j2.formatMsgNoLookups=true"
+
 # Pass some extra args to graylog-server. (i.e. "-d" to enable debug mode)
 GRAYLOG_SERVER_ARGS=""
 
