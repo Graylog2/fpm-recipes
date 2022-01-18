@@ -9,7 +9,7 @@ class GraylogEnterpriseServer < FPM::Cookery::Recipe
   version  data.version
   revision data.revision
   homepage data.homepage
-  arch     'all'
+  arch     pkg_arch
 
   source data.source
   sha256 data.sha256
@@ -76,9 +76,11 @@ class GraylogEnterpriseServer < FPM::Cookery::Recipe
     share('graylog-server').install 'plugin'
 
     share('graylog-server').install 'LICENSE'
-    share('graylog-server/bin').install 'bin/chromedriver'
     share('graylog-server/bin').install 'bin/chromedriver_start.sh'
-    share('graylog-server/bin').install 'bin/headless_shell'
+    
+    # Install the architecture specific binaries
+    share('graylog-server/bin').install "bin/chromedriver_#{pkg_arch}", 'chromedriver'
+    share('graylog-server/bin').install "bin/headless_shell_#{pkg_arch}", 'headless_shell'
 
     share('graylog-server/scripts').mkdir
     share('graylog-server/scripts').chmod(0755)
