@@ -31,13 +31,9 @@ class GraylogEnterprisePlugins < FPM::Cookery::Recipe
   end
 
   def install
-    share('graylog-server').install 'bin'
-    # Install all binaries except the architecture specific ones.
-    share('graylog-server/bin').install Dir['bin/*'].reject {|f| f =~ /\.(amd64|arm64)$/ }
-
-    # Install the architecture specific binaries
-    share('graylog-server/bin').install "bin/chromedriver_#{pkg_arch}", 'chromedriver'
-    share('graylog-server/bin').install "bin/headless_shell_#{pkg_arch}", 'headless_shell'
+    share('graylog-server/bin').install 'bin/chromedriver_start.sh'
+    share('graylog-server/bin').install "bin/chromedriver_#{pkg_arch}", "chromedriver_#{pkg_arch}"
+    share('graylog-server/bin').install "bin/headless_shell_#{pkg_arch}", "headless_shell_#{pkg_arch}"
 
     share('graylog-server').install 'plugin'
     share('graylog-server/plugin').install 'LICENSE', 'LICENSE-ENTERPRISE'
