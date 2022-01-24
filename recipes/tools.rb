@@ -53,6 +53,14 @@ module Tools
         end
       end
     end
+
+    def pkg_arch
+      ENV['PKG_ARCH'] || 'all'
+    end
+  end
+
+  def pkg_arch
+    self.class.pkg_arch
   end
 
   def fact(key)
