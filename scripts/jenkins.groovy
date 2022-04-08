@@ -7,6 +7,7 @@ pipeline
       buildDiscarder logRotator(artifactDaysToKeepStr: '90', artifactNumToKeepStr: '100', daysToKeepStr: '90', numToKeepStr: '100')
       skipDefaultCheckout(true)
       timestamps()
+      lock('os-package-build')
    }
 
    parameters
