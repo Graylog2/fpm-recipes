@@ -47,13 +47,13 @@ graylog-forwarder:
 
 graylog-sidecar:
   source: https://packages.graylog2.org/releases/graylog-collector-sidecar/#{version}/graylog-sidecar-#{version}.tar.gz
-  sha256: c3594d7aa5b5046308c89f1e3cb32fd7dab1bb51b1b20106ba19dd9106482d6f
-  version_major: '1.1'
-  version: 1.1.0
+  sha256: a474f67670f06758d6dc8249e864d8b4e40a88116acf8a254a7dcda61b8f4342
+  version_major: '1.2'
+  version: 1.2.0
 
 graylog-sidecar-repository:
-  version_major: '1.1'
-  version: 1.1.0
+  version_major: '1.2'
+  version: 1.2.0
 
 graylog-illuminate:
   source: null
