@@ -9,7 +9,7 @@ class GraylogSidecarRepository < FPM::Cookery::Recipe
   description "Package to install Graylog Sidecar GPG key and repository"
 
   version    '1'
-  revision   2
+  revision   3
   source     '', :with => :noop
   arch       'all'
   homepage   data.homepage

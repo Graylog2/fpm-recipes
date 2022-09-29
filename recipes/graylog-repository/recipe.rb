@@ -9,7 +9,7 @@ class GraylogRepository < FPM::Cookery::Recipe
 
   name       "graylog-#{VERSION}-repository"
   version    '1'
-  revision   5
+  revision   6
   source     '', :with => :noop
   arch       'all'
   homepage   data.homepage
