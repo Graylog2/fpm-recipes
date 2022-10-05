@@ -9,7 +9,7 @@ class GraylogServer < FPM::Cookery::Recipe
   version  data.version
   revision data.revision
   homepage data.homepage
-  arch     'all'
+  arch     pkg_arch
 
   source data.source
   sha256 data.sha256
