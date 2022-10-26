@@ -24,10 +24,7 @@ class GraylogSidecar < FPM::Cookery::Recipe
   end
 
   def install
-    # 1.3.0-beta.1 -> 1.3.0 - The tarball doesn't contain the suffix in paths
-    v = version.split('-').first
-
-    bin.install "#{v}/linux/amd64/graylog-sidecar"
+    bin.install "#{version}/linux/amd64/graylog-sidecar"
     etc('graylog/sidecar').install workdir('sidecar-example.yml'), 'sidecar.yml'
     var('lib/graylog-sidecar/generated').mkdir
     var('log/graylog-sidecar').mkdir
