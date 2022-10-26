@@ -26,25 +26,6 @@ graylog-enterprise:
   source: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}.tgz
   sha256: 5ad415d9d7831a50418fb31690e15b4758de970935a49957ef346e1c1406fdfa
 
-graylog-enterprise-plugins:
-  source: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-plugins-#{version}#{suffix}.tgz
-  sha256: 8299f744ae74dca5f4a3be36d917f4bfe19dc00d2b14c2f1d68ad02971d2d7a3
-
-graylog-integrations-plugins:
-  source: https://packages.graylog2.org/releases/graylog-integrations/graylog-integrations-plugins-#{version}#{suffix}.tgz
-  sha256: 3652824a6b037ec8c020b67df00351a350b7d014ce793bb7f072e0c852886f08
-
-graylog-enterprise-integrations-plugins:
-  source: https://packages.graylog2.org/releases/graylog-enterprise-integrations/graylog-enterprise-integrations-plugins-#{version}#{suffix}.tgz
-  sha256: 51ac8f008546abac5d9aa96af2e98fb7426692cf9a9da9d1fa6afeb5069697a1
-
-graylog-forwarder:
-  source: https://packages.graylog2.org/releases/cloud/forwarder/3.3.9/graylog-cloud-forwarder-3.3.9-20201119163247.tar.gz
-  sha256: f58ce21bfaf1f749c4d20d3071aafeffffe4909af55db77792f92d5982bd5a6a
-  version_major: '4.1'
-  version: 4.1
-  revision: '1'
-
 graylog-sidecar:
   source: https://packages.graylog2.org/releases/graylog-collector-sidecar/#{version}/graylog-sidecar-#{version}.tar.gz
   sha256: a474f67670f06758d6dc8249e864d8b4e40a88116acf8a254a7dcda61b8f4342

@@ -18,8 +18,8 @@ class GraylogServer < FPM::Cookery::Recipe
   vendor     data.vendor
   license    data.license
 
-  replaces 'graylog2-server'
-  conflicts 'graylog2-web', 'graylog-web', 'graylog'
+  replaces 'graylog2-server', 'graylog-integrations-plugins'
+  conflicts 'graylog2-web', 'graylog-web', 'graylog', 'graylog-integrations-plugins'
 
   config_files '/etc/graylog/server/server.conf',
                '/etc/graylog/server/log4j2.xml',
