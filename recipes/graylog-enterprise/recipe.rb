@@ -19,12 +19,14 @@ class GraylogEnterpriseServer < FPM::Cookery::Recipe
   license    data.license
 
   conflicts 'graylog2-web', 'graylog-web', 'graylog', 'graylog2-server',
-            'graylog-server', 'graylog-enterprise-plugins',
+            'graylog-enterprise-plugins',
+            'graylog-enterprise-integrations-plugins',
             'graylog-integrations-plugins',
-            'graylog-enterprise-integrations-plugins'
-  replaces 'graylog-server', 'graylog-enterprise-plugins',
+            'graylog-server'
+  replaces 'graylog-enterprise-plugins',
+           'graylog-enterprise-integrations-plugins',
            'graylog-integrations-plugins',
-           'graylog-enterprise-integrations-plugins'
+           'graylog-server'
 
   config_files '/etc/graylog/server/server.conf',
                '/etc/graylog/server/log4j2.xml',
