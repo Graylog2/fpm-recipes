@@ -25,7 +25,19 @@ case "$1" in
 	# RPM based systems
 	0)
 		# Removal
-		remove_data="true"
+
+		# In Graylog 5.0.0 we removed the separate plugin
+		# packages and only have "graylog-server" and
+		# "graylog-enterprise" packages from that point on.
+		# If a user had "graylog-server" plus the enterprise
+		# plugins installed, they have to install
+		# "graylog-enterprise" to update to 5.0.
+		# That triggers an uninstall of the "graylog-server"
+		# package.
+		# We don't want to remove the journal dir and other
+		# data in that case, so we set remove_data to false
+		# to make sure users don't lose data when they update to 5.0.
+		remove_data="false"
 		;;
 	1)
 		# Upgrade
