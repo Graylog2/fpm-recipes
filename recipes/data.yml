@@ -12,7 +12,7 @@ default:
   version_major: '5.0'
   version: 5.0.0
   suffix: -beta.1
-  revision: 3.beta.1
+  revision: 4.beta.1
   homepage: https://www.graylog.org/
   maintainer: Graylog, Inc. <hello@graylog.org>
   vendor: graylog

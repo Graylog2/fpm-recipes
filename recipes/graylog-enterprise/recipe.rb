@@ -25,8 +25,7 @@ class GraylogEnterpriseServer < FPM::Cookery::Recipe
             'graylog-server'
   replaces 'graylog-enterprise-plugins',
            'graylog-enterprise-integrations-plugins',
-           'graylog-integrations-plugins',
-           'graylog-server'
+           'graylog-integrations-plugins'
 
   config_files '/etc/graylog/server/server.conf',
                '/etc/graylog/server/log4j2.xml',
