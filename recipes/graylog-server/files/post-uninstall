@@ -25,7 +25,10 @@ case "$1" in
 	# RPM based systems
 	0)
 		# Removal
-		remove_data="true"
+		# We don't remove any data on package removal to ensure that
+		# uses don't lose any journal data when moving from the
+		# graylog-server to the graylog-enterprise package.
+		remove_data="false"
 		;;
 	1)
 		# Upgrade
