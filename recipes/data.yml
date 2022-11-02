@@ -11,8 +11,8 @@
 default:
   version_major: '5.0'
   version: 5.0.0
-  suffix: -beta.1
-  revision: 6.beta.1
+  suffix: -beta.2
+  revision: 7.beta.2
   homepage: https://www.graylog.org/
   maintainer: Graylog, Inc. <hello@graylog.org>
   vendor: graylog
@@ -20,17 +20,17 @@ default:
 
 graylog-server:
   source: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz
-  sha256: 64189eec19a88f41d821d7003c503adb1d401018ef78deda2eb3f87ee276ad58
+  sha256: d26d89c691c19e1419322e16642c3119c59ba5a87ed6fbe3a2f7042b974cba87
 
 graylog-enterprise:
   source: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}.tgz
-  sha256: 4045510c8e98e8e63cb25919ba9e902e79193ae6ccf18fa8e18a497ba01a4ff0
+  sha256: ebae13e181c98e5f196f9a6c26530fbd28d17f88a0a0eac98a4ccdab43b1c326
 
 graylog-sidecar:
   source: https://packages.graylog2.org/releases/graylog-collector-sidecar/#{version}#{suffix}/graylog-sidecar-#{version}#{suffix}.tar.gz
   sha256: f2a366eba2300532c6d619b3783aa8621f92b897d764d8b0b9c2b91cdee08da3
   version_major: '1.3'
-  version: '1.3.0'
+  version: 1.3.0
   suffix: -beta.1
   revision: 1.beta.1
 
