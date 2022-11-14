@@ -35,11 +35,11 @@ JAR_FILE=/usr/share/graylog-server/graylog.jar
 JAVA=/usr/bin/java
 PID_DIR=/var/run/graylog-server
 PID_FILE=$PID_DIR/$NAME.pid
-JAVA_ARGS="-jar -Djava.library.path=/usr/share/graylog-server/lib/sigar -Dlog4j.configurationFile=file:///etc/graylog/server/log4j2.xml -Dgraylog2.installation_source=${GRAYLOG_INSTALLATION_SOURCE:=unknown} $JAR_FILE server -p $PID_FILE -f /etc/graylog/server/server.conf"
+JAVA_ARGS="-jar -Dlog4j.configurationFile=file:///etc/graylog/server/log4j2.xml -Dgraylog2.installation_source=${GRAYLOG_INSTALLATION_SOURCE:=unknown} $JAR_FILE server -p $PID_FILE -f /etc/graylog/server/server.conf"
 SCRIPTNAME=/etc/init.d/$NAME
 LOCKFILE=/var/lock/subsys/$NAME
 GRAYLOG_SERVER_USER=graylog
-GRAYLOG_SERVER_JAVA_OPTS=""
+GRAYLOG_SERVER_JAVA_OPTS="-XX:+UseG1GC"
 # Pull in sysconfig settings
 [ -f /etc/sysconfig/${NAME} ] && . /etc/sysconfig/${NAME}
 
@@ -49,16 +49,6 @@ GRAYLOG_SERVER_JAVA_OPTS=""
 
 if [ -f "/usr/share/graylog-server/installation-source.sh" ]; then
     . "/usr/share/graylog-server/installation-source.sh"
-fi
-
-# Java versions > 8 don't support UseParNewGC
-if "$JAVA" -XX:+PrintFlagsFinal 2>&1 | grep -q UseParNewGC; then
-	GRAYLOG_SERVER_JAVA_OPTS="$GRAYLOG_SERVER_JAVA_OPTS -XX:+UseParNewGC"
-fi
-
-# Java versions >= 15 don't support CMS Garbage Collector
-if "$JAVA" -XX:+PrintFlagsFinal 2>&1 | grep -q UseConcMarkSweepGC; then
-	GRAYLOG_SERVER_JAVA_OPTS="$GRAYLOG_SERVER_JAVA_OPTS -XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled -XX:+CMSClassUnloadingEnabled"
 fi
 
 start() {
