@@ -44,12 +44,12 @@ with open(args.yaml_path) as f:
     if args.checksum:
         if args.arch == 'all':
             if not 'source' in data[args.package_name]:
-                raise RuntimeError('Missing "source" field in {args.yaml_path} for package {args.package_name}')
+                raise RuntimeError(f'Missing {source_field} field in {args.yaml_path} for package {args.package_name}')
             data[args.package_name]['sha256'] = args.checksum
         else:
             source_field = f'source_{args.arch}'
             if not source_field in data[args.package_name]:
-                raise RuntimeError(f"Missing {source_field} field in {args.yaml_path} for package {args.package_name}")
+                raise RuntimeError(f'Missing {source_field} field in {args.yaml_path} for package {args.package_name}')
             data[args.package_name][f'sha256_{args.arch}'] = args.checksum
 
     if args.version_major:
