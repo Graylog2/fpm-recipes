@@ -19,12 +19,16 @@ default:
   license: SSPL
 
 graylog-server:
-  source: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz
-  sha256: 773dc1560fe3706452c87da2b4d85e917a53d7e0b8483c1bd7b676ed474fc404
+  source_amd64: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}-linux-x64.tgz
+  sha256_amd64: missing
+  source_arm64: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}-linux-aarch64.tgz
+  sha256_arm64: missing
 
 graylog-enterprise:
-  source: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}.tgz
-  sha256: 44bb79d55ad4947b9317f0e13c9eecb37862c8600bef05380281a0e250a9d501
+  source_amd64: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}-linux-x64.tgz
+  sha256_amd64: missing
+  source_arm64: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}-linux-aarch64.tgz
+  sha256_arm64: missing
 
 graylog-sidecar:
   source: https://packages.graylog2.org/releases/graylog-collector-sidecar/#{version}#{suffix}/graylog-sidecar-#{version}#{suffix}.tar.gz

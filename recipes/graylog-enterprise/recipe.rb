@@ -76,6 +76,7 @@ class GraylogEnterpriseServer < FPM::Cookery::Recipe
     share('graylog-server').install file("installation-source.#{target}.sh"), 'installation-source.sh'
 
     share('graylog-server').install 'graylog.jar'
+    share('graylog-server').install 'jvm'
     share('graylog-server').install 'plugin'
 
     share('graylog-server').install 'LICENSE'

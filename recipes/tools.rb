@@ -1,4 +1,5 @@
 require 'yaml'
+require 'fpm/cookery/log'
 
 module Tools
   def self.included(base)
@@ -119,11 +120,15 @@ module FPM
         end
 
         def source
-          data('source')
+          arch_data('source').tap do |v|
+            FPM::Cookery::Log.info("[data] Using source: #{v.inspect}")
+          end
         end
 
         def sha256
-          data('sha256')
+          arch_data('sha256').tap do |v|
+            FPM::Cookery::Log.info("[data] Using sha256: #{v.inspect}")
+          end
         end
 
         def homepage
@@ -144,9 +149,24 @@ module FPM
 
         private
 
+        def arch_data(key)
+          case arch
+          when 'all'
+            data(key)
+          else
+            data("#{key}_#{arch}")
+          end
+        end
+
+        def arch
+          @recipe.arch
+        end
+
         def data(key)
           data = @yaml['default'].merge(@yaml.fetch(@recipe.name, {}))
           pattern = /#\{(\S+?)\}/
+
+          raise ArgumentError.new(%{Data key #{key.inspect} not found in: #{data.inspect}}) unless data.has_key?(key)
 
           data[key].gsub(pattern) do |match|
             if match =~ pattern
@@ -155,7 +175,7 @@ module FPM
               elsif data.has_key?($1)
                 data.fetch($1)
               else
-                raise "No replacement for #{$1} found, abort."
+                raise "No replacement found for \"#{$1}\", abort."
               end
             end
           end
