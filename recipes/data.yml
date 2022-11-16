@@ -11,8 +11,8 @@
 default:
   version_major: '5.0'
   version: 5.0.0
-  suffix: -beta.4
-  revision: 9.beta.4
+  suffix: -beta.5
+  revision: 10.beta.5
   homepage: https://www.graylog.org/
   maintainer: Graylog, Inc. <hello@graylog.org>
   vendor: graylog
@@ -20,19 +20,19 @@ default:
 
 graylog-server:
   source: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz
-  sha256: missing
+  sha256: a7990821fb7c4553a5e62e46efe74f2f870264c6d0a6eda75d44c4051fe471c4
   source_amd64: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}-linux-x64.tgz
-  sha256_amd64: missing
+  sha256_amd64: e8b34271f869bb02102778a8a8dc00d0dd5713ed5f5a73a4aeb66bfcde84125c
   source_arm64: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}-linux-aarch64.tgz
-  sha256_arm64: missing
+  sha256_arm64: 3e852e8c637b74e8e4c0de58d031f37e08c2fbc4f17a9ed63894640385131c1d
 
 graylog-enterprise:
   source: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}.tgz
-  sha256: missing
+  sha256: b1973df0f2112c72b42b071501818e397cc02964d69952534458eb15ae28b7dc
   source_amd64: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}-linux-x64.tgz
-  sha256_amd64: missing
+  sha256_amd64: 14fff392e946ab8446476143835b68f8f28bbcf790f65bcbda7d53b73fcc55f3
   source_arm64: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}-linux-aarch64.tgz
-  sha256_arm64: missing
+  sha256_arm64: 88c932374d69d503b732f441fcfda3d83180f8521b7fbc7350214ba35cf35c15
 
 graylog-sidecar:
   source: https://packages.graylog2.org/releases/graylog-collector-sidecar/#{version}#{suffix}/graylog-sidecar-#{version}#{suffix}.tar.gz
