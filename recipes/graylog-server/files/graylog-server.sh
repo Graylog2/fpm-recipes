@@ -16,6 +16,10 @@ if [ -f "/usr/share/graylog-server/installation-source.sh" ]; then
     . "/usr/share/graylog-server/installation-source.sh"
 fi
 
+if [ -z "$JAVA" ] && [ -d "/usr/share/graylog-server/jvm" ]; then
+	JAVA="/usr/share/graylog-server/jvm/bin/java"
+fi
+
 $GRAYLOG_COMMAND_WRAPPER ${JAVA:=/usr/bin/java} $GRAYLOG_SERVER_JAVA_OPTS \
     -jar -Dlog4j.configurationFile=file:///etc/graylog/server/log4j2.xml \
     -Djava.library.path=/usr/share/graylog-server/lib/sigar \

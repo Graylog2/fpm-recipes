@@ -26,6 +26,7 @@ yaml_comments = """  # Make sure to always increase the revision when doing alph
 parser = argparse.ArgumentParser(description='Update values in data.yml')
 parser.add_argument('--path', dest='yaml_path', help='The path to the yaml file to update.', required=True)
 parser.add_argument('--package-name', dest='package_name', help='The name of the package that should be updated.')
+parser.add_argument('--arch', dest='arch', default="all", help='The architecture of the package that should be updated.')
 parser.add_argument('--sha256', dest='checksum', help="The sha256 value that should be set for the package.")
 parser.add_argument('--version-major', dest='version_major', help='The major version (e.g, 3.3, 4.0)')
 parser.add_argument('--version', dest='version', help='The semantic version (3.3.0, 4.0.0)')
@@ -41,7 +42,15 @@ with open(args.yaml_path) as f:
     data = yaml.load(f, Loader=yaml.FullLoader)
 
     if args.checksum:
-        data[args.package_name]['sha256'] = args.checksum
+        if args.arch == 'all':
+            if not 'source' in data[args.package_name]:
+                raise RuntimeError('Missing "source" field in {args.yaml_path} for package {args.package_name}')
+            data[args.package_name]['sha256'] = args.checksum
+        else:
+            source_field = f'source_{args.arch}'
+            if not source_field in data[args.package_name]:
+                raise RuntimeError(f"Missing {source_field} field in {args.yaml_path} for package {args.package_name}")
+            data[args.package_name][f'sha256_{args.arch}'] = args.checksum
 
     if args.version_major:
         data['default']['version_major'] = args.version_major
