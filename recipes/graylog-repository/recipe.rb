@@ -28,6 +28,9 @@ class GraylogRepository < FPM::Cookery::Recipe
   replaces replacements
   conflicts replacements
 
+  # Digest required to make packages work on FIPS enabled RedHat systems
+  rpm_digest_algo 'sha256'
+
   def build
   end
 

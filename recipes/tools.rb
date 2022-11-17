@@ -58,6 +58,15 @@ module Tools
     def pkg_arch
       ENV['PKG_ARCH'] || 'all'
     end
+
+    def rpm_digest_algo(algo)
+      unless %w(sha1 sha256 sha512).include?(algo)
+        raise ArgumentError.new(%{Invalid RPM digest altorithm: #{algo}})
+      end
+
+      # Digest required to make packages work on FIPS enabled RedHat systems
+      fpm_attributes rpm_digest: algo
+    end
   end
 
   def pkg_arch

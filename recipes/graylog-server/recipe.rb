@@ -38,6 +38,8 @@ class GraylogServer < FPM::Cookery::Recipe
   end
 
   targets :rpm do
+    # Digest required to make packages work on FIPS enabled RedHat systems
+    rpm_digest_algo 'sha256'
     config_files '/etc/sysconfig/graylog-server'
   end
 
