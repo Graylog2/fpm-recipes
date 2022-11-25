@@ -11,8 +11,8 @@
 default:
   version_major: '5.0'
   version: 5.0.0
-  suffix: -rc.1
-  revision: '12.rc.1'
+  suffix: -rc.2
+  revision: 13.rc.2
   homepage: https://www.graylog.org/
   maintainer: Graylog, Inc. <hello@graylog.org>
   vendor: graylog
@@ -20,19 +20,19 @@ default:
 
 graylog-server:
   source: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz
-  sha256: 0cdb3a6189584f10fc849e4a79392fc4c72bfb38a2c5f232144d705bdcfbfd13
+  sha256: 56e7aabd6fb12242c08ee4286a59a3c7ba066ea7f942b19513c5d52cd478fa25
   source_amd64: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}-linux-x64.tgz
-  sha256_amd64: 1a65e9dbb6264b8df9c5b65ea409981609a2b03839ac163e66b4c7bfac30c277
+  sha256_amd64: 21e5b6380442ccfa1e698dfd4bdafa522c5324d92de1858837033323a55a4470
   source_arm64: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}-linux-aarch64.tgz
-  sha256_arm64: fc8c8ca83643f7ca393fd39b10294a64ecf19c1be80b192c887711e014917682
+  sha256_arm64: b408e99e10671832b218b37194dc190b2a5a08e93f8c730b82cdc29fb1f8b8eb
 
 graylog-enterprise:
   source: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}.tgz
-  sha256: c57613a1540a5e8b048097813f9b8a096cdaa7ae40190857236d8e00124bf78c
+  sha256: a1ccfb47d3f6c63c4ac02f5763080f0ac06f60366e777c7cd6a889eceeff2a3a
   source_amd64: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}-linux-x64.tgz
-  sha256_amd64: dabccc70d1dd9145018a1a93554f1280ad6620320dbee45ec7cb1b7811b8bfc3
+  sha256_amd64: 580d9e9b8da9f5a5560020f52ed02a1c8ac6cf9f57a1b3c3529e8f9c6d33fb84
   source_arm64: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}-linux-aarch64.tgz
-  sha256_arm64: 3dacb7e3832ffd9c09dbb3285041d90953f0340cf52b55185fd2de72d6d3e1f8
+  sha256_arm64: 609b280462b9c60c8a078bf7965de2afa1c173042391f425d19ce76a74d520e4
 
 graylog-sidecar:
   source: https://packages.graylog2.org/releases/graylog-collector-sidecar/#{version}#{suffix}/graylog-sidecar-#{version}#{suffix}.tar.gz
