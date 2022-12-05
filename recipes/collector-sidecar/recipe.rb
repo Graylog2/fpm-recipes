@@ -1,6 +1,8 @@
 require_relative '../tools'
 
 class GraylogSidecar < FPM::Cookery::Recipe
+  include Tools
+
   description 'Graylog collector sidecar'
 
   name     'graylog-sidecar'
