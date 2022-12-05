@@ -35,8 +35,8 @@ graylog-enterprise:
   sha256_arm64: 86f7069d300b5f29509ec5365cbdc9cea3955543424542837dfe06dc30b4dd6e
 
 graylog-sidecar:
-  source: https://packages.graylog2.org/releases/graylog-collector-sidecar/#{version}#{suffix}/graylog-sidecar-#{version}#{suffix}.tar.gz
-  sha256: fc89970ac45a2966ad0acabbb158c55b848d81fcaf87978dff21ba46f6a39478
+  source_amd64: https://packages.graylog2.org/releases/graylog-collector-sidecar/#{version}#{suffix}/graylog-sidecar-#{version}#{suffix}.tar.gz
+  sha256_amd64: fc89970ac45a2966ad0acabbb158c55b848d81fcaf87978dff21ba46f6a39478
   version_major: '1.3'
   version: 1.3.0
   suffix: -beta.4
