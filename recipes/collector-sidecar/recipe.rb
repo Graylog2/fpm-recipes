@@ -18,7 +18,11 @@ class GraylogSidecar < FPM::Cookery::Recipe
 
   config_files '/etc/graylog/sidecar/sidecar.yml'
 
-  fpm_attributes rpm_os: 'linux'
+  targets :rpm do
+    fpm_attributes rpm_os: 'linux'
+    # Digest required to make packages work on FIPS enabled RedHat systems
+    rpm_digest_algo 'sha256'
+  end
 
   def build
   end

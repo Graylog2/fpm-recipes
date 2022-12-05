@@ -9,7 +9,7 @@ class GraylogSidecarRepository < FPM::Cookery::Recipe
   description "Package to install Graylog Sidecar GPG key and repository"
 
   version    '1'
-  revision   3
+  revision   4
   source     '', :with => :noop
   arch       'all'
   homepage   data.homepage
@@ -17,6 +17,10 @@ class GraylogSidecarRepository < FPM::Cookery::Recipe
   vendor     data.vendor
   license    data.license
 
+  targets :rpm do
+    # Digest required to make packages work on FIPS enabled RedHat systems
+    rpm_digest_algo 'sha256'
+  end
 
   def build
   end
