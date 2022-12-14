@@ -10,9 +10,9 @@
   # Only reset the revision once the version is bumped.
 default:
   version_major: '5.0'
-  version: 5.0.0
+  version: 5.0.1
   suffix: ''
-  revision: '14'
+  revision: '1'
   homepage: https://www.graylog.org/
   maintainer: Graylog, Inc. <hello@graylog.org>
   vendor: graylog
@@ -20,27 +20,27 @@ default:
 
 graylog-server:
   source: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz
-  sha256: ce1814e21ff13b53d1f775d1aed1a197327a41f059ec86a9d584e64a8433b1a4
+  sha256: 98ff5d76db363ae5732a2cf136c54fe1f3dbb0c9eba9c0f4845d68dfbdb6647b
   source_amd64: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}-linux-x64.tgz
-  sha256_amd64: fe258518628c89681a950d5fa6493066f7569a6ee015015ee5d163ac741fafcb
+  sha256_amd64: cbc8bdd338a24dc8438183d1420f61a1a267c8e8af9f53d2816da6e352775b27
   source_arm64: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}-linux-aarch64.tgz
-  sha256_arm64: 4322c7b7524f0bd4b9214bf365a34e7be4217b81beae2ef7126546cccdcd5dbd
+  sha256_arm64: 02d3527358a5c561e15da317b08df2b8d450ef59d0c370502a6cb95df37a69db
 
 graylog-enterprise:
   source: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}.tgz
-  sha256: 9a492a098478bcc41a636268310558c57cace17e08a8b575faf5baeb64908ecd
+  sha256: a1c6e5e9f789d23b53f6c95a1afdf2eff6c66741d3264be5bcdff8d25e5f9ddb
   source_amd64: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}-linux-x64.tgz
-  sha256_amd64: 6bc1fa7eb8fb54679df7908c616868f7ed0ee00e706705fded00021cd3337c58
+  sha256_amd64: e9e2c36f87a613de4d3682c0c3804e3cd0309c4957598676ff58425353306237
   source_arm64: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}-linux-aarch64.tgz
-  sha256_arm64: 86f7069d300b5f29509ec5365cbdc9cea3955543424542837dfe06dc30b4dd6e
+  sha256_arm64: b049491689e78ca5f75ec9835f4770a586be2ced1c00a84de778f7fbea7a3f5b
 
 graylog-sidecar:
   source_amd64: https://packages.graylog2.org/releases/graylog-collector-sidecar/#{version}#{suffix}/graylog-sidecar-#{version}#{suffix}.tar.gz
   sha256_amd64: 4e6878a23ad501be95f59547dc35560fa907e60048842c97829a9e776d26877c
   version_major: '1.3'
   version: 1.3.0
-  suffix: ""
-  revision: "4"
+  suffix: ''
+  revision: '4'
 
 graylog-sidecar-repository:
   version_major: '1.3'
