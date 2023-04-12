@@ -1,0 +1,52 @@
+[Unit]
+Description=Graylog data node
+Documentation=http://docs.graylog.org/
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=10
+
+User=graylog-datanode
+Group=graylog-datanode
+
+EnvironmentFile=/usr/share/graylog-datanode/installation-source.sh
+# DEB
+EnvironmentFile=-/etc/default/graylog-datanode
+# RPM
+EnvironmentFile=-/etc/sysconfig/graylog-datanode
+
+ExecStart=/usr/share/graylog-datanode/bin/graylog-datanode datanode -f /etc/graylog/datanode/datanode.conf -np
+
+# When a JVM receives a SIGTERM signal it exits with 143.
+SuccessExitStatus=143
+
+# Make sure stderr/stdout is captured in the systemd journal.
+StandardOutput=journal
+StandardError=journal
+
+# Specifies the maximum file descriptor number that can be opened by this process
+LimitNOFILE=65535
+
+# Specifies the maximum number of processes
+LimitNPROC=4096
+
+# Specifies the maximum size of virtual memory
+LimitAS=infinity
+
+# Specifies the maximum file size
+LimitFSIZE=infinity
+
+# Disable timeout logic and wait until process is stopped
+TimeoutStopSec=0
+
+# SIGTERM signal is used to stop the Java process
+KillSignal=SIGTERM
+
+# Send the signal only to the JVM rather than its control group
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target

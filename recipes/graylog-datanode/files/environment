@@ -1,0 +1,5 @@
+# Path to a custom JVM home. By default the bundled JVM is used.
+#JAVA_HOME=/usr/lib/jvm/openjdk-17
+
+DATANODE_JVM_OPTIONS_FILE="/etc/graylog/datanode/jvm.options"
+DATANODE_LOG4J_CONFIG_FILE="/etc/graylog/datanode/log4j2.xml"

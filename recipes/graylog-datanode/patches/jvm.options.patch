@@ -1,0 +1,13 @@
+--- config/jvm.options.orig	2023-04-12 16:45:27.038002343 +0200
++++ config/jvm.options	2023-04-12 16:45:36.370021865 +0200
+@@ -2,8 +2,8 @@
+ #
+ # It's recommended to set both values to the same size to avoid stop-the-world
+ # GC pauses during resize.
+--Xms1g
+--Xmx1g
++-Xms256m
++-Xmx256m
+ 
+ # General JVM Settings
+ #

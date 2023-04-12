@@ -1,0 +1,53 @@
+#!/bin/sh
+
+set -e
+
+user="graylog-datanode"
+group="graylog-datanode"
+datadir="/var/lib/graylog-datanode"
+logdir="/var/log/graylog-datanode"
+
+case "$1" in
+	# DEB based systems
+	install|upgrade)
+		if ! getent group "$group" > /dev/null 2>&1 ; then
+			addgroup --system "$group" --quiet
+		fi
+
+		if ! id "$user" > /dev/null 2>&1 ; then
+			adduser --system --home "$datadir" --no-create-home \
+				--ingroup "$group" --disabled-password \
+				--gecos "Graylog data node" \
+				--shell /bin/false --quiet "$user"
+		fi
+		;;
+	abort-deconfigure|abort-upgrade|abort-remove)
+		# Ignore
+		;;
+	# RPM based systems
+	1|2)
+		# Create graylog group
+		if ! getent group "$user" >/dev/null; then
+			groupadd -r "$user"
+		fi
+
+		# Create graylog user
+		if ! getent passwd "$user">/dev/null; then
+			useradd -r -M -g "$group" -d "$datadir" \
+				-s /sbin/nologin -c "Graylog data node" "$user"
+		fi
+		;;
+	*)
+		echo "[ERROR] pre-install script called with unknown argument: '$1'"
+		exit 1
+		;;
+esac
+
+# Create directories
+install -d -o "$user" -g "$group" -m 0755 "$datadir"
+install -d -o "$user" -g "$group" -m 0755 "$datadir/opensearch/config"
+install -d -o "$user" -g "$group" -m 0755 "$datadir/opensearch/data"
+install -d -o "$user" -g "$group" -m 0755 "$logdir"
+install -d -o "$user" -g "$group" -m 0755 "$logdir/opensearch"
+
+exit 0
