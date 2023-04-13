@@ -1,0 +1,20 @@
+--- dist/opensearch-2.5.0-linux-x64/config/jvm.options.orig	2023-04-13 15:23:29.266173125 +0200
++++ dist/opensearch-2.5.0-linux-x64/config/jvm.options	2023-04-13 15:25:02.934998926 +0200
+@@ -61,7 +61,7 @@
+ -XX:HeapDumpPath=data
+ 
+ # specify an alternative path for JVM fatal error logs
+--XX:ErrorFile=logs/hs_err_pid%p.log
++-XX:ErrorFile=/var/log/graylog-datanode/opensearch/hs_err_pid%p.log
+ 
+ ## JDK 8 GC logging
+ 8:-XX:+PrintGCDetails
+@@ -74,7 +74,7 @@
+ 8:-XX:GCLogFileSize=64m
+ 
+ # JDK 9+ GC logging
+-9-:-Xlog:gc*,gc+age=trace,safepoint:file=logs/gc.log:utctime,pid,tags:filecount=32,filesize=64m
++9-:-Xlog:gc*,gc+age=trace,safepoint:file=/var/log/graylog-datanode/opensearch/gc.log:utctime,pid,tags:filecount=8,filesize=64m
+ 
+ # Explicitly allow security manager (https://bugs.openjdk.java.net/browse/JDK-8270380)
+ 18-:-Djava.security.manager=allow

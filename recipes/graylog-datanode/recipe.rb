@@ -43,6 +43,15 @@ class GraylogDataNode < FPM::Cookery::Recipe
     patch(workdir('patches/datanode.conf.patch'))
     patch(workdir('patches/jvm.options.patch'))
     patch(workdir('patches/log4j2.xml.patch'))
+
+    case pkg_arch
+    when 'amd64'
+      patch(workdir('patches/opensearch-linux-x64-jvm.options.patch'))
+    when 'arm64'
+      patch(workdir('patches/opensearch-linux-aarch64-jvm.options.patch'))
+    else
+      raise 'Unhandled architecture for OpenSearch patch'
+    end
   end
 
   def install
