@@ -9,10 +9,10 @@
   #
   # Only reset the revision once the version is bumped.
 default:
-  version_major: '5.0'
-  version: 5.0.6
-  suffix: ''
-  revision: '1'
+  version_major: '5.1'
+  version: 5.1.0
+  suffix: -beta.1
+  revision: 1.beta.1
   homepage: https://www.graylog.org/
   maintainer: Graylog, Inc. <hello@graylog.org>
   vendor: graylog
@@ -20,27 +20,27 @@ default:
 
 graylog-server:
   source: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz
-  sha256: 18ec621b1d81538c7803d5b493de20a97961470a22c66d162b451937e2d79324
+  sha256: 0c3a7881b4f796ff77e1f8fa35062d91936fd19ff950395423a08f34e1f90789
   source_amd64: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}-linux-x64.tgz
-  sha256_amd64: 5e7b00f0b1b25d78c2c30ff1e41a33284da4d254eb95f1e9f351e7395ac8b75e
+  sha256_amd64: b1d6abbcfdcd8fd26a4f4328ff833442df386029fc3f7cc4fa5ad74f84c2b7bf
   source_arm64: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}-linux-aarch64.tgz
-  sha256_arm64: a5243c8163b541866feedba7a80d0ee03f9c66a186be0b632569be283229f8c6
+  sha256_arm64: b011d5ebe9887864d41f06356c9f991da82f5ec6bd42c51f5774fc531141eafe
 
 graylog-enterprise:
   source: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}.tgz
-  sha256: de8beb001a5d402e4c44cf872f3301c8d6b2757267a9c9e48c09f383d2dc77fa
+  sha256: 7d0cbb345fa22186e18d70e49d9a830ab61e31e29eb8bca0277fd4cf65a23320
   source_amd64: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}-linux-x64.tgz
-  sha256_amd64: 7339e460dc6259c16d9f5804f03366aac1a5b73cc659c77bf5c1083a95447675
+  sha256_amd64: 11acce13e59163b7161cf28401a8474aef0b5ed498278b293f74045077ddb3cd
   source_arm64: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}-linux-aarch64.tgz
-  sha256_arm64: c88f43a36e7acb9ba998c5fce9b3de5ba240669a350767ed5aa0d38bd116862b
+  sha256_arm64: 6e7206268516c83601757fee37247a07484b3620e3b05ff4fc76ceb644a9af37
 
 graylog-datanode:
   source: https://packages.graylog2.org/releases/graylog-datanode/graylog-datanode-#{version}#{suffix}.tgz
-  sha256: none
+  sha256: 8af8370abff1383a71521e4a33983693d1cea48e532e7b7a4090e943e436fa01
   source_amd64: https://packages.graylog2.org/releases/graylog-datanode/graylog-datanode-#{version}#{suffix}-linux-x64.tgz
-  sha256_amd64: none
+  sha256_amd64: f8c60c6fc80264e466c80b96a3cf142c59dadb292e7bf9550bfb3655d9795406
   source_arm64: https://packages.graylog2.org/releases/graylog-datanode/graylog-datanode-#{version}#{suffix}-linux-aarch64.tgz
-  sha256_arm64: none
+  sha256_arm64: 0ecd1a513a89a391067e55d43559dc11624b1ad04fc1a01d18c9e7f10bbb00e9
 
 graylog-sidecar:
   source_amd64: https://packages.graylog2.org/releases/graylog-collector-sidecar/#{version}#{suffix}/graylog-sidecar-#{version}#{suffix}.tar.gz
