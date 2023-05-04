@@ -1,13 +1,16 @@
---- datanode.conf.example.orig	2023-04-12 16:36:18.208456594 +0200
-+++ datanode.conf.example	2023-04-12 16:40:36.897279746 +0200
-@@ -1,15 +1,15 @@
+--- datanode.conf.example.orig	2023-05-04 18:23:13.707925772 +0200
++++ datanode.conf.example	2023-05-04 18:25:54.729145923 +0200
+@@ -1,18 +1,18 @@
  # defaults
+ 
+ # Root directory of opensearch distribution
+-opensearch_location = dist/
++opensearch_location = /usr/share/graylog-datanode/dist
+ 
  # locations of bin, data and log directories
--opensearch_location = dist/opensearch-2.4.1
 -opensearch_config_location = config
 -opensearch_data_location = data
 -opensearch_logs_location = logs
-+opensearch_location = /usr/share/graylog-datanode/dist/opensearch-2.4.1
 +opensearch_config_location = /var/lib/graylog-datanode/opensearch/config
 +opensearch_data_location = /var/lib/graylog-datanode/opensearch/data
 +opensearch_logs_location = /var/log/graylog-datanode/opensearch
