@@ -1,0 +1,71 @@
+#!/bin/sh
+
+set -e
+
+# Flag to indicate if this is an upgrade
+upgrade="false"
+
+case "$1" in
+	# DEB based systems
+	configure)
+		if [ -z "$2" ]; then
+			upgrade="false"
+		else
+			upgrade="true"
+		fi
+		;;
+	abort-deconfigure|abort-upgrade|abort-remove)
+		;;
+	# RPM based systems
+	1)
+		# Installation
+		upgrade="false"
+		;;
+	2)
+		# Upgrade
+		upgrade="true"
+		;;
+	*)
+		echo "[ERROR] post-install script called with unknown argument: '$1'"
+		exit 1
+		;;
+esac
+
+# Create an initial data node node-id if it does not exist or is empty.
+node_id_file="/etc/graylog/datanode/node-id"
+if [ ! -s "$node_id_file" ]; then
+	if command -v uuidgen >/dev/null; then
+		uuidgen > "$node_id_file"
+	else
+		echo "[WARNING] uuidgen not available! Please execute 'uuidgen > $node_id_file' once it's installed."
+	fi
+fi
+
+if command -v systemctl >/dev/null; then
+	# Reload systemd configuration to make sure the new unit file gets activated
+	systemctl daemon-reload || true
+fi
+
+if [ "$upgrade" = "true" ]; then
+	# This is an upgrade, exit early.
+	exit 0
+fi
+
+echo "################################################################################"
+echo "Graylog Data Node does NOT start automatically!"
+echo ""
+echo "Please run the following commands if you want to start Graylog automatically on system boot:"
+echo ""
+echo "    sudo systemctl enable graylog-datanode.service"
+echo ""
+echo "    sudo systemctl start graylog-datanode.service"
+echo ""
+echo "To run Graylog Data Node, the value of the \"vm.max_map_count\" sysctl setting needs"
+echo "to be at least 262144 or more. Run the following commands to set and persist the"
+echo "value."
+echo ""
+echo "    sudo sysctl -w vm.max_map_count=262144"
+echo "    echo \"vm.max_map_count = 262144\" | sudo tee /etc/sysctl.d/99-graylog-datanode.conf"
+echo "################################################################################"
+
+exit 0

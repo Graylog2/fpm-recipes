@@ -1,0 +1,26 @@
+--- datanode.conf.example.orig	2023-05-04 18:23:13.707925772 +0200
++++ datanode.conf.example	2023-05-04 18:25:54.729145923 +0200
+@@ -1,18 +1,18 @@
+ # defaults
+ 
+ # Root directory of opensearch distribution
+-opensearch_location = dist/
++opensearch_location = /usr/share/graylog-datanode/dist
+ 
+ # locations of bin, data and log directories
+-opensearch_config_location = config
+-opensearch_data_location = data
+-opensearch_logs_location = logs
++opensearch_config_location = /var/lib/graylog-datanode/opensearch/config
++opensearch_data_location = /var/lib/graylog-datanode/opensearch/data
++opensearch_logs_location = /var/log/graylog-datanode/opensearch
+ 
+ # connection to the mongodb, shared with the Graylog server
+ mongodb_uri = mongodb://localhost/graylog
+ 
+ # location of the node_id file
+-node_id_file = data/node-id
++node_id_file = /etc/graylog/datanode/node-id
+ 
+ # You MUST set a secret to secure/pepper the stored user passwords here. Use at least 64 characters.
+ # Generate one by using for example: pwgen -N 1 -s 96
