@@ -10,7 +10,7 @@
   # Only reset the revision once the version is bumped.
 default:
   version_major: '5.0'
-  version: 5.0.7
+  version: 5.0.8
   suffix: ''
   revision: '1'
   homepage: https://www.graylog.org/
@@ -20,19 +20,19 @@ default:
 
 graylog-server:
   source: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz
-  sha256: c06c3b8f5bc16b4c5ca327eb2bbc652c6284945d525768a39feb90f023a3f3b6
+  sha256: 4c6266d8f1a85da2e1973c9f49629270427110639b4d5b6da4411a733b171e20
   source_amd64: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}-linux-x64.tgz
-  sha256_amd64: 1ddb5ba515cb6cad791f17a2db01c69589d49804419002b5bb7f3a7900cebfe4
+  sha256_amd64: eb6490127e59850740178ec66faa87def3bac34af5e51a243ea6c102592c2232
   source_arm64: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}-linux-aarch64.tgz
-  sha256_arm64: 897bda956ab05e2000ea7ac87578e27cd615d343702521215331d03d142029c0
+  sha256_arm64: 2ca95e1688ba6ff56c5f872ef532965971b3d4ca17e83a98984dea18e32193fd
 
 graylog-enterprise:
   source: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}.tgz
-  sha256: b7cd8db7040a1ac5b5abda49db69c8283172a7d411f50f58ef8d3c18fe0fcf6d
+  sha256: abba00b407c3e0875fc2cdc039b96dee318b7c32f8b7bdfc58ab097bfea2b186
   source_amd64: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}-linux-x64.tgz
-  sha256_amd64: d5ecd30ab19a2b5933c91268631268b2df6770929875ce7845f076abeb6f8411
+  sha256_amd64: f18acaa843f8e433300ff20358ad6be1e8245dea1aba6e6f1ee33fe355eddfdf
   source_arm64: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}-linux-aarch64.tgz
-  sha256_arm64: d2d02911df0d0bbf43e41123bab62a7aa065dd52c7dcb4b31d732a5a5617fa92
+  sha256_arm64: 5958a3f1e5cd3ee8a7517b235156bb2eec80a34478fb06833c6f084f750ff7a9
 
 graylog-sidecar:
   source_amd64: https://packages.graylog2.org/releases/graylog-collector-sidecar/#{version}#{suffix}/graylog-sidecar-#{version}#{suffix}.tar.gz
