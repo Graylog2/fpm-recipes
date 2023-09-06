@@ -10,7 +10,7 @@
   # Only reset the revision once the version is bumped.
 default:
   version_major: '5.0'
-  version: 5.0.10
+  version: 5.0.11
   suffix: ''
   revision: '1'
   homepage: https://www.graylog.org/
@@ -20,19 +20,19 @@ default:
 
 graylog-server:
   source: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz
-  sha256: 08c2b8997b713d75fdf3052312abb622745cb46954566c803d38078cfd2d880c
+  sha256: c1104c6498df79eb5d2c10b9f271babb4c513e00e2068de5cac646e291b627c5
   source_amd64: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}-linux-x64.tgz
-  sha256_amd64: 1c4d86ed7f81dd51404a627766bce08ff4448cd1dbe6727d463cb35b16f4647c
+  sha256_amd64: 8e318b31f836f4ef56c253e30220c872dac5f6d2f63edd2d65c3fe5002a6a0fd
   source_arm64: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}-linux-aarch64.tgz
-  sha256_arm64: b617a60dd5ea6ca6f71298e138d6980802aade36ebecccaa80d65bae0160b2b4
+  sha256_arm64: ffc81dad054bbc7daa6a7b4fa82bde0e03e4447cc6199193f6e3761ec6e41d99
 
 graylog-enterprise:
   source: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}.tgz
-  sha256: 3c87790b5aba8add8a9209d67cd9910de8e702ff7b4c6858c305daeff293b667
+  sha256: 0f26fc6e54ec8c7cd5270d39dc2e15c7e79f4551c12b67b04808c05585b8c6e0
   source_amd64: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}-linux-x64.tgz
-  sha256_amd64: 4f06825d67a18b9aae809c9f6b5e3878838d32188a0243cb8cb3ca259ff2ffd0
+  sha256_amd64: 1eee1fd8fb21ce6b96c70f23f0f53af4e06103e295ec547510d1571d2550be77
   source_arm64: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}-linux-aarch64.tgz
-  sha256_arm64: eea5025f9f2f2f1435b0012a30cda0d63072c7e385edffe3d23ece8b1c19c475
+  sha256_arm64: b0e39419e56d7736f8ebd92fc5a21f3b428f9efceeffd60e2a915ec8cd40eef5
 
 graylog-sidecar:
   source_amd64: https://packages.graylog2.org/releases/graylog-collector-sidecar/#{version}#{suffix}/graylog-sidecar-#{version}#{suffix}.tar.gz
