@@ -38,33 +38,33 @@ The following example command builds the graylog-server package for Ubuntu
 14.04.
 
 ```
-$ vagrant docker-run ubuntu1404 -- fpm-cook package /vagrant/recipes/graylog-server/recipe.rb
-==> ubuntu1404: Building the container from a Dockerfile...
-    ubuntu1404: Image: 0f7af5021f9f
-==> ubuntu1404: Creating the container...
-    ubuntu1404:   Name: recipes_ubuntu1404_1399476701
-    ubuntu1404:  Image: 0f7af5021f9f
-    ubuntu1404:    Cmd: fpm-cook package /vagrant/recipes/graylog-server/recipe.rb
-    ubuntu1404: Volume: /src/graylog-fpm-recipes:/vagrant
-    ubuntu1404:
-    ubuntu1404: Container is starting. Output will stream in below...
-    ubuntu1404:
-    ubuntu1404: ===> Starting package creation for graylog-server-1.0.0 (ubuntu, deb)
-    ubuntu1404: ===>
-    ubuntu1404: ===> Verifying build_depends and depends with Puppet
-    ubuntu1404: ===> Verifying package: openjdk-7-jre-headless
-    ubuntu1404: ===> All build_depends and depends packages installed
-    ubuntu1404: ===> Fetching source:
-    ubuntu1404: ===> Using cached file /vagrant/recipes/graylog-server/cache/graylog-server-1.0.0.tgz
-    ubuntu1404: ===> Building in /vagrant/recipes/graylog-server/tmp-build/graylog-server-1.0.0
-    ubuntu1404: ===> Installing into /vagrant/recipes/graylog-server/tmp-dest
-    ubuntu1404: ===> [FPM] Converting dir to deb {}
-    ubuntu1404: ===> Removing existing package file: graylog-server_1.0.0_all.deb
-    ubuntu1404: ===> [FPM] No deb_installed_size set, calculating now. {}
-    ubuntu1404: ===> [FPM] Reading template {"path":"/var/lib/gems/1.9.1/gems/fpm-1.0.2/templates/deb.erb"}
-    ubuntu1404: ===> [FPM] Creating {"path":"/tmp/package-deb-build20140507-1-32jt4z/control.tar.gz","from":"/tmp/package-deb-build20140507-1-32jt4z/control"}
-    ubuntu1404: ===> [FPM] Created deb package {"path":"graylog-server_1.0.0_all.deb"}
-    ubuntu1404: ===> Created package: /vagrant/recipes/graylog-server/pkg/graylog-server_1.0.0_all.deb
+$ vagrant docker-run ubuntu2004 -- fpm-cook package /vagrant/recipes/graylog-server/recipe.rb
+==> ubuntu2004: Building the container from a Dockerfile...
+    ubuntu2004: Image: 0f7af5021f9f
+==> ubuntu2004: Creating the container...
+    ubuntu2004:   Name: recipes_ubuntu2004_1399476701
+    ubuntu2004:  Image: 0f7af5021f9f
+    ubuntu2004:    Cmd: fpm-cook package /vagrant/recipes/graylog-server/recipe.rb
+    ubuntu2004: Volume: /src/graylog-fpm-recipes:/vagrant
+    ubuntu2004:
+    ubuntu2004: Container is starting. Output will stream in below...
+    ubuntu2004:
+    ubuntu2004: ===> Starting package creation for graylog-server-1.0.0 (ubuntu, deb)
+    ubuntu2004: ===>
+    ubuntu2004: ===> Verifying build_depends and depends with Puppet
+    ubuntu2004: ===> Verifying package: openjdk-7-jre-headless
+    ubuntu2004: ===> All build_depends and depends packages installed
+    ubuntu2004: ===> Fetching source:
+    ubuntu2004: ===> Using cached file /vagrant/recipes/graylog-server/cache/graylog-server-1.0.0.tgz
+    ubuntu2004: ===> Building in /vagrant/recipes/graylog-server/tmp-build/graylog-server-1.0.0
+    ubuntu2004: ===> Installing into /vagrant/recipes/graylog-server/tmp-dest
+    ubuntu2004: ===> [FPM] Converting dir to deb {}
+    ubuntu2004: ===> Removing existing package file: graylog-server_1.0.0_all.deb
+    ubuntu2004: ===> [FPM] No deb_installed_size set, calculating now. {}
+    ubuntu2004: ===> [FPM] Reading template {"path":"/var/lib/gems/1.9.1/gems/fpm-1.0.2/templates/deb.erb"}
+    ubuntu2004: ===> [FPM] Creating {"path":"/tmp/package-deb-build20140507-1-32jt4z/control.tar.gz","from":"/tmp/package-deb-build20140507-1-32jt4z/control"}
+    ubuntu2004: ===> [FPM] Created deb package {"path":"graylog-server_1.0.0_all.deb"}
+    ubuntu2004: ===> Created package: /vagrant/recipes/graylog-server/pkg/graylog-server_1.0.0_all.deb
 $
 ```
 
@@ -72,38 +72,38 @@ To build the graylog-server package on CentOS 6 only the VM name needs to
 be exchanged.
 
 ```
-$ vagrant docker-run centos6 -- fpm-cook package /vagrant/recipes/graylog-server/recipe.rb
-==> centos6: Building the container from a Dockerfile...
-    centos6: Image: ca5e4f877dac
-==> centos6: Creating the container...
-    centos6:   Name: graylog-fpm-recipes_centos6_1399484675
-    centos6:  Image: ca5e4f877dac
-    centos6:    Cmd: fpm-cook package /vagrant/recipes/graylog-server/recipe.rb
-    centos6: Volume: /src/graylog-fpm-recipes:/vagrant
-    centos6:
-    centos6: Container is starting. Output will stream in below...
-    centos6:
-    centos6: ===> Starting package creation for graylog-server-1.0.0 (centos, rpm)
-    centos6: ===>
-    centos6: ===> Verifying build_depends and depends with Puppet
-    centos6: ===> Verifying package: java-1.7.0-openjdk
-    centos6: ===> All build_depends and depends packages installed
-    centos6: ===> Fetching source:
-    centos6: ===> Using cached file /vagrant/recipes/graylog-server/cache/graylog-server-1.0.0.tgz
-    centos6: ===> Building in /vagrant/recipes/graylog-server/tmp-build/graylog-server-1.0.0
-    centos6: ===> Installing into /vagrant/recipes/graylog-server/tmp-dest
-    centos6: ===> [FPM] Converting dir to rpm {}
-    centos6: ===> Removing existing package file: graylog-server-1.0.0-1.noarch.rpm
-    centos6: ===> [FPM] Reading template {"path":"/usr/lib/ruby/gems/1.8/gems/fpm-1.0.2/templates/rpm.erb"}
-    centos6: ===> [FPM] Running rpmbuild {"args":["rpmbuild","-bb","--define","buildroot /tmp/package-rpm-build20140507-1-ttb91c/BUILD","--define","_topdir /tmp/package-rpm-build20140507-1-ttb91c","--define","_sourcedir /tmp/package-rpm-build20140507-1-ttb91c","--define","_rpmdir /tmp/package-rpm-build20140507-1-ttb91c/RPMS","/tmp/package-rpm-build20140507-1-ttb91c/SPECS/graylog-server.spec"]}
-    centos6: ===> [FPM] Executing(%prep): /bin/sh -e /var/tmp/rpm-tmp.PiGYv6 {}
-    centos6: ===> [FPM] Executing(%build): /bin/sh -e /var/tmp/rpm-tmp.14unGZ {}
-    centos6: ===> [FPM] Executing(%install): /bin/sh -e /var/tmp/rpm-tmp.8xL6QS {}
-    centos6: ===> [FPM] Processing files: graylog-server-1.0.0-1.noarch {}
-    centos6: ===> [FPM] Wrote: /tmp/package-rpm-build20140507-1-ttb91c/RPMS/noarch/graylog-server-1.0.0-1.noarch.rpm {}
-    centos6: ===> [FPM] Executing(%clean): /bin/sh -e /var/tmp/rpm-tmp.M2OieO {}
-    centos6: ===> [FPM] Created rpm {"path":"graylog-server-1.0.0-1.noarch.rpm"}
-    centos6: ===> Created package: /vagrant/recipes/graylog-server/pkg/graylog-server-1.0.0-1.noarch.rpm
+$ vagrant docker-run centos8 -- fpm-cook package /vagrant/recipes/graylog-server/recipe.rb
+==> centos8: Building the container from a Dockerfile...
+    centos8: Image: ca5e4f877dac
+==> centos8: Creating the container...
+    centos8:   Name: graylog-fpm-recipes_centos8_1399484675
+    centos8:  Image: ca5e4f877dac
+    centos8:    Cmd: fpm-cook package /vagrant/recipes/graylog-server/recipe.rb
+    centos8: Volume: /src/graylog-fpm-recipes:/vagrant
+    centos8:
+    centos8: Container is starting. Output will stream in below...
+    centos8:
+    centos8: ===> Starting package creation for graylog-server-1.0.0 (centos, rpm)
+    centos8: ===>
+    centos8: ===> Verifying build_depends and depends with Puppet
+    centos8: ===> Verifying package: java-1.7.0-openjdk
+    centos8: ===> All build_depends and depends packages installed
+    centos8: ===> Fetching source:
+    centos8: ===> Using cached file /vagrant/recipes/graylog-server/cache/graylog-server-1.0.0.tgz
+    centos8: ===> Building in /vagrant/recipes/graylog-server/tmp-build/graylog-server-1.0.0
+    centos8: ===> Installing into /vagrant/recipes/graylog-server/tmp-dest
+    centos8: ===> [FPM] Converting dir to rpm {}
+    centos8: ===> Removing existing package file: graylog-server-1.0.0-1.noarch.rpm
+    centos8: ===> [FPM] Reading template {"path":"/usr/lib/ruby/gems/1.8/gems/fpm-1.0.2/templates/rpm.erb"}
+    centos8: ===> [FPM] Running rpmbuild {"args":["rpmbuild","-bb","--define","buildroot /tmp/package-rpm-build20140507-1-ttb91c/BUILD","--define","_topdir /tmp/package-rpm-build20140507-1-ttb91c","--define","_sourcedir /tmp/package-rpm-build20140507-1-ttb91c","--define","_rpmdir /tmp/package-rpm-build20140507-1-ttb91c/RPMS","/tmp/package-rpm-build20140507-1-ttb91c/SPECS/graylog-server.spec"]}
+    centos8: ===> [FPM] Executing(%prep): /bin/sh -e /var/tmp/rpm-tmp.PiGYv6 {}
+    centos8: ===> [FPM] Executing(%build): /bin/sh -e /var/tmp/rpm-tmp.14unGZ {}
+    centos8: ===> [FPM] Executing(%install): /bin/sh -e /var/tmp/rpm-tmp.8xL6QS {}
+    centos8: ===> [FPM] Processing files: graylog-server-1.0.0-1.noarch {}
+    centos8: ===> [FPM] Wrote: /tmp/package-rpm-build20140507-1-ttb91c/RPMS/noarch/graylog-server-1.0.0-1.noarch.rpm {}
+    centos8: ===> [FPM] Executing(%clean): /bin/sh -e /var/tmp/rpm-tmp.M2OieO {}
+    centos8: ===> [FPM] Created rpm {"path":"graylog-server-1.0.0-1.noarch.rpm"}
+    centos8: ===> Created package: /vagrant/recipes/graylog-server/pkg/graylog-server-1.0.0-1.noarch.rpm
 $
 ```
 
@@ -111,11 +111,8 @@ $
 
 | Name             | VM Name    |
 |------------------|------------|
-| Ubuntu 16.04 LTS | ubuntu1604 |
-| Ubuntu 14.04 LTS | ubuntu1404 |
-| Ubuntu 12.04 LTS | ubuntu1204 |
-| CentOS 6.5       | centos6    |
-| Debian 7         | debian7    |
+| Ubuntu 20.04 LTS | ubuntu2004 |
+| CentOS 8         | centos8    |
 
 ## Credits
 
