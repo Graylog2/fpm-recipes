@@ -41,7 +41,6 @@ class GraylogDataNode < FPM::Cookery::Recipe
 
   def build
     patch(workdir('patches/datanode.conf.patch'))
-    patch(workdir('patches/jvm.options.patch'))
     patch(workdir('patches/log4j2.xml.patch'))
   end
 
