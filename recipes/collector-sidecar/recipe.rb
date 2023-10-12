@@ -9,7 +9,7 @@ class GraylogSidecar < FPM::Cookery::Recipe
   version  data.version
   revision data.revision
   homepage 'https://graylog.org'
-  arch     'amd64'
+  arch     pkg_arch
 
   source data.source
   sha256 data.sha256
@@ -30,10 +30,14 @@ class GraylogSidecar < FPM::Cookery::Recipe
   end
 
   def install
-    bin.install "#{version}/linux/amd64/graylog-sidecar"
+    bin.install "#{version}/linux/#{pkg_arch}/graylog-sidecar"
     etc('graylog/sidecar').install workdir('sidecar-example.yml'), 'sidecar.yml'
     var('lib/graylog-sidecar/generated').mkdir
     var('log/graylog-sidecar').mkdir
     var('run/graylog-sidecar').mkdir
+
+    %w{auditbeat filebeat}.each do |beat|
+      lib('graylog-sidecar').install "collectors/#{beat}/linux/#{pkg_arch}/#{beat}"
+    end
   end
 end
