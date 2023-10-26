@@ -37,7 +37,13 @@ class GraylogSidecar < FPM::Cookery::Recipe
     var('run/graylog-sidecar').mkdir
 
     %w{auditbeat filebeat}.each do |beat|
-      lib('graylog-sidecar').install "collectors/#{beat}/linux/#{pkg_arch}/#{beat}"
+      case pkg_arch
+      when 'amd64'
+        # The Sidecar tarball is using x86_64 for amd64. TODO: Fix that
+        lib('graylog-sidecar').install "collectors/#{beat}/linux/x86_64/#{beat}"
+      else
+        lib('graylog-sidecar').install "collectors/#{beat}/linux/#{pkg_arch}/#{beat}"
+      end
     end
   end
 end
