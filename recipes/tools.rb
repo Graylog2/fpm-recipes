@@ -39,22 +39,6 @@ module Tools
        end
     end
 
-    def sigar_cleanup(path)
-      Dir["#{path}/*"].each do |file|
-        unless file.end_with?('.so')
-          FileUtils.rm(file)
-        end
-
-        if file =~ /freebsd|aix|solaris/
-          FileUtils.rm(file)
-        end
-
-        if file =~ /(ppc.*|ia64|s390x)-linux/
-          FileUtils.rm(file)
-        end
-      end
-    end
-
     def pkg_arch
       ENV['PKG_ARCH'] || 'all'
     end
@@ -87,10 +71,6 @@ module Tools
 
   def osrel
     self.class.osrel
-  end
-
-  def sigar_cleanup(path)
-    self.class.sigar_cleanup(path)
   end
 
   def osfile(name)
