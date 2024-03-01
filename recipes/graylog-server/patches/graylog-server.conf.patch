@@ -1,6 +1,6 @@
---- graylog.conf.example.orig	2018-09-14 18:37:48.000000000 +0200
-+++ graylog.conf.example	2018-09-14 19:32:35.014475170 +0200
-@@ -76,15 +76,15 @@
+--- graylog.conf.example.orig	2024-03-01 10:21:34.773290089 +0100
++++ graylog.conf.example	2024-03-01 10:23:43.200807725 +0100
+@@ -78,14 +78,14 @@
  # Set the bin directory here (relative or absolute)
  # This directory contains binaries that are used by the Graylog server.
  # Default: bin
@@ -9,7 +9,6 @@
  
  # Set the data directory here (relative or absolute)
  # This directory is used to store Graylog server state.
- # Default: data
 -data_dir = data
 +data_dir = /var/lib/graylog-server
  
@@ -19,11 +18,11 @@
  
  ###############
  # HTTP settings
-@@ -468,7 +468,7 @@
- #   If you create a seperate partition for the journal files and use a file system creating directories like 'lost+found'
+@@ -524,7 +524,7 @@
  #   in the root directory, you need to create a sub directory for your journal.
  #   Otherwise Graylog will log an error message that the journal is corrupt and Graylog will not start.
--message_journal_dir = data/journal
+ # Default: <data_dir>/journal
+-#message_journal_dir = data/journal
 +message_journal_dir = /var/lib/graylog-server/journal
  
  # Journal hold messages before they could be written to Elasticsearch.
