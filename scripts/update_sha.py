@@ -32,10 +32,7 @@ parser.add_argument('--path', dest='yaml_path', help='The path to the yaml file 
 parser.add_argument('--package-name', dest='package_name', help='The name of the package that should be updated.')
 parser.add_argument('--arch', dest='arch', default="all", help='The architecture of the package that should be updated.')
 parser.add_argument('--sha256', dest='checksum', help="The sha256 value that should be set for the package.")
-parser.add_argument('--version-major', dest='version_major', help='The major version (e.g, 3.3, 4.0)')
 parser.add_argument('--version', dest='version', help='The semantic version (3.3.0, 4.0.0)')
-parser.add_argument('--suffix', dest='suffix', help='The package suffix (e.g, -rc.1). Must use equal sign if suffix begins with dash. (--suffix=-rc.2). To blank this value, pass --suffix without any argument after it.', nargs='?', const='NO_VALUE')
-parser.add_argument('--revision', dest='revision', help='The package revision. Subsequent releases for the same version must bump this. It only resets when the version goes up.')
 
 args = parser.parse_args()
 
