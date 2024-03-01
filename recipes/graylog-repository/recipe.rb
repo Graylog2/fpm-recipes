@@ -9,7 +9,7 @@ class GraylogRepository < FPM::Cookery::Recipe
 
   name       "graylog-#{VERSION}-repository"
   version    '1'
-  revision   2
+  revision   1
   source     '', :with => :noop
   arch       'all'
   homepage   data.homepage
@@ -21,7 +21,7 @@ class GraylogRepository < FPM::Cookery::Recipe
     "graylog2-#{v}-repository-#{os}#{osrel}"
   }.concat(%w(1.0 1.1 1.2 1.3).map {|v|
     "graylog-#{v}-repository-#{os}#{osrel}"
-  }).concat(%w(2.0 2.1 2.2 2.3 2.4 2.5 3.0 3.1 3.2 3.3 4.0 4.1 4.2 4.3 5.0 5.1).map {|v|
+  }).concat(%w(2.0 2.1 2.2 2.3 2.4 2.5 3.0 3.1 3.2 3.3 4.0 4.1 4.2 4.3 5.0 5.1 5.2).map {|v|
     "graylog-#{v}-repository"
   })
 
@@ -47,7 +47,7 @@ class GraylogRepository < FPM::Cookery::Recipe
 
   def install_deb
     File.open('graylog.list', 'w') do |file|
-      file.puts "deb https://packages.graylog2.org/repo/debian/ stable #{VERSION}"
+      file.puts "deb https://downloads.graylog.org/repo/debian/ stable #{VERSION}"
     end
 
     etc('apt/trusted.gpg.d').install workdir('files/deb/graylog-keyring.gpg')
@@ -58,7 +58,7 @@ class GraylogRepository < FPM::Cookery::Recipe
     File.open('graylog.repo', 'w') do |file|
       file.puts "[graylog]"
       file.puts "name=graylog"
-      file.puts "baseurl=https://packages.graylog2.org/repo/el/stable/#{VERSION}/$basearch/"
+      file.puts "baseurl=https://downloads.graylog.org/repo/el/stable/#{VERSION}/$basearch/"
       file.puts "gpgcheck=1"
       file.puts "repo_gpgcheck=0"
       file.puts "gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-graylog"
