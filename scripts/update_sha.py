@@ -71,7 +71,11 @@ with open(args.yaml_path) as f:
         #
         # Only set the "revision" back to "1" when the major.minor.patch version
         # changes!
+
+        # 6.0.0-alpha.1 => version="6.0.0", suffix=["alpha.1"]
+        # 6.0.0         => version="6.0.0", suffix=[]
         version, *suffix = args.version.split('-', 1)
+        # 6.0.0 => major=6, minor=0, patch= 0
         major, minor, patch = version.split('.', 2)
 
         if data['default']['version'] == version:
@@ -80,14 +84,17 @@ with open(args.yaml_path) as f:
 
             if len(suffix) > 0 and suffix[0] != data['default']['suffix'].removeprefix('-'):
                 # Bump the revision when the suffix changes. (1.0.0-alpha.1 => 1.0.0-alpha.2)
-                data['default']['revision'] = str(int(rev_str) + 1)
+                data['default']['revision'] = str(int(rev_str) + 1) + '.' + suffix[0]
             elif len(suffix) == 0 and data['default']['suffix']:
                 # Bump the revision when there was a suffix set but the new
                 # version doesn't have a suffix. (1.0.0-rc.1 => 1.0.0)
                 data['default']['revision'] = str(int(rev_str) + 1)
             else:
                 # Keep the revision number because the version and suffix doesn't change.
-                data['default']['revision'] = rev_str
+                if len(suffix) > 0:
+                    data['default']['revision'] = rev_str + '.' + suffix[0]
+                else:
+                    data['default']['revision'] = rev_str
         else:
             # Reset revision to "1" when the major.minor.patch version changes
             data['default']['revision'] = '1'
@@ -98,8 +105,6 @@ with open(args.yaml_path) as f:
         # The suffix only exists for pre-releases
         if len(suffix) > 0:
             data['default']['suffix'] = '-' + suffix[0]
-            data['default']['revision'] = data['default']['revision'] + \
-                '.' + suffix[0].removeprefix('-')
         else:
             data['default']['suffix'] = ''
 
