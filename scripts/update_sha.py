@@ -89,7 +89,7 @@ with open(args.yaml_path) as f:
                 # Bump the revision when there was a suffix set but the new
                 # version doesn't have a suffix. (1.0.0-rc.1 => 1.0.0)
                 data['default']['revision'] = str(int(rev_str) + 1)
-            elif suffix and suffix != data['default']['suffix'].removeprefix('-'):
+            elif suffix and suffix != data['default']['suffix'].lstrip('-'):
                 # Bump the revision when the suffix changes. (1.0.0-alpha.1 => 1.0.0-alpha.2)
                 data['default']['revision'] = str(int(rev_str) + 1) + '.' + suffix
             else:
