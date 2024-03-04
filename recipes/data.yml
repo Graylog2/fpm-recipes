@@ -1,18 +1,23 @@
-  # Make sure to always increase the revision when doing alpha/beta/rc releases!
-  # Example:
+  # The "revision" must always be bumped as long as the version doesn't change!
+  # This is important to make updates in pre-releases work correctly with
+  # apt/deb and yum/dnf/rpm.
   #
-  #   - 2.1.0-beta.1  => version=2.1.0, revision="1.beta.1"
-  #   - 2.1.0-beta.2  => version=2.1.0, revision="2.beta.2"
-  #   - 2.1.0-rc.1    => version=2.1.0, revision="3.rc.1"
-  #   - 2.1.0         => version=2.1.0, revision="4"
+  #   - 2.1.0-alpha.1 => version=2.1.0, revision="1.alpha.1"
+  #   - 2.1.0-alpha.2 => version=2.1.0, revision="2.alpha.2"
+  #   - 2.1.0-beta.1  => version=2.1.0, revision="3.beta.1"
+  #   - 2.1.0-beta.2  => version=2.1.0, revision="4.beta.2"
+  #   - 2.1.0-rc.1    => version=2.1.0, revision="5.rc.1"
+  #   - 2.1.0         => version=2.1.0, revision="6"
+  #   - 2.1.1         => version=2.1.1, revision="1"
   #   - 2.2.0-alpha.1 => version=2.2.0, revision="1.alpha.1"
+  #   - 2.2.0-beta.1  => version=2.2.0, revision="2.beta.1"
   #
-  # Only reset the revision once the version is bumped.
+  # Only set the "revision" back to "1" when the version changes!
 default:
   version_major: '6.0'
   version: 6.0.0
-  suffix: -alpha.1
-  revision: 1.alpha.1
+  suffix: -alpha.2
+  revision: 2.alpha.2
   homepage: https://www.graylog.org/
   maintainer: Graylog, Inc. <hello@graylog.org>
   vendor: graylog
@@ -20,27 +25,27 @@ default:
 
 graylog-server:
   source: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}.tgz
-  sha256: c0dc5c491abc4f65c809fea0775c02ce046a85f8783aeacc5b726cf639c143ca
+  sha256: eee6e72801a4a0ea6d146eb1b4410d9ba4a859d8297714d491e763bd040081eb
   source_amd64: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}-linux-x64.tgz
-  sha256_amd64: ae1452200eb7218b0478ff8f1214dbc128461454a88b02142542759cd84fd0fa
+  sha256_amd64: cf502b3bf8f49adbae7683c8d9e8301db16df1e2c2d15f8c930c8ef13dae3632
   source_arm64: https://packages.graylog2.org/releases/graylog/graylog-#{version}#{suffix}-linux-aarch64.tgz
-  sha256_arm64: da3a6bbc283458a795f577a3c12bc115fadac7c1dd92c780b1d089f3de2b3141
+  sha256_arm64: b5f3c989244225b34885e1b2200dec40c7331acd4676defeda055289ab1b4197
 
 graylog-enterprise:
   source: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}.tgz
-  sha256: d2f7fcdf5d824bd72122544fd34a87a9625118073db93a71ad5033c9a0e39e74
+  sha256: 62548fbf7f8ae051cd531415f69a44d0541e1214ea504f8dec2ac89551a169ba
   source_amd64: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}-linux-x64.tgz
-  sha256_amd64: ec0534fec6f9e6c330f5db3bd9f6c690ae705c8bd70683d6e63135d36d74c70e
+  sha256_amd64: 7c4cf8cb60470aef03a51b0e2f85a35b75a12f675374ad457e9e69d9adbb98d6
   source_arm64: https://packages.graylog2.org/releases/graylog-enterprise/graylog-enterprise-#{version}#{suffix}-linux-aarch64.tgz
-  sha256_arm64: 7cb4a3c0fcbc5c884425c2792a8f8a2f15b60e2c7d5e6f48923a4b764fce65aa
+  sha256_arm64: fc3cb5f74955d1893831c84398691ced990dcec6141f88cbb21cf240be8db1e7
 
 graylog-datanode:
   source: https://packages.graylog2.org/releases/graylog-datanode/graylog-datanode-#{version}#{suffix}.tgz
-  sha256: b3f21d997c1d99cc2542c710ebaa7a1a89e5d1773eabaa4480d4d07b54778044
+  sha256: 71c3486a36cf44cc5521bb4dfe6a1c21df17ef246260fbb6c72fa755ca7f8e34
   source_amd64: https://packages.graylog2.org/releases/graylog-datanode/graylog-datanode-#{version}#{suffix}-linux-x64.tgz
-  sha256_amd64: 29138ebe95eaae2f2c5708eabc39be772aca75ed9f24108493800059f2a109c7
+  sha256_amd64: 8c2e987488a6285982e88092ba1f00e32217542fc233ff6928743f6005c89a8b
   source_arm64: https://packages.graylog2.org/releases/graylog-datanode/graylog-datanode-#{version}#{suffix}-linux-aarch64.tgz
-  sha256_arm64: 4ca0481bdc42b2c123225d64aaafe7d075ff02adf48f29d8005bb212c2ee36ea
+  sha256_arm64: f3a1149fd08365bc92eab1feacdb6930b7a5af4c26bc47cd2f97998ccfa80f80
 
 graylog-sidecar:
   source_amd64: https://packages.graylog2.org/releases/graylog-collector-sidecar/#{version}#{suffix}/graylog-sidecar-#{version}#{suffix}.tar.gz
