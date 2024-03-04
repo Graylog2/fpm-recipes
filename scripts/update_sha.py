@@ -82,6 +82,7 @@ with open(args.yaml_path) as f:
 
         if data['default']['version'] == version:
             # The version didn't change, so we have to handle the revision.
+            # "1.alpha.1" => rev_str="1" *_=["alpha.1"]
             rev_str, *_ = data['default']['revision'].split('.', 1)
 
             if not suffix and data['default']['suffix']:
