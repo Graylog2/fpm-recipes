@@ -38,7 +38,7 @@ parser.add_argument('--version', dest='version', help='The semantic version (3.3
 args = parser.parse_args()
 
 if (args.package_name and not args.checksum) or (args.checksum and not args.package_name):
-    parser.error( "The --package-name and --sha256 parameters must be used together.")
+    parser.error("The --package-name and --sha256 parameters must be used together.")
 
 with open(args.yaml_path) as f:
     data = yaml.load(f, Loader=yaml.FullLoader)
@@ -74,27 +74,27 @@ with open(args.yaml_path) as f:
 
         # 6.0.0-alpha.1 => version="6.0.0", suffix=["alpha.1"]
         # 6.0.0         => version="6.0.0", suffix=[]
-        version, *suffix = args.version.split('-', 1)
+        version, *suffixes = args.version.split('-', 1)
         # 6.0.0 => major=6, minor=0, patch= 0
         major, minor, patch = version.split('.', 2)
 
+        suffix = suffixes[0] if len(suffixes) > 0 else None
+
         if data['default']['version'] == version:
             # The version didn't change, so we have to handle the revision.
-            rev_str, *rev_suffix = data['default']['revision'].split('.', 1)
+            rev_str, *_ = data['default']['revision'].split('.', 1)
 
-            if len(suffix) > 0 and suffix[0] != data['default']['suffix'].removeprefix('-'):
-                # Bump the revision when the suffix changes. (1.0.0-alpha.1 => 1.0.0-alpha.2)
-                data['default']['revision'] = str(int(rev_str) + 1) + '.' + suffix[0]
-            elif len(suffix) == 0 and data['default']['suffix']:
+            if not suffix and data['default']['suffix']:
                 # Bump the revision when there was a suffix set but the new
                 # version doesn't have a suffix. (1.0.0-rc.1 => 1.0.0)
                 data['default']['revision'] = str(int(rev_str) + 1)
+            elif suffix and suffix != data['default']['suffix'].removeprefix('-'):
+                # Bump the revision when the suffix changes. (1.0.0-alpha.1 => 1.0.0-alpha.2)
+                data['default']['revision'] = str(int(rev_str) + 1) + '.' + suffix
             else:
-                # Keep the revision number because the version and suffix doesn't change.
-                if len(suffix) > 0:
-                    data['default']['revision'] = rev_str + '.' + suffix[0]
-                else:
-                    data['default']['revision'] = rev_str
+                # Keep the revision number because the version and suffix
+                # doesn't change. (1.0.0-rc.1 => 1.0.0-rc.1)
+                pass
         else:
             # Reset revision to "1" when the major.minor.patch version changes
             data['default']['revision'] = '1'
@@ -103,8 +103,8 @@ with open(args.yaml_path) as f:
         data['default']['version_major'] = '.'.join([major, minor])
 
         # The suffix only exists for pre-releases
-        if len(suffix) > 0:
-            data['default']['suffix'] = '-' + suffix[0]
+        if suffix:
+            data['default']['suffix'] = '-' + suffix
         else:
             data['default']['suffix'] = ''
 
