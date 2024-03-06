@@ -15,7 +15,7 @@
   # Only set the "revision" back to "1" when the version changes!
 default:
   version_major: '5.2'
-  version: 5.2.5null
+  version: 5.2.5
   suffix: ''
   revision: '1'
   homepage: https://www.graylog.org/
