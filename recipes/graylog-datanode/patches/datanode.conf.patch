@@ -1,5 +1,5 @@
---- datanode.conf.example.orig	2023-10-12 19:25:49.533964559 +0200
-+++ datanode.conf.example	2023-10-12 19:27:49.838106986 +0200
+--- ../t/graylog-datanode-6.0.0-beta.2-linux-x64/datanode.conf.example	2024-03-19 07:50:08.000000000 +0100
++++ datanode.conf.example	2024-03-21 18:56:04.514300981 +0100
 @@ -44,7 +44,7 @@
  
  # The auto-generated node ID will be stored in this file and read after restarts. It is a good idea
@@ -9,7 +9,7 @@
  
  # location of your data-node configuration files - put additional files like manually created certificates etc. here
  config_location = /etc/graylog/datanode
-@@ -130,11 +130,11 @@
+@@ -130,11 +130,12 @@
  # set these if you need OpenSearch to be located in a special place or want to include an existing version
  #
  # Root directory of the used opensearch distribution
@@ -19,6 +19,7 @@
 -# opensearch_data_location = data
 -# opensearch_logs_location = logs
 +opensearch_location = /usr/share/graylog-datanode/dist
++opensearch_plugins_location = /usr/share/graylog-datanode/dist/plugins
 +
 +opensearch_config_location = /var/lib/graylog-datanode/opensearch/config
 +opensearch_data_location = /var/lib/graylog-datanode/opensearch/data
