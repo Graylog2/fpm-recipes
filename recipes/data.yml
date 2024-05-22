@@ -17,7 +17,7 @@ default:
   version_major: '6.1'
   version: 6.1.0
   suffix: -alpha.1
-  revision: '1'
+  revision: 1.alpha.1
   homepage: https://www.graylog.org/
   maintainer: Graylog, Inc. <hello@graylog.org>
   vendor: graylog
