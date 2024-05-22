@@ -98,7 +98,10 @@ with open(args.yaml_path) as f:
                 pass
         else:
             # Reset revision to "1" when the major.minor.patch version changes
-            data['default']['revision'] = '1'
+            if suffix:
+                data['default']['revision'] = '1.' + suffix
+            else:
+                data['default']['revision'] = '1'
 
         data['default']['version'] = version
         data['default']['version_major'] = '.'.join([major, minor])
