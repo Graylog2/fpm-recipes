@@ -70,6 +70,8 @@ class GraylogEnterpriseServer < FPM::Cookery::Recipe
     etc('init.d').install file("#{target}/init.d"), 'graylog-server'
     etc('init.d/graylog-server').chmod(0755)
 
+    etc('needrestart/conf.d').install file('needrestart.conf'), '500-graylog.conf'
+
     lib('systemd/system').install file('systemd.service'), 'graylog-server.service'
 
     share('graylog-server/bin').install file('graylog-server.sh'), 'graylog-server'
