@@ -8,7 +8,7 @@ class GraylogRepository < FPM::Cookery::Recipe
   description "Package to install Graylog #{VERSION} GPG key and repository"
 
   name       "graylog-#{VERSION}-repository"
-  version    '1'
+  version    '2'
   revision   1
   source     '', :with => :noop
   arch       'all'
@@ -47,11 +47,11 @@ class GraylogRepository < FPM::Cookery::Recipe
 
   def install_deb
     File.open('graylog.list', 'w') do |file|
-      file.puts "deb https://downloads.graylog.org/repo/debian/ stable #{VERSION}"
+      file.puts "deb [signed-by=/usr/share/keyrings/graylog-archive-keyring.gpg] https://downloads.graylog.org/repo/debian/ stable #{VERSION}"
     end
 
-    etc('apt/trusted.gpg.d').install workdir('files/deb/graylog-keyring.gpg')
     etc('apt/sources.list.d').install 'graylog.list'
+    share('keyrings').install workdir('files/deb/graylog-archive-keyring.gpg')
   end
 
   def install_rpm
