@@ -27,14 +27,13 @@ class GraylogEnterpriseServer < FPM::Cookery::Recipe
            'graylog-enterprise-integrations-plugins'
 
   config_files '/etc/graylog/server/server.conf',
-               '/etc/graylog/server/log4j2.xml',
-               '/etc/init.d/graylog-server'
+               '/etc/graylog/server/log4j2.xml'
 
   targets :deb do
     section 'net'
     config_files '/etc/default/graylog-server',
-                 '/etc/init/graylog-server.conf',
-                 '/etc/logrotate.d/graylog-server'
+                 '/etc/logrotate.d/graylog-server',
+                 '/etc/needrestart/conf.d/500-graylog.conf'
     depends 'uuid-runtime'
   end
 
@@ -58,7 +57,6 @@ class GraylogEnterpriseServer < FPM::Cookery::Recipe
     case target
     when :deb
       etc('default').install file('environment'), 'graylog-server'
-      etc('init').install file('deb/upstart.conf'), 'graylog-server.conf'
       etc('logrotate.d').install file('deb/logrotate'), 'graylog-server'
     when :rpm
       etc('sysconfig').install file('environment'), 'graylog-server'
@@ -66,9 +64,6 @@ class GraylogEnterpriseServer < FPM::Cookery::Recipe
 
     etc('graylog/server').install 'graylog.conf.example', 'server.conf'
     etc('graylog/server').install file('log4j2.xml')
-
-    etc('init.d').install file("#{target}/init.d"), 'graylog-server'
-    etc('init.d/graylog-server').chmod(0755)
 
     etc('needrestart/conf.d').install file('needrestart.conf'), '500-graylog.conf'
 

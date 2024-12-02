@@ -43,7 +43,6 @@ esac
 if [ "$remove_data" = "true" ]; then
 	rm -rf "$datadir" "$logdir"
 	rm -f /etc/graylog/server/node-id
-	rm -f /etc/init/graylog-server.override
 
 	if id "$user" > /dev/null 2>&1 ; then
 		userdel "$user" || true
