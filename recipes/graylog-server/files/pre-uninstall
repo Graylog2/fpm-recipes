@@ -29,6 +29,10 @@ case "$1" in
 		;;
 esac
 
+# Cleanup old upstart files to avoid the following warning on update:
+#   dpkg: warning: unable to delete old directory '/etc/init': Directory not empty
+rm -f /etc/init/graylog-server.conf /etc/init/graylog-server.override
+
 if [ "$stopping" = "false" ]; then
 	# Nothing to stop, exit early.
 	exit 0
