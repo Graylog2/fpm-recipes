@@ -31,6 +31,9 @@ class GraylogDataNode < FPM::Cookery::Recipe
   targets :rpm do
     # Digest required to make packages work on FIPS enabled RedHat systems
     rpm_digest_algo 'sha256'
+    # Avoids leaving empty directories on RPM update.
+    # See: https://github.com/Graylog2/fpm-recipes/issues/143
+    fpm_attributes rpm_auto_add_directories?: true
     config_files '/etc/sysconfig/graylog-datanode'
   end
 
