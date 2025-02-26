@@ -92,7 +92,11 @@ module FPM
     class Recipe
       class RecipeData
         def initialize(recipe)
-          @yaml = YAML.load_file(File.expand_path('../data.yml', __FILE__))
+          if data_file = ENV['DATA_FILE']
+            @yaml = YAML.load_file(data_file)
+          else
+            @yaml = YAML.load_file(File.expand_path('../data.yml', __FILE__))
+          end
           @recipe = recipe
         end
 

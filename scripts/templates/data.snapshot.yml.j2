@@ -1,0 +1,16 @@
+# Data for snapshot builds
+default:
+  version_major: "{{ major }}.{{ minor }}"
+  version: "{{ major }}.{{ minor }}.{{ patch }}"
+  revision: "{{ revision }}"
+  homepage: "https://www.graylog.org/"
+  maintainer: "Graylog, Inc. <hello@graylog.org>"
+  vendor: "graylog"
+  license: "SSPL"
+
+{% for package in packages -%}
+{{ package.name }}:
+  source_amd64: "https://downloads.graylog.org/snapshots/{{ package.source_amd64 }}"
+  sha256_amd64: "{{ package.sha256_amd64 }}"
+
+{% endfor -%}
