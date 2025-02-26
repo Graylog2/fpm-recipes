@@ -1,0 +1,132 @@
+#!/bin/bash
+
+# Script to build a package with Vagrant and Docker.
+
+set -eo pipefail
+
+usage() {
+	local msg="$1"
+	local name="$(basename "$0")"
+
+	if [ -n "$msg" ]; then
+		echo "$msg" 1>&2
+	fi
+	echo "Usage: $name -a ARCH -p PACKAGE -t TARGET" 1>&2
+	echo "" 1>&2
+	echo "Available architectures: ${available_archs[@]}" 1>&2
+	echo "Available packages:      ${available_packages[@]}" 1>&2
+	echo "Available targets:       ${available_targets[@]}" 1>&2
+	exit 1
+}
+
+available_archs=("all" "amd64" "arm64")
+available_packages=("graylog-server" "graylog-enterprise" "graylog-datanode")
+available_targets=("deb" "rpm")
+
+arch=""
+container_build="false"
+data_file=""
+output="target"
+package=""
+target=""
+
+while getopts ":a:Cd:ho:p:t:" opt; do
+	case "$opt" in
+		a)
+			arch_opt="${OPTARG,,}"
+			for option in "${available_archs[@]}"; do
+				if [ "$arch_opt" = "$option" ]; then
+					arch="$arch_opt"
+				fi
+			done
+			if [ -z "$arch" ]; then
+				usage "Unsupported architecture: $arch_opt"
+			fi
+			;;
+		C)
+			container_build="true"
+			;;
+		d)
+			data_file="${OPTARG}"
+			;;
+		h)
+			usage
+			;;
+		o)
+			output="${OPTARG}"
+			;;
+		p)
+			package_opt="${OPTARG}"
+			for option in "${available_packages[@]}"; do
+				if [ "$package_opt" = "$option" ]; then
+					package="$package_opt"
+				fi
+			done
+			if [ -z "$package" ]; then
+				usage "Unsupported package: $package_opt"
+			fi
+			;;
+		t)
+			target_opt="${OPTARG,,}"
+			for option in "${available_targets[@]}"; do
+				if [ "$target_opt" = "$option" ]; then
+					target="$target_opt"
+				fi
+			done
+			if [ -z "$target" ]; then
+				usage "Unsupported target: $target_opt"
+			fi
+			;;
+		\?)
+			usage "Invalid option -$OPTARG"
+			;;
+	esac
+done
+
+# Remove parsed arguments from $@
+shift "$((OPTIND - 1))"
+
+if [ -z "$arch" ]; then
+	usage "Missing architecture (-a)"
+fi
+if [ -z "$output" ]; then
+	usage "Missing relative output path (-o)"
+fi
+if [ -z "$package" ]; then
+	usage "Missing package (-p)"
+fi
+if [ -z "$target" ]; then
+	usage "Missing target (-t)"
+fi
+
+if [ "$container_build" = "true" ]; then
+	# This branch is supposed to be executed inside the container! (when -C flag is active)
+
+	export PKG_ARCH="$arch"
+
+	if [ -n "$data_file" ]; then
+		export DATA_FILE="/vagrant/$data_file"
+	fi
+
+	exec fpm-cook \
+		--quiet \
+		--tmp-root "/tmp/fpm-cook" \
+		--cache-dir "/tmp/fpm-cook-cache" \
+		--pkg-dir "/vagrant/$output" \
+		package --no-deps "/vagrant/recipes/$package/recipe.rb"
+else
+	# This branch is supposed to be executed in the callers shell. (no -C flag)
+
+	os=""
+	case "$target" in
+		deb) os="ubuntu2004" ;;
+		rpm) os="alma9" ;;
+	esac
+	if [ -z "$os" ]; then
+		echo "ERROR: Couldn't determine OS based on target $target"
+		exit 1
+	fi
+
+	# Run this script inside the container with the -C flag to build the package
+	exec vagrant docker-run "$os" -- "/vagrant/scripts/$(basename "$0")" -C -d "$data_file" -a "$arch" -p "$package" -t "$target"
+fi
