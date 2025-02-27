@@ -18,7 +18,7 @@ EnvironmentFile=-/etc/default/graylog-datanode
 # RPM
 EnvironmentFile=-/etc/sysconfig/graylog-datanode
 
-ExecStart=/usr/share/graylog-datanode/bin/graylog-datanode datanode -f /etc/graylog/datanode/datanode.conf -np
+ExecStart=/usr/share/graylog-datanode/bin/graylog-datanode datanode -f /etc/graylog/datanode/datanode.conf
 
 # When a JVM receives a SIGTERM signal it exits with 143.
 SuccessExitStatus=143
