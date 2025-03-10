@@ -17,7 +17,7 @@ default:
   version_major: '6.2'
   version: 6.2.0
   suffix: -alpha.2
-  revision: 2.alpha.2
+  revision: 3.alpha.2
   homepage: https://www.graylog.org/
   maintainer: Graylog, Inc. <hello@graylog.org>
   vendor: graylog
