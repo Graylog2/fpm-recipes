@@ -1,5 +1,5 @@
---- graylog.conf.example.orig	2024-03-01 10:21:34.773290089 +0100
-+++ graylog.conf.example	2024-03-01 10:23:43.200807725 +0100
+--- graylog.conf.example.orig	2025-01-20 13:23:00.000000000 +0100
++++ graylog.conf.example	2025-03-17 10:27:13.122966965 +0100
 @@ -78,14 +78,14 @@
  # Set the bin directory here (relative or absolute)
  # This directory contains binaries that are used by the Graylog server.
@@ -18,7 +18,7 @@
  
  ###############
  # HTTP settings
-@@ -524,7 +524,7 @@
+@@ -526,7 +526,7 @@
  #   in the root directory, you need to create a sub directory for your journal.
  #   Otherwise Graylog will log an error message that the journal is corrupt and Graylog will not start.
  # Default: <data_dir>/journal
@@ -27,7 +27,7 @@
  
  # Journal hold messages before they could be written to Elasticsearch.
  # For a maximum of 12 hours or 5 GB whichever happens first.
-@@ -727,6 +727,9 @@
+@@ -729,6 +729,9 @@
  # Default: 60s
  #prometheus_exporter_mapping_file_refresh_interval = 60s
  
