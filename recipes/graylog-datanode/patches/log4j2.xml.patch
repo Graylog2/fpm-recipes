@@ -1,5 +1,5 @@
---- config/log4j2.xml.orig	2023-04-12 16:41:35.205465206 +0200
-+++ config/log4j2.xml	2023-04-12 16:42:43.213681494 +0200
+--- config/log4j2.xml.orig	2025-01-20 13:22:59.000000000 +0100
++++ config/log4j2.xml	2025-03-17 11:05:33.793896855 +0100
 @@ -1,9 +1,13 @@
  <?xml version="1.0" encoding="UTF-8"?>
  <Configuration packages="org.graylog2.log4j" shutdownHook="disable">
@@ -15,8 +15,8 @@
 +        </RollingFile>
  
          <!-- Internal Graylog log appender. Please do not disable. This makes internal log messages available via REST calls. -->
-         <Memory name="graylog-internal-logs" bufferSize="500"/>
-@@ -19,7 +23,7 @@
+         <Memory name="graylog-internal-logs" bufferSizeBytes="10MB">
+@@ -22,7 +26,7 @@
          <!-- Silence useless session validation messages -->
          <Logger name="org.apache.shiro.session.mgt.AbstractValidatingSessionManager" level="warn"/>
          <Root level="warn">
