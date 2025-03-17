@@ -11,7 +11,14 @@ usage() {
 	if [ -n "$msg" ]; then
 		echo "$msg" 1>&2
 	fi
-	echo "Usage: $name -a ARCH -p PACKAGE -t TARGET" 1>&2
+	echo "Usage: $name -a ARCH -p PACKAGE -t TARGET [-D -T]" 1>&2
+	echo "" 1>&2
+	echo "Options:" 1>&2
+	echo "  -a Package architecture" 1>&2
+	echo "  -D Enable debug output" 1>&2
+	echo "  -p The package to build" 1>&2
+	echo "  -t The package target" 1>&2
+	echo "  -T Put temp directories in the output path for debugging" 1>&2
 	echo "" 1>&2
 	echo "Available architectures: ${available_archs[@]}" 1>&2
 	echo "Available packages:      ${available_packages[@]}" 1>&2
@@ -26,11 +33,15 @@ available_targets=("deb" "rpm")
 arch=""
 container_build="false"
 data_file=""
+debug=""
 output="target"
 package=""
 target=""
+target_arg=""
+tmp_root="/tmp/fpm-cook"
+cache_dir="/tmp/fpm-cook/downloads"
 
-while getopts ":a:Cd:ho:p:t:" opt; do
+while getopts ":a:Cd:Dho:p:t:T" opt; do
 	case "$opt" in
 		a)
 			arch_opt="${OPTARG,,}"
@@ -48,6 +59,9 @@ while getopts ":a:Cd:ho:p:t:" opt; do
 			;;
 		d)
 			data_file="${OPTARG}"
+			;;
+		D)
+			debug="-D"
 			;;
 		h)
 			usage
@@ -76,6 +90,11 @@ while getopts ":a:Cd:ho:p:t:" opt; do
 			if [ -z "$target" ]; then
 				usage "Unsupported target: $target_opt"
 			fi
+			;;
+		T)
+			target_arg="-T"
+			tmp_root="/vagrant/$output/$package"
+			cache_dir="/vagrant/$output/downloads"
 			;;
 		\?)
 			usage "Invalid option -$OPTARG"
@@ -108,10 +127,17 @@ if [ "$container_build" = "true" ]; then
 		export DATA_FILE="/vagrant/$data_file"
 	fi
 
+	fpm-cook \
+		--quiet $debug \
+		--tmp-root "${tmp_root}" \
+		--cache-dir "${cache_dir}" \
+		--pkg-dir "/vagrant/$output" \
+		clean "/vagrant/recipes/$package/recipe.rb"
+
 	exec fpm-cook \
-		--quiet \
-		--tmp-root "/tmp/fpm-cook" \
-		--cache-dir "/tmp/fpm-cook-cache" \
+		--quiet $debug \
+		--tmp-root "${tmp_root}" \
+		--cache-dir "${cache_dir}" \
 		--pkg-dir "/vagrant/$output" \
 		package --no-deps "/vagrant/recipes/$package/recipe.rb"
 else
@@ -128,5 +154,5 @@ else
 	fi
 
 	# Run this script inside the container with the -C flag to build the package
-	exec vagrant docker-run "$os" -- "/vagrant/scripts/$(basename "$0")" -C -d "$data_file" -a "$arch" -p "$package" -t "$target"
+	exec vagrant docker-run "$os" -- "/vagrant/scripts/$(basename "$0")" $debug -C -d "$data_file" -a "$arch" -p "$package" -t "$target" $target_arg
 fi
