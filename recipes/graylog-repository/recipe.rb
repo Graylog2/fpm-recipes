@@ -8,7 +8,7 @@ class GraylogRepository < FPM::Cookery::Recipe
   description "Package to install Graylog #{VERSION} GPG key and repository"
 
   name       "graylog-#{VERSION}-repository"
-  version    '2'
+  version    '1'
   revision   1
   source     '', :with => :noop
   arch       'all'
@@ -21,7 +21,7 @@ class GraylogRepository < FPM::Cookery::Recipe
     "graylog2-#{v}-repository-#{os}#{osrel}"
   }.concat(%w(1.0 1.1 1.2 1.3).map {|v|
     "graylog-#{v}-repository-#{os}#{osrel}"
-  }).concat(%w(2.0 2.1 2.2 2.3 2.4 2.5 3.0 3.1 3.2 3.3 4.0 4.1 4.2 4.3 5.0 5.1 5.2 6.0 6.1).map {|v|
+  }).concat(%w(2.0 2.1 2.2 2.3 2.4 2.5 3.0 3.1 3.2 3.3 4.0 4.1 4.2 4.3 5.0 5.1 5.2 6.0 6.1 6.2).map {|v|
     "graylog-#{v}-repository"
   })
 

@@ -14,10 +14,10 @@
   #
   # Only set the "revision" back to "1" when the version changes!
 default:
-  version_major: '6.2'
-  version: 6.2.0
-  suffix: -rc.1
-  revision: 8.rc.1
+  version_major: '6.3'
+  version: 6.3.0-SNAPSHOT
+  suffix: ''
+  revision: '1'
   homepage: https://www.graylog.org/
   maintainer: Graylog, Inc. <hello@graylog.org>
   vendor: graylog
