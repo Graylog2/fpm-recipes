@@ -7,5 +7,6 @@ RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|
 
 RUN yum install -y rubygems ruby-devel make gcc tar rpm-build curl git && \
     gem install dotenv -v 2.8.1 --no-document && \
+    gem install multi_json -v 1.15.0 && \
     gem install fpm-cookery -v 0.35.1 --no-document && \
     yum clean all
