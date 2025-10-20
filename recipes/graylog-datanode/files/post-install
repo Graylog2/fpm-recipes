@@ -24,21 +24,6 @@ case "$1" in
 	2)
 		# Upgrade
 		upgrade="true"
-
-		# Update fix for https://github.com/Graylog2/fpm-recipes/issues/143.
-		# RPM packages since 6.1.5-2 track and remove empty directories
-		# on updates but previous packages didn't. That means we need
-		# to manually remove an empty opensearch-observability plugin
-		# directory to allow Data Node to start when updating from
-		# version <= 6.1.5-1.
-		# TODO: Remove this fix for Graylog 7.0.
-		orphaned_plugin_dir="/usr/share/graylog-datanode/dist/opensearch-2.15.0-linux-x64/plugins/opensearch-observability"
-		if [ -d "$orphaned_plugin_dir" ]; then
-			# We can't use "rmdir" to remove the empty directory
-			# because the directory is not empty when this
-			# script is running.
-			rm -rf  "$orphaned_plugin_dir"
-		fi
 		;;
 	*)
 		echo "[ERROR] post-install script called with unknown argument: '$1'"
