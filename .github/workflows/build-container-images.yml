@@ -11,7 +11,7 @@ jobs:
   build-and-push:
     runs-on: "ubuntu-latest"
 
-    strategies:
+    strategy:
       fail-fast: false
       matrix:
         image:
