@@ -39,4 +39,4 @@ jobs:
         with:
           context: "docker/${{ matrix.image }}"
           push: true
-          tags: "ghcr.io/fpm-recipes/${{ matrix.image }}:latest"
+          tags: "ghcr.io/Graylog2/fpm-recipes/${{ matrix.image }}:latest"
