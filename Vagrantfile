@@ -11,7 +11,7 @@ Vagrant.configure('2') do |config|
   config.vm.define 'ubuntu2004' do |machine|
     machine.vm.provider 'docker' do |docker|
       if USE_IMAGE
-        docker.image = 'ghcr.io/graylog2/fpm-recipes-builder-ubuntu2004'
+        docker.image = 'ghcr.io/graylog2/fpm-recipes-builder-ubuntu2004:latest'
       else
         docker.build_dir = ROOT.join('docker/ubuntu2004')
         docker.build_args = ['--rm=true', '--tag=fpm_cookery/ubuntu:20.04']
@@ -35,7 +35,7 @@ Vagrant.configure('2') do |config|
   config.vm.define 'alma9' do |machine|
     machine.vm.provider 'docker' do |docker|
       if USE_IMAGE
-        docker.image = 'ghcr.io/graylog2/fpm-recipes-builder-alma9'
+        docker.image = 'ghcr.io/graylog2/fpm-recipes-builder-alma9:latest'
       else
         docker.build_dir = ROOT.join('docker/alma9')
         docker.build_args = ['--rm=true', '--tag=fpm_cookery/alma:9']
