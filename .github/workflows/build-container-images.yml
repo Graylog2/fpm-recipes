@@ -31,7 +31,7 @@ jobs:
         uses: "docker/login-action@v3"
         with:
           registry: "ghcr.io"
-          username: "${{ github.actor }}"
+          username: "Graylog2"
           password: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: "Build and push image - ${{ matrix.image }}"
