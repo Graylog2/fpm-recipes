@@ -9,7 +9,7 @@ class GraylogSidecarRepository < FPM::Cookery::Recipe
   description "Package to install Graylog Sidecar GPG key and repository"
 
   version    '1'
-  revision   5
+  revision   6
   source     '', :with => :noop
   arch       'all'
   homepage   data.homepage
@@ -38,11 +38,11 @@ class GraylogSidecarRepository < FPM::Cookery::Recipe
 
   def install_deb
     File.open('graylog-sidecar.list', 'w') do |file|
-      file.puts "deb https://packages.graylog2.org/repo/debian/ sidecar-stable #{VERSION}"
+      file.puts "deb [signed-by=/usr/share/keyrings/graylog-sidecar-archive-keyring.gpg] https://downloads.graylog.org/repo/debian/ sidecar-stable #{VERSION}"
     end
 
-    etc('apt/trusted.gpg.d').install workdir('files/deb/graylog-sidecar-keyring.gpg')
     etc('apt/sources.list.d').install 'graylog-sidecar.list'
+    share('keyrings').install workdir('files/deb/graylog-sidecar-archive-keyring.gpg')
   end
 
   def install_rpm
