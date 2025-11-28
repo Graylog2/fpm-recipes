@@ -19,7 +19,7 @@ default:
   suffix: -rc.1
   revision: 8.rc.1
   homepage: https://www.graylog.org/
-  maintainer: Graylog, Inc. <hello@graylog.org>
+  maintainer: Graylog, Inc. <packages@graylog.com>
   vendor: graylog
   license: SSPL
 
