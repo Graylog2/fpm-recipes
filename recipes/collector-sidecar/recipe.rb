@@ -14,7 +14,7 @@ class GraylogSidecar < FPM::Cookery::Recipe
   source data.source
   sha256 data.sha256
 
-  maintainer 'Graylog, Inc. <hello@graylog.org>'
+  maintainer 'Graylog, Inc. <packages@graylog.com>'
   vendor     'graylog'
   license    data.license
 

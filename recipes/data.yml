@@ -19,7 +19,7 @@ default:
   suffix: ''
   revision: '1'
   homepage: https://www.graylog.org/
-  maintainer: Graylog, Inc. <hello@graylog.org>
+  maintainer: Graylog, Inc. <packages@graylog.com>
   vendor: graylog
   license: SSPL
 
