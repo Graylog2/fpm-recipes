@@ -28,7 +28,7 @@ usage() {
 }
 
 available_archs=("all" "amd64" "arm64")
-available_packages=("graylog-server" "graylog-enterprise" "graylog-datanode")
+available_packages=("graylog-server" "graylog-enterprise" "graylog-datanode" "graylog-repository")
 available_targets=("deb" "rpm")
 
 arch=""
