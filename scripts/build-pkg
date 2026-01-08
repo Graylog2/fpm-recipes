@@ -16,6 +16,7 @@ usage() {
 	echo "Options:" 1>&2
 	echo "  -a Package architecture" 1>&2
 	echo "  -D Enable debug output" 1>&2
+	echo "  -o The package output directory (default: target/)" 1>&2
 	echo "  -p The package to build" 1>&2
 	echo "  -t The package target" 1>&2
 	echo "  -T Put temp directories in the output path for debugging" 1>&2
@@ -154,5 +155,5 @@ else
 	fi
 
 	# Run this script inside the container with the -C flag to build the package
-	exec vagrant docker-run "$os" -- "/vagrant/scripts/$(basename "$0")" $debug -C -d "$data_file" -a "$arch" -p "$package" -t "$target" $target_arg
+	exec vagrant docker-run "$os" -- "/vagrant/scripts/$(basename "$0")" $debug -C -d "$data_file" -a "$arch" -o "$output" -p "$package" -t "$target" $target_arg
 fi
