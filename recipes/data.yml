@@ -51,7 +51,7 @@ graylog-sidecar:
   source_amd64: https://packages.graylog2.org/releases/graylog-collector-sidecar/#{version}#{suffix}/graylog-sidecar-#{version}#{suffix}.tar.gz
   sha256_amd64: bb8ea480268551864d246e31b3e5cc50e941e71b7ad236092a9b2ccb96b5eb0f
   source_arm64: https://packages.graylog2.org/releases/graylog-collector-sidecar/#{version}#{suffix}/graylog-sidecar-#{version}#{suffix}.tar.gz
-  sha256_amd64: bb8ea480268551864d246e31b3e5cc50e941e71b7ad236092a9b2ccb96b5eb0f
+  sha256_arm64: bb8ea480268551864d246e31b3e5cc50e941e71b7ad236092a9b2ccb96b5eb0f
   version_major: '1.5'
   version: 1.5.2
   suffix: ''
