@@ -43,6 +43,9 @@ class GraylogEnterpriseServer < FPM::Cookery::Recipe
     # Avoids leaving empty directories on RPM update.
     # See: https://github.com/Graylog2/fpm-recipes/issues/143
     fpm_attributes rpm_auto_add_directories?: true
+    # Don't add  /usr/lib/.build-id directories.
+    # See: https://github.com/Graylog2/graylog2-server/issues/25221
+    fpm_attributes rpm_rpmbuild_define: ['_build_id_links none']
     config_files '/etc/sysconfig/graylog-server'
   end
 
