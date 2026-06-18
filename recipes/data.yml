@@ -49,11 +49,11 @@ graylog-datanode:
 
 graylog-sidecar:
   source_amd64: https://packages.graylog2.org/releases/graylog-collector-sidecar/#{version}#{suffix}/graylog-sidecar-#{version}#{suffix}.tar.gz
-  sha256_amd64: 5acb5928caf2bec3535747a2ee8d1387979a70dfcb14dcea2fbe049a5472839e
+  sha256_amd64: ce0d825abbb1b4572f18863c9946998e065848c3bc006fae476be34dd1900706
   source_arm64: https://packages.graylog2.org/releases/graylog-collector-sidecar/#{version}#{suffix}/graylog-sidecar-#{version}#{suffix}.tar.gz
-  sha256_arm64: 5acb5928caf2bec3535747a2ee8d1387979a70dfcb14dcea2fbe049a5472839e
+  sha256_arm64: ce0d825abbb1b4572f18863c9946998e065848c3bc006fae476be34dd1900706
   version_major: '1.5'
-  version: 1.5.4
+  version: 1.5.5
   suffix: ''
   revision: '1'
 
