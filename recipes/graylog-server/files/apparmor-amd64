@@ -1,0 +1,7 @@
+abi <abi/4.0>,
+include <tunables/global>
+
+profile graylog-headless-shell /usr/share/graylog-server/bin/headless_shell_amd64 flags=(unconfined) {
+  userns,
+  include if exists <local/graylog-headless-shell>
+}
