@@ -64,6 +64,7 @@ class GraylogEnterpriseServer < FPM::Cookery::Recipe
     when :deb
       etc('default').install file('environment'), 'graylog-server'
       etc('logrotate.d').install file('deb/logrotate'), 'graylog-server'
+      share('graylog-server/apparmor.d').install file("apparmor-#{pkg_arch}"), 'graylog-headless-shell'
     when :rpm
       etc('sysconfig').install file('environment'), 'graylog-server'
     end
