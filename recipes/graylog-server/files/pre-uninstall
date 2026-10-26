@@ -8,6 +8,10 @@ case "$1" in
 	# DEB based systems
 	remove)
 		stopping="true"
+		if [ -f /etc/apparmor.d/graylog-headless-shell ]; then
+                command -v apparmor_parser >/dev/null 2>&1 && apparmor_parser -R /etc/apparmor.d/graylog-headless-shell || true
+                rm -f /etc/apparmor.d/graylog-headless-shell
+        fi
 		;;
 	upgrade)
 		stopping="false"
