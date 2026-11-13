@@ -6,17 +6,21 @@ user="graylog"
 group="graylog"
 datadir="/var/lib/graylog-server"
 logdir="/var/log/graylog-server"
+apparmor_profile="/etc/apparmor.d/graylog-headless-shell"
 
 remove_data="false"
+remove_apparmor="false"
 
 case "$1" in
 	# DEB based systems
 	remove)
 		remove_data="false"
+		remove_apparmor="true"
 		;;
 
 	purge)
 		remove_data="true"
+		remove_apparmor="true"
 		;;
 
 	upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
@@ -39,6 +43,13 @@ case "$1" in
 		exit 1
 		;;
 esac
+
+if [ "$remove_apparmor" = "true" ] && [ -f "$apparmor_profile" ]; then
+	if command -v apparmor_parser >/dev/null 2>&1; then
+		apparmor_parser -R "$apparmor_profile" || true
+	fi
+	rm -f "$apparmor_profile"
+fi
 
 if [ "$remove_data" = "true" ]; then
 	rm -rf "$datadir" "$logdir"

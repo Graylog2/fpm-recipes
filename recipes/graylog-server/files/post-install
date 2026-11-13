@@ -41,6 +41,16 @@ if [ ! -s "$node_id_file" ]; then
 	fi
 fi
 
+# Deploy AppArmor profile when necessary
+apparmor_src="/usr/share/graylog-server/apparmor.d/graylog-headless-shell"
+apparmor_dst="/etc/apparmor.d/graylog-headless-shell"
+
+if [ -f "$apparmor_src" ] && [ -f /etc/apparmor.d/abi/4.0 ] && command -v apparmor_parser >/dev/null 2>&1; then
+        install -m 0644 "$apparmor_src" "$apparmor_dst"
+        apparmor_parser -r -T -W "$apparmor_dst" || true
+fi
+
+
 if command -v systemctl >/dev/null; then
 	# Reload systemd configuration to make sure the new unit file gets activated
 	systemctl daemon-reload || true
