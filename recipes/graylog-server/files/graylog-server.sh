@@ -20,6 +20,8 @@ if [ -z "$JAVA" ] && [ -d "/usr/share/graylog-server/jvm" ]; then
 	JAVA="/usr/share/graylog-server/jvm/bin/java"
 fi
 
+# -XX:-UseBASE64Intrinsics is a workaround for CVE-2026-114938 (java4shell)
+# It can be removed once the JRE's are patched.
 $GRAYLOG_COMMAND_WRAPPER ${JAVA:=/usr/bin/java} \
     -XX:-UseBASE64Intrinsics \
     $GRAYLOG_SERVER_JAVA_OPTS \
